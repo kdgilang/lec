@@ -1,0 +1,33 @@
+
+body {
+	font-family: verdana,arial,sans-serif;
+	margin: 0px;
+	padding: 0px;
+}
+
+* {
+	font-size: 13px;
+}
+
+.wrap {
+	position: relative;
+	top: 20px;
+	width: 780px;
+	margin: auto;
+}
+
+
+h1 {
+	text-align: center;
+	font-size: 24px;
+}
+
+input.nama {
+	font-size:28px; 
+	width:380px;
+}
+
+input, textarea {
+    border: 1px solid #CCC;
+    padding: 5px;
+}

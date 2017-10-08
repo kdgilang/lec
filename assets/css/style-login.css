@@ -1,0 +1,50 @@
+.panel {
+	width: 370px;
+	margin: auto;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	-webkit-transform: translate(-50%,-50%);
+	border-color: #235AA3;
+	padding: 0px;
+}
+
+.panel-red > .panel-heading {
+    border-color: #235AA3;
+    color: #fff;
+    background-color: #235AA3;
+    text-align: center;
+}
+
+.panel-login {
+    border-radius: 10px !important;
+}
+
+.panel-heading {
+    padding: 10px 15px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.panel-title {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 16px;
+    color: inherit;
+    padding: 5px 0px;
+}
+
+.panel-body {
+    padding: 50px 20px;
+}
+
+.btn-login {
+	text-align: center;
+}
+
+.logo {
+    text-align: center;
+    margin: 0px 0px 40px 0px;
+}
