@@ -19,11 +19,6 @@ body{
     border-color: #235AA3 !important;
 }
 
-.navbar-nav > li > a {
-    padding-top: 12px !important;
-    padding-bottom: 12px !important;
-}
-
 .navbar-inverse .navbar-nav > li > a {
     color: white !important;
 }
@@ -269,14 +264,6 @@ body{
     padding: 0px;
 }
 
-.input-group {
-    width: 300px;
-}
-
-.input-jam {
-    width: 100% !important;
-}
-
 
 /* GILANG PLUGIN */
 .select {
@@ -355,4 +342,101 @@ body{
 .c-tag .delete-tag {
     cursor: pointer;
     margin-left: 5px;
+}
+
+/* LANDING PAGE */
+.img_level {
+  margin-bottom: 15px;
+  width: 90px;
+}
+.navbar-brand {
+   padding: 0;
+   height: auto;
+   display: block;
+}
+.navbar-brand img {
+    height: 50px;
+}
+.navbar-nav {
+    padding: 10px 0;
+}
+.navbar-nav li {
+    margin-right: 15px;
+    list-style: none;
+}
+.navbar-nav li:last-child {
+    margin-right: 0;
+}
+.navbar {
+    border-radius:0;
+    padding-bottom: 15px;
+    padding-top: 15px; 
+    transition: all 0.5s ease;
+}
+.navbar.navbar-shrink .navbar-brand img  {
+    height: 30px;
+}
+.navbar.navbar-shrink  {
+    padding-bottom: 4px;
+    padding-top: 4px;
+}
+.img-fluid {
+    width: 100%;
+}
+p a {
+    color: #333;
+}
+.magny {
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100%;
+    width: 100%;
+}
+.magny .fa {
+    font-size: 40px;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.fixed-top {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+}
+.navbar-toggler {
+    position: absolute;
+    right: 15px;
+    top: 25px;
+}
+.navbar-collapse {
+    padding-left: 0;
+    padding-right: 0;
+}
+.panel-login {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 300px;
+}
+.c-form {
+    display: none;
+    background-color: rgba(0, 0, 0, 0.8);
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 9900;
+}
+.btn-closeform {
+    color: #fff;
+    position: absolute;
+    left: 100%;
+    top: -30px;
 }
