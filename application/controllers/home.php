@@ -23,7 +23,7 @@ class Home extends CI_Controller {
 			'username' => $username,
 			'password' => md5($password)
 		);
-		$result = $this->m_users->get_users($data);
+		$result = $this->m_users->is_login($data);
 		if ($result->num_rows() == 1) {
 			foreach ($result->result() as $val) {
 				if($val->status == 'aktif') {

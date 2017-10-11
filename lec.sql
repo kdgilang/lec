@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 10, 2017 at 04:57 PM
+-- Generation Time: Oct 11, 2017 at 12:47 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.0.15
 
@@ -115,10 +115,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `nama`, `tgl_lahir`, `alamat`, `telpon`, `email`, `password`, `status`, `foto`, `level`) VALUES
-(1, 'admin', 'admin', '20 agustus 1992', 'jalan maluku no. 30', '08999977711', 'admin@admin.com', '21232f297a57a5a743894a0e4a801fc3', '1', '', 1),
-(6, 'wayan', 'wayan sutiti', '24/09/2017', 'jalan pulau komodo no.20', '3424524342432', 'wayan@gmail.com', '08ce4ddd57c3472c321c194a51ae66b0', 'Aktif', '', 2),
-(7, 'galang', 'galang pramana putra', '17 agustus 2002', 'jalan mekar 2 blok C2 No.80', '08877661122', 'galang@galang.com', 'galang', 'aktif', '', 3),
-(8, 'komang', 'Komang Sudaini', '10/28/2017', 'Denpasar', '082147483647', 'komangsudani@gmail.com', '3da015fb8727d60123f0543d2e6a63fa', 'Aktif', 'http://192.168.1.2/lec/uploads/no_photo2.jpg', 2),
+(1, 'admin', 'admin', '20 agustus 1992', 'jalan maluku no. 30', '08999977711', 'admin@admin.com', '21232f297a57a5a743894a0e4a801fc3', 'aktif', '', 1),
+(6, 'wayan', 'wayan sutiti', '24/09/2017', 'jalan pulau komodo no.20', '3424524342432', 'wayan@gmail.com', '08ce4ddd57c3472c321c194a51ae66b0', 'aktif', '', 2),
+(8, 'komang', 'Komang Sudaini', '10/28/2017', 'Denpasar', '082147483647', 'komangsudani@gmail.com', '3da015fb8727d60123f0543d2e6a63fa', 'aktif', 'http://192.168.1.2/lec/uploads/no_photo2.jpg', 2),
 (13, 'komangg', 'Komang Sudaini', '03/09/2016', 'Denpasar', '082147483647', 'komangsudanii@gmail.com', 'd41d8cd98f00b204e9800998ecf8427e', 'tidak aktif', '', 2);
 
 -- --------------------------------------------------------

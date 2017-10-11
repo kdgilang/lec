@@ -6,6 +6,9 @@
 			parent::__construct();			
 			$this->load->database();
 		}
+		function is_login($filter) {
+			return $this->db->get_where('users', $filter);
+		}
 		function get_users($filter) {
 			$query = $this->db->get_where('users', $filter);
 			return $query->result_object();
