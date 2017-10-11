@@ -38,26 +38,13 @@
 			$this->db->where('id', $id);
 			$this->db->update('users', $data);
 		}
-
-		// OPERATOR
-		function add_operator($data, $nik){
+		function add_users($data, $meta_key, $c) {
 			$data = $this->db->insert('users',$data);
 			$id = $this->db->insert_id();
 			if(!empty($id)) {
-				$datameta = array('nama_meta'=>'nik', 'nilai_meta' => $nik, 'id_user' => $id);
+				$datameta = array('nama_meta'=>$meta_key, 'nilai_meta' => $c, 'id_user' => $id);
 				$this->db->insert('user_meta',$datameta);
 			}
-		}
-
-		// PENGAJAR
-		function add_pengajar($data, $kp) {
-			$data = $this->db->insert('users',$data);
-			$id = $this->db->insert_id();
-			if(!empty($id)) {
-				$datameta = array('nama_meta'=>'kode_pengajar', 'nilai_meta' => $kp, 'id_user' => $id);
-				$this->db->insert('user_meta',$datameta);
-			}
-		}
-		
+		}		
 	}
 ?>

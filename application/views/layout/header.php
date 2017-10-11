@@ -24,8 +24,8 @@
     <script src="<?php echo base_url() ?>assets/js/jquery.easing.min.js"></script>
     <script src="<?php echo base_url() ?>assets/js/scrollreveal.min.js"></script>
     <script src="<?php echo base_url() ?>assets/js/jquery.magnific-popup.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-range/2.2.0/moment-range.min.js"></script>   
+    <script src="<?php echo base_url() ?>assets/js/moment.min.js"></script>
+    <script src="<?php echo base_url() ?>assets/js/moment-range.min.js"></script>   
     <script src="<?php echo base_url() ?>assets/js/bootstrap-datepicker.js"></script>
     <script type="text/javascript" src="<?php echo base_url() ?>assets/js/jquery.timepicker.min.js"></script>
     <script  type="text/javascript"  src="<?php echo base_url() ?>assets/js/tinymce.js"></script>
@@ -35,39 +35,9 @@
         });
     </script>
 </head>
-
 <body>
-    <?php 
-    $this->load->library('session');
-    if(isset($this->session->id_user)) {?>
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <!-- <a class="navbar-brand" href="index.html">Admin Master LEC</a> -->
-        </div>
-        <!-- Top Menu Items -->
-        <ul class="nav navbar-right top-nav">                
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Administrator <b class="caret"></b></a>
-                <ul class="dropdown-menu">                        
-                    <li class="divider"></li>
-                    <li>
-                        <a href="<?php echo base_url(); ?>logout"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
-    <?php } else { ?>
-
+<?php $this->load->library('session'); ?>
+<?php if(isset($nomenu) == false) {?>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
@@ -95,8 +65,21 @@
             <li class="nav-item">
               <a class="nav-link toggle-form" href="#login">Login</a>
             </li>
+            <?php if(isset($this->session->id_user)) {?>
+            <li class="dropdown nav-item users">
+                <a href="javascript:;" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?= $this->session->username; ?><b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="nav-link toggle-form" href="<?php echo base_url(); ?>dashboard"><i class="fa fa-tachometer"></i> Dashboard</a>
+                    </li>
+                    <li>
+                        <a class="nav-link toggle-form" href="<?php echo base_url(); ?>home/logout"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                    </li>
+                </ul>
+            </li>
+            <?php } ?>
           </ul>
         </div>
       </div>
     </nav>
-    <?php }?>
+<?php } ?>

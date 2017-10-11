@@ -1,25 +1,28 @@
 <?php 
-class pengajar extends CI_Controller{
+class Pengajar extends CI_Controller{
 	function __construct(){
 		parent::__construct();		
 		$this->load->model('m_users');
 	}
 	function index() {
-		$data = array('users' => $this->m_users->lists_users(array('level' => 4)), 'title' => 'Pengajar');
+		$data = array('users' => $this->m_users->lists_users(array('level' => 3)), 'title' => 'Pengajar');
 		$data['slug'] = 'pengajar';
-		$this->load->view('users/lists',$data);
+		$data['content'] = 'users/lists';
+		$this->load->view('dashboard', $data);
 	}	
 	function detail($id) {
 		$data = array('user' => $this->m_users->detail_users($id), 'title' => 'Detail Operator');
 		$data['id'] = $id;
 		$data['slug'] = 'pengajar';
-		$this->load->view('users/detail', $data);
+		$data['content'] = 'users/detail';
+		$this->load->view('dashboard', $data);
 	}
 	function form($id = "") {
 		$data = array('user' => $this->m_users->detail_users($id), 'id' => $id);
 		$data['title'] = 'Form Pengajar';
 		$data['slug'] = 'pengajar';
-		$this->load->view('users/form', $data);
+		$data['content'] = 'users/form';
+		$this->load->view('dashboard', $data);
 	}
 	function add() {
 		$kp = $this->input->post('kode_pengajar');
@@ -51,12 +54,11 @@ class pengajar extends CI_Controller{
 			'password' => md5($password),
 			'foto' => $foto,	
 		);
-		$this->m_users->add_pengajar($data, $kp);
-		redirect('operator');
+		$this->m_users->add_users($data,'kode_pengajar', $kp);
+		redirect('pengajar');
 	}
 	function edit() {
 		$id = $this->input->post('id');
-		$nik = $this->input->post('kode_pengajar');
 		$username = $this->input->post('username');	
 		$nama = $this->input->post('nama');	
 		$email = $this->input->post('email');	
@@ -84,6 +86,9 @@ class pengajar extends CI_Controller{
 			'status' => $status,
 			'foto' => $foto,	
 		);
+		if(!empty($password)) {
+			$data['password'] = $password;
+		}
 		$this->m_users->update_users($id, $data);		
 		redirect('pengajar');
 	}

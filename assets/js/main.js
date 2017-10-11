@@ -92,12 +92,18 @@
     var that = $(this),
         form = that.serialize(),
         uri = that.attr('action');
+    that.parents('.c-form').find('.alert').removeClass().addClass('alert');
     $.ajax(uri, {
       type: "post",
       dataType: "json",
       data: form,
       success: function(res) {
-        console.log(res);
+        that.parents('.c-form').find('.alert').text(res.message).slideDown(300).addClass(res.class);
+        if(res.url !== '') {
+          setTimeout( () => {
+            window.location = res.url;
+          }, 500);
+        }
       }
     });
     e.preventDefault();

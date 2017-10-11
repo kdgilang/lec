@@ -1,31 +1,31 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class Operator extends CI_Controller{
+class Siswa extends CI_Controller{
 	function __construct(){
 		parent::__construct();		
 		$this->load->model('m_users');
 	}
 	function index() {
-		$data = array('users' => $this->m_users->lists_users(array('level'=>2)), 'title' => 'Operator');
-		$data['slug'] = 'operator';
+		$data = array('users' => $this->m_users->lists_users(array('level'=>4)), 'title' => 'Siswa');
+		$data['slug'] = 'siswa';
 		$data['content'] = 'users/lists';
 		$this->load->view('dashboard',$data);
 	}	
 	function detail($id) {
-		$data = array('user' => $this->m_users->detail_users($id), 'title' => 'Detail Operator');
+		$data = array('user' => $this->m_users->detail_users($id), 'title' => 'Detail Siswa');
 		$data['id'] = $id;
-		$data['slug'] = 'operator';
+		$data['slug'] = 'siswa';
 		$data['content'] = 'users/detail';
 		$this->load->view('dashboard', $data);
 	}
 	function form($id = "") {
 		$data = array('user' => $this->m_users->detail_users($id), 'id' => $id);
-		$data['title'] = 'Form Operator';
-		$data['slug'] = 'operator';
+		$data['title'] = 'Form Siswa';
+		$data['slug'] = 'siswa';
 		$data['content'] = 'users/form';
 		$this->load->view('dashboard', $data);
 	}
 	function add() {
-		$nik = $this->input->post('nik');
+		$ks = $this->input->post('kode_siswa');
 		$username = $this->input->post('username');	
 		$nama = $this->input->post('nama');	
 		$email = $this->input->post('email');	
@@ -33,7 +33,7 @@ class Operator extends CI_Controller{
 		$tgl_lahir = $this->input->post('tgl_lahir');
 		$no_tlp = $this->input->post('telpon');
 		$status = !empty($this->input->post('status')) ? $this->input->post('status') : "aktif";
-		$level = 2;
+		$level = 4;
 		$foto = null;
 		$password = $this->input->post('password');	
 		$config['upload_path'] = './uploads/';
@@ -54,8 +54,8 @@ class Operator extends CI_Controller{
 			'password' => md5($password),
 			'foto' => $foto,	
 		);
-		$this->m_users->add_users($data,'nik', $nik);
-		redirect('operator');
+		$this->m_users->add_users($data,'kode_siswa', $ks);
+		redirect('siswa');
 	}
 	function edit() {
 		$id = $this->input->post('id');
@@ -66,7 +66,7 @@ class Operator extends CI_Controller{
 		$tgl_lahir = $this->input->post('tgl_lahir');
 		$no_tlp = $this->input->post('telpon');
 		$status = !empty($this->input->post('status')) ? $this->input->post('status') : "aktif";
-		$level = 2;
+		$level = 4;
 		$foto = $this->input->post('foto');	
 		$config['upload_path'] = './uploads/';
 		$config['allowed_types'] = 'gif|jpg|png';
@@ -89,11 +89,11 @@ class Operator extends CI_Controller{
 			$data['password'] = $password;
 		}
 		$this->m_users->update_users($id, $data);		
-		redirect('operator');
+		redirect('siswa');
 	}
 	function delete($id){
 		$where = array('id' => $id);
 		$this->m_users->delete($where,'user');
-		redirect('operator');
+		redirect('siswa');
 	}
 }

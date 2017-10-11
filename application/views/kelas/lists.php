@@ -1,78 +1,40 @@
-            
-        <?php $this->load->view('layout/header');?>
-        <?php $this->load->view('layout/side'); ?>
+<a href="<?php echo base_url() ?>kelas/form" type="button" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Kelas</a>
+<br> <br>
+<div class="table-responsive">
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Nama Kelas</th> 
+                <th>Status Kelas</th>
+                <th>Tipe Kelas</th>     
+                <th>Aksi</th>         
+            </tr>
+        </thead>
+        <tbody>  
 
-        <div id="page-wrapper">
+        <?php
+        $no = 1;
+        if(!empty($data)) :
+            foreach ($data as $val) : //ngabsen data
+            ?>
+            <tr>
+                <td width="40px"><?= $no++; ?></td>
+                <td><?= $val->nama; ?></td>
+                <td><?= $val->status; ?></td>
+                <td><?= $val->tipe; ?></td>
+                <td width="600px">
+                    <a href="<?= base_url();?>kelas/absensi/<?php echo $val->id; ?>" class="btn btn-sm btn-success">Kelola Kelas</a>
+                    &nbsp
+                    <a href="<?= base_url();?>kelas/form/<?php echo $val->id; ?>" class="btn  btn-sm btn-warning">Ubah</a>
+                </td>                                                    
+            </tr>
+        
+        <?php
+            endforeach;
+        endif;
+        ?>                        
 
-            <div class="container-fluid">
-
-                <!-- Page Heading -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">
-                            <small>Data Kelas</small>
-                        </h1>
-                        <ol class="breadcrumb">
-                            <li class="active">
-                                <i class="fa fa-fw fa-table"></i></i> Data Kelas
-                            </li>
-                        </ol>
-                    </div>
-                </div>
-                <!-- /.row -->
-
-               
-                <a href="<?php echo base_url() ?>kelas/form" type="button" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Kelas</a>
-                <br>
-                <br>
-
-                <div class="table-responsive">
-                    <table class="table table-bordered table-hover table-striped">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Nama Kelas</th> 
-                                <th>Status Kelas</th>
-                                <th>Tipe Kelas</th>     
-                                <th>Aksi</th>         
-                            </tr>
-                        </thead>
-                        <tbody>  
-
-                        <?php
-                        $no = 1;
-                        if(!empty($data)) :
-                            foreach ($data as $val) : //ngabsen data
-                            ?>
-                            <tr>
-                                <td width="40px"><?= $no++; ?></td>
-                                <td><?= $val->nama; ?></td>
-                                <td><?= $val->status; ?></td>
-                                <td><?= $val->tipe; ?></td>
-                                <td width="600px">
-                                    <a href="<?= base_url();?>kelas/absensi/<?php echo $val->id; ?>" class="btn btn-sm btn-success">Kelola Kelas</a>
-                                    &nbsp
-                                    <a href="<?= base_url();?>kelas/form/<?php echo $val->id; ?>" class="btn  btn-sm btn-warning">Ubah</a>
-                                </td>        
-                                </td>                                                    
-                            </tr>
-                        
-                        <?php
-                            endforeach;
-                        endif;
-                        ?>                        
-
-                        </tbody>
-                    </table>
-                </div>              
-
-            </div>
-            <!-- /.container-fluid -->
-
-        </div>
-        <!-- /#page-wrapper -->
-
-    </div>
-    <!-- /#wrapper -->
-
-    <?php $this->load->view('layout/footer'); ?>
+        </tbody>
+    </table>
+</div>              

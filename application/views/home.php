@@ -215,15 +215,9 @@
                     </div>            
                     <div class="btn-login text-center">                                     
                         <input type="submit" class="btn btn-primary" value="Login">
-                        <?php  if(!empty($_GET['error'])):  ?>
-                        <br><br>
-                        <div class="alert alert-danger" style="margin-bottom: 0px; padding: 10px;">
-                            Username atau Password salah !
-                        </div>                    
-                        <!-- <span style="color: #e01b1b;">Username atau Password salah !</span> --> 
-                        <?php endif; ?>
                     </div>
                 </form>
+                <div class="alert"></div>
             </div>
         </div>
     </div>
@@ -239,7 +233,7 @@
                       <input class="form-control input" placeholder="Nama" name="nama">          
                     </div>
                     <div class="form-group margin">
-                      <input class="form-control input" placeholder="Email" name="email">
+                      <input type="email" class="form-control input" placeholder="Email" name="email">
                     </div>
                     <div class="form-group margin">        
                       <input class="form-control input" placeholder="Alamat" name="alamat">          
@@ -263,6 +257,7 @@
                     </div>
                 </form>
             </div>
+            <div class="alert"></div>    
         </div>
     </div>
 <?php $this->load->view('layout/footer'); ?>

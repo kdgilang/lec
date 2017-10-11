@@ -1,26 +1,27 @@
 <?php 
 
 
-class kelas extends CI_Controller{
+class Kelas extends CI_Controller{
 
 	function __construct(){
 		parent::__construct();	
 		$this->load->library('form_validation'); // digunakan untuk proses validasi yg di input
-		$this->load->database();	
 		$this->load->model('m_kelas');
 		$this->load->model('m_users');
 	}		
 	function index() {
 		$data['title'] = 'Kelas';
 		$data['data'] =  $this->m_kelas->get_kelas();
-		$this->load->view('kelas/lists', $data);
+		$data['content'] = 'kelas/lists';
+		$this->load->view('dashboard', $data);
 	}
 
 	function form() {
 		$data['siswa'] = $this->m_users->get_users(array('level' => 4));
 		$data['pengajar'] = $this->m_users->get_users(array('level' => 3));
 		$data['title'] = 'Form Kelas';
-		$this->load->view('kelas/form', $data);
+		$data['content'] = 'kelas/form';
+		$this->load->view('dashboard', $data);
 	}	
 
 	// function tambah_group(){
