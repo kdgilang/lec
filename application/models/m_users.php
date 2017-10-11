@@ -14,18 +14,15 @@
 			return $query->result_object();
 		}
 		function get_meta($id, $meta_key) {
-			$this->load->database();
 			$data = $this->db->get_where('user_meta', array('id_user' => $id, 'nama_meta' => $meta_key));
-			return $data->result_array()[0];
+			if($data->result_id->num_rows>0) {
+				return $data->result_array()[0];
+			}
 		}
 		function delete($where){
 			$this->db->where($where);
 			$this->db->delete('users');
 		}
-		function lists_users($sql){
-			$data = $this->db->get_where('users', $sql);
-			return $data->result_array();
-		}	
 		function detail_users($id){
 			$this->db->where('id', $id);
 			$query = $this->db->get('users');
@@ -39,16 +36,14 @@
 				$this->db->update('user_meta', $meta);
 			}
 		}
-		function add_users($data, $meta_key, $c, $status = false) {
+		function add_users($data, $meta_key, $c) {
 			$db = $this->db->insert('users',$data);
 			$id = $this->db->insert_id();
 			if(!empty($id) && !empty($meta_key) && !empty($c)) {
-				$datameta = array('nama_meta'=>$meta_key, 'nilai_meta' => $c, 'id_user' => $id);
-				$this->db->insert('user_meta',$datameta);
+				$datameta = array('nama_meta'=> $meta_key, 'nilai_meta' => $c, 'id_user' => $id);
+				$this->db->insert('user_meta', $datameta);
 			}
-			if($status) {
-				return $db;
-			}
+			return $db;
 		}		
 	}
 ?>

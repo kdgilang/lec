@@ -80,7 +80,7 @@ class Home extends CI_Controller {
 			'status' => $status,
 			'password' => md5($password)
 		);
-		$user = $this->m_users->add_users($data, null, null, true);
+		$user = $this->m_users->add_users($data, null, null);
 		if($user) {
 			$res['message'] = 'Berhasil mendaftar, Silakan melakukan aktivasi akun anda pada kantor LEC.';
 			$res['class'] = 'alert-success';

@@ -27,17 +27,17 @@
             if(!empty($users)) :
                 $mo = $this->load->model('m_users');
                 foreach($users as $val) { 
-                    $usermeta = $mo->m_users->get_meta($val['id'], $meta);
+                    $usermeta = $mo->m_users->get_meta($val->id, $meta);
                 ?>                        
                 <tr>
                     <td width="40px"><?= $no++?></td>
                     <td><?= $usermeta['nilai_meta']; ?></td>
-                    <td><?= $val['nama']; ?></td>
-                    <td><?= $val['status']; ?></td>  
+                    <td><?= $val->nama; ?></td>
+                    <td><?= $val->status; ?></td>  
                     <td>
-                        <a href="<?= base_url(). $slug;?>/detail/<?= $val['id']; ?>" class="btn btn-sm btn-primary">Detail</a>
+                        <a href="<?= base_url(). $slug;?>/detail/<?= $val->id; ?>" class="btn btn-sm btn-primary">Detail</a>
                         &nbsp
-                        <a href="<?= base_url(). $slug;?>/form/<?= $val['id']; ?>" class="btn  btn-sm btn-warning">Ubah</a>
+                        <a href="<?= base_url(). $slug;?>/form/<?= $val->id; ?>" class="btn  btn-sm btn-warning">Ubah</a>
                     </td>                                                    
                 </tr>
                 <?php } 

@@ -5,7 +5,7 @@ class Pengajar extends CI_Controller{
 		$this->load->model('m_users');
 	}
 	function index() {
-		$data = array('users' => $this->m_users->lists_users(array('level' => 3)), 'title' => 'Pengajar');
+		$data = array('users' => $this->m_users->get_users(array('level' => 3)), 'title' => 'Pengajar');
 		$data['slug'] = 'pengajar';
 		$data['content'] = 'users/lists';
 		$this->load->view('dashboard', $data);
@@ -34,13 +34,14 @@ class Pengajar extends CI_Controller{
 		$no_tlp = $this->input->post('telpon');
 		$status = !empty($this->input->post('status')) ? $this->input->post('status') : "aktif";
 		$level = 3;
-		$foto = null;
 		$password = $this->input->post('password');	
 		$config['upload_path'] = './uploads/';
 		$config['allowed_types'] = 'gif|jpg|png';
 		$this->load->library('upload', $config);
 		if($this->upload->do_upload('foto')) {
 			$foto = base_url().'uploads/'.$this->upload->data('file_name');
+		} else {
+			$foto = base_url().'assets/images/no-profile-image.png';
 		}
 		$data = array(
 			'username' => $username,
@@ -54,8 +55,8 @@ class Pengajar extends CI_Controller{
 			'password' => md5($password),
 			'foto' => $foto,	
 		);
-		$this->m_users->add_users($data,'kode_pengajar', $kp);
-		redirect('pengajar');
+		$db = $this->m_users->add_users($data,'kode_pengajar', $kp);
+		redirect('pengajar?'.$db);
 	}
 	function edit() {
 		$id = $this->input->post('id');
@@ -69,7 +70,7 @@ class Pengajar extends CI_Controller{
 		$status = !empty($this->input->post('status')) ? $this->input->post('status') : "aktif";
 		$level = 3;
 		$password = $this->input->post('password');
-		$foto = $this->input->post('foto');	
+		$foto = $this->input->post('old_foto');	
 		$config['upload_path'] = './uploads/';
 		$config['allowed_types'] = 'gif|jpg|png';
 		$this->load->library('upload', $config);

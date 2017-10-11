@@ -31,37 +31,37 @@
         <div class="form-group margin">
           <?php if($slug == 'operator') {
              $nik = empty($id) ? "" : $mo->m_users->get_meta($id, 'nik')['nilai_meta']; ?>
-            <input class="form-control input" placeholder="NIK" name="nik" value="<?= $nik; ?>">
+            <input class="form-control input" placeholder="NIK" name="nik" value="<?= $nik; ?>" required>
           <?php } else if($slug == 'pengajar') {
             $kp = empty($id) ? "" : $mo->m_users->get_meta($id, 'kode_pengajar')['nilai_meta']; ?>
-            <input class="form-control input" placeholder="Kode Pengajar" name="kode_pengajar" value="<?= $kp; ?>">
+            <input class="form-control input" placeholder="Kode Pengajar" name="kode_pengajar" value="<?= $kp; ?>" required>
           <?php } else if($slug == 'siswa') {
             $ks = empty($id) ? "" : $mo->m_users->get_meta($id, 'kode_siswa')['nilai_meta'];?>
-            <input class="form-control input" placeholder="Kode Siswa" name="kode_siswa" value="<?= $ks; ?>">
+            <input class="form-control input" placeholder="Kode Siswa" name="kode_siswa" value="<?= $ks; ?>" required>
           <?php }?>
         </div>
         <?php }?>
         <div class="form-group margin">        
-          <input class="form-control input" placeholder="User Name" name="username" value="<?= $username; ?>">          
+          <input class="form-control input" placeholder="User Name" name="username" value="<?= $username; ?>" required>          
         </div>
         <div class="form-group margin">        
-          <input class="form-control input" placeholder="Nama" name="nama" value="<?= $nama; ?>">          
+          <input class="form-control input" placeholder="Nama" name="nama" value="<?= $nama; ?>" required>          
         </div>
         <div class="form-group margin">
-          <input class="form-control input" type="email" placeholder="Email" name="email" value="<?= $email; ?>">
+          <input class="form-control input" type="email" placeholder="Email" name="email" value="<?= $email; ?>" required>
         </div>
         <div class="form-group margin">        
-          <input class="form-control input" placeholder="Alamat" name="alamat" value="<?= $alamat; ?>">          
+          <input class="form-control input" placeholder="Alamat" name="alamat" value="<?= $alamat; ?>" required>          
         </div>
         <div class="form-group">                               
           <div id="c-date" class="input-group date" data-provide="datepicker" style="width: 100% !important;">
-              <input class="form-control date" name="tgl_lahir" type="text" placeholder="Tanggal Lahir" value="<?= $tgl; ?>">
+              <input class="form-control date" name="tgl_lahir" type="text" placeholder="Tanggal Lahir" value="<?= $tgl; ?>" required>
           </div>                  
         </div>
         <div class="form-group margin">        
-          <input class="form-control input" placeholder="No Telpon" name="telpon" value="<?= $telpon; ?>">          
+          <input class="form-control input" placeholder="No Telpon" name="telpon" value="<?= $telpon; ?>" required>          
         </div>   
-        <?php if(!empty($id)) {?>
+        <?php if(!empty($id) && $this->session->level == 1) {?>
         <div class="form-group margin">        
           <select class="form-control input"  name="status">
             <option <?= ($status == 'aktif') ? "selected" : "";?> value="aktif">Aktif</option>
@@ -70,13 +70,14 @@
         </div>  
         <?php }?> 
         <div class="form-group margin">        
-          <input class="form-control input" accept="image/*" placeholder="Foto" name="foto" type="file" value="<?= $foto; ?>">          
-          <?php if(!empty($id) && $this->session->level == 1) {?>
+          <input class="form-control input" accept="image/*" placeholder="Foto" name="foto" type="file" <?= !empty($id) ? "" : "required";?> >         
+          <?php if(!empty($id)) {?>
+            <input class="form-control input" name="old_foto" type="hidden" value="<?= $foto; ?>"> 
             <img width="200" style="margin:15px 0; border: 1px solid #235AA3; padding: 10px;" src="<?= empty($user['foto']) ? base_url().'assets/images/no-profile-image.png' : $user['foto']; ?>" alt="<?= $user['nama'];?> photo">
           <?php }?>
         </div>              
         <div class="form-group margin">        
-          <input class="form-control input" placeholder="Password <?= !empty($id) ? 'Baru': '';?>" name="password" type="password" autocomplete="off">          
+          <input class="form-control input" placeholder="Password <?= !empty($id) ? 'Baru': '';?>" name="password" type="password" autocomplete="off" <?= !empty($id) ? '': 'required';?>>          
         </div>                                              
         <div class="col-xs-12 text-center">
           <a href="<?php echo base_url(). $slug; ?>" class="btn btn-default">Kembali</a>&nbsp&nbsp

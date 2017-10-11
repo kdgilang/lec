@@ -5,7 +5,7 @@ class Operator extends CI_Controller{
 		$this->load->model('m_users');
 	}
 	function index() {
-		$data = array('users' => $this->m_users->lists_users(array('level'=>2)), 'title' => 'Operator');
+		$data = array('users' => $this->m_users->get_users(array('level'=>2)), 'title' => 'Operator');
 		$data['slug'] = 'operator';
 		$data['content'] = 'users/lists';
 		$this->load->view('dashboard',$data);
@@ -34,13 +34,14 @@ class Operator extends CI_Controller{
 		$no_tlp = $this->input->post('telpon');
 		$status = !empty($this->input->post('status')) ? $this->input->post('status') : "aktif";
 		$level = 2;
-		$foto = null;
 		$password = $this->input->post('password');	
 		$config['upload_path'] = './uploads/';
 		$config['allowed_types'] = 'gif|jpg|png';
 		$this->load->library('upload', $config);
 		if($this->upload->do_upload('foto')) {
 			$foto = base_url().'uploads/'.$this->upload->data('file_name');
+		} else {
+			$foto = base_url().'assets/images/no-profile-image.png';
 		}
 		$data = array(
 			'username' => $username,
@@ -68,7 +69,7 @@ class Operator extends CI_Controller{
 		$no_tlp = $this->input->post('telpon');
 		$status = !empty($this->input->post('status')) ? $this->input->post('status') : "aktif";
 		$level = 2;
-		$foto = $this->input->post('foto');	
+		$foto = $this->input->post('old_foto');	 
 		$config['upload_path'] = './uploads/';
 		$config['allowed_types'] = 'gif|jpg|png';
 		$this->load->library('upload', $config);
