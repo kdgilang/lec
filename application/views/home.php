@@ -213,7 +213,7 @@
                             <input class="form-control" name="password" placeholder="Password" type="password">   
                         </div>                  
                     </div>            
-                    <div class="btn-login text-center">                                     
+                    <div class="text-center">                                     
                         <input type="submit" class="btn btn-primary" value="Login">
                     </div>
                 </form>
@@ -249,12 +249,12 @@
                     <div class="form-group margin">        
                       <input class="form-control input" placeholder="Password" name="password" type="password" required>          
                     </div>                                              
-                    <div class="col-xs-12 text-center">
-                      <input type="submit" class="btn btn-success" value="Daftar">       
+                    <div class="text-center">
+                      <input type="submit" class="btn btn-primary" value="Daftar">       
                     </div>
                 </form>
-            </div>
-            <div class="alert"></div>    
+                <div class="alert"></div>  
+            </div>  
         </div>
     </div>
 <?php $this->load->view('layout/footer'); ?>

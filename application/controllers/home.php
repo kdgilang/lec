@@ -59,7 +59,7 @@ class Home extends CI_Controller {
 		die(json_encode($res));
 	}
 	function register() {
-		$res = array('message'=>null, 'url' => '', 'class'=> 'alert-danger');
+		$res = array('message'=>null, 'class'=> 'alert-danger');
 		$username = $this->input->post('username', TRUE);	
 		$nama = $this->input->post('nama', TRUE);	
 		$email = $this->input->post('email', TRUE);	
@@ -81,7 +81,16 @@ class Home extends CI_Controller {
 			'password' => md5($password)
 		);
 		$user = $this->m_users->add_users($data, null, null, true);
-		$res['user'] = $user; 
+		if($user) {
+			$res['message'] = 'Berhasil mendaftar, Silakan melakukan aktivasi akun anda pada kantor LEC.';
+			$res['class'] = 'alert-success';
+		} else {
+			$error = $this->db->error();
+			$res['message'] = "Gagal mendaftar, \n";
+			foreach ($error as $val) {
+				$res['message'] .= $error['message'];
+			}
+		}
 		die(json_encode($res));
 	}
 	function logout() {
