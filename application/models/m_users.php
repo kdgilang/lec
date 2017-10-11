@@ -6,12 +6,6 @@
 			parent::__construct();			
 			$this->load->database();
 		}
-
-		// GENERAL
-		public function cek_user($data) {
-			$query = $this->db->get_where('users', $data);
-			return $query;
-		}
 		function get_users($filter) {
 			$query = $this->db->get_where('users', $filter);
 			return $query->result_object();
@@ -34,16 +28,23 @@
 			$query = $this->db->get('users');
 			return $query->row_array();
 		}
-		function update_users($id, $data){
+		function update_users($id, $data, $w=null, $meta=null){
 			$this->db->where('id', $id);
 			$this->db->update('users', $data);
+			if(!empty($w)) {
+				$this->db->where($w);
+				$this->db->update('user_meta', $meta);
+			}
 		}
-		function add_users($data, $meta_key, $c) {
-			$data = $this->db->insert('users',$data);
+		function add_users($data, $meta_key, $c, $status = false) {
+			$db = $this->db->insert('users',$data);
 			$id = $this->db->insert_id();
-			if(!empty($id)) {
+			if(!empty($id) && !empty($meta_key) && !empty($c)) {
 				$datameta = array('nama_meta'=>$meta_key, 'nilai_meta' => $c, 'id_user' => $id);
 				$this->db->insert('user_meta',$datameta);
+			}
+			if($status) {
+				return $db;
 			}
 		}		
 	}

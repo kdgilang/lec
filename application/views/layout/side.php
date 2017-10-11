@@ -44,7 +44,10 @@
             </li>  -->  
             <!-- <li>
                 <a class="nav-link" href="<?= base_url(); ?>sertifikat/data_sertifikat"><i class="fa fa-certificate icon-menu" aria-hidden="true"></i> Cetak Sertifikat</a>
-            </li>  -->              
+            </li>  -->
+            <li>
+                <a class="nav-link" href="<?= base_url(); ?>home/logout">&nbsp;&nbsp;&nbsp;<span class="fa fa-power-off" aria-hidden="true"></span> Logout</a>
+            </li>             
         </ul>
     </div>
     <!-- /.navbar-collapse -->

@@ -59,6 +59,7 @@ class Siswa extends CI_Controller{
 	}
 	function edit() {
 		$id = $this->input->post('id');
+		$ks = $this->input->post('kode_siswa');
 		$username = $this->input->post('username');	
 		$nama = $this->input->post('nama');	
 		$email = $this->input->post('email');	
@@ -88,7 +89,9 @@ class Siswa extends CI_Controller{
 		if(!empty($password)) {
 			$data['password'] = $password;
 		}
-		$this->m_users->update_users($id, $data);		
+		$meta = array('nilai_meta' => $ks);
+		$wmeta = array('nama_meta' => 'kode_siswa', 'id_user' => $id);
+		$this->m_users->update_users($id, $data, $wmeta, $meta);		
 		redirect('siswa');
 	}
 	function delete($id){

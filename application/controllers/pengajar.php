@@ -59,6 +59,7 @@ class Pengajar extends CI_Controller{
 	}
 	function edit() {
 		$id = $this->input->post('id');
+		$kp = $this->input->post('kode_pengajar');
 		$username = $this->input->post('username');	
 		$nama = $this->input->post('nama');	
 		$email = $this->input->post('email');	
@@ -89,7 +90,9 @@ class Pengajar extends CI_Controller{
 		if(!empty($password)) {
 			$data['password'] = $password;
 		}
-		$this->m_users->update_users($id, $data);		
+		$meta = array('nilai_meta' => $kp);
+		$wmeta = array('nama_meta' => 'kode_pengajar', 'id_user' => $id);
+		$this->m_users->update_users($id, $data, $wmeta, $meta);	
 		redirect('pengajar');
 	}
 	function delete($id) {

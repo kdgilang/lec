@@ -59,6 +59,7 @@ class Operator extends CI_Controller{
 	}
 	function edit() {
 		$id = $this->input->post('id');
+		$nik = $this->input->post('nik');
 		$username = $this->input->post('username');	
 		$nama = $this->input->post('nama');	
 		$email = $this->input->post('email');	
@@ -88,10 +89,12 @@ class Operator extends CI_Controller{
 		if(!empty($password)) {
 			$data['password'] = $password;
 		}
-		$this->m_users->update_users($id, $data);		
+		$meta = array('nilai_meta' => $nik);
+		$wmeta = array('nama_meta' => 'nik', 'id_user' => $id);
+		$this->m_users->update_users($id, $data, $wmeta, $meta);		
 		redirect('operator');
 	}
-	function delete($id){
+	function delete($id) {
 		$where = array('id' => $id);
 		$this->m_users->delete($where,'user');
 		redirect('operator');

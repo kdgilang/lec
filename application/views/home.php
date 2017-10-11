@@ -18,7 +18,7 @@
             <h2 class="section-heading text-white">Tentang LEC</h2>
             <hr class="light">
             <p class="text-faded">LEC Bali hadir untuk anda yang ingin mahir dan fasih dalam berbahasa Inggris dengan baik dan benar. Di tengah banyaknya tempat kursus bahasa inggris di Bali, ini menunjukan bahwa penguasaan bahasa Inggris adalah mutlak ataupun seperti kebutuhan primer.</p>
-            <a class="btn btn-default btn-xl js-scroll-trigger" href="#daftar">Daftar Kursus</a>
+            <a class="btn btn-default btn-xl toggle-form" href="#daftar">Daftar Kursus</a>
           </div>
           <div class="col-lg-2 text-center"></div>
         </div>
@@ -162,7 +162,7 @@
     <div class="call-to-action bg-dark">
       <div class="container text-center">
         <h2>Mulai Belajar Bahasa Inggris</h2>
-        <a class="btn btn-default btn-xl sr-button" href="#daftar">Daftar Sekarang</a>
+        <a class="btn btn-default btn-xl toggle-form" href="#daftar">Daftar Sekarang</a>
       </div>
     </div>
 
@@ -227,30 +227,27 @@
             <div class="panel-body"> 
                 <form action="<?= base_url()?>home/register" class="form-ajax">
                     <div class="form-group margin">        
-                      <input class="form-control input" placeholder="User Name" name="username">          
+                      <input class="form-control input" placeholder="User Name" name="username" required>          
                     </div>
                     <div class="form-group margin">        
-                      <input class="form-control input" placeholder="Nama" name="nama">          
+                      <input class="form-control input" placeholder="Nama" name="nama" required>          
                     </div>
                     <div class="form-group margin">
-                      <input type="email" class="form-control input" placeholder="Email" name="email">
+                      <input type="email" class="form-control input" placeholder="Email" name="email" required>
                     </div>
                     <div class="form-group margin">        
-                      <input class="form-control input" placeholder="Alamat" name="alamat">          
+                      <input class="form-control input" placeholder="Alamat" name="alamat" required>          
                     </div>
                     <div class="form-group">                               
                       <div id="c-date" class="input-group date" data-provide="datepicker" style="width: 100% !important;">
-                          <input class="form-control date" name="tgl_lahir" type="text" placeholder="Tanggal Lahir">
+                          <input class="form-control date" name="tgl_lahir" type="text" placeholder="Tanggal Lahir" required>
                       </div>                  
                     </div>
                     <div class="form-group margin">        
-                      <input class="form-control input" type="text" placeholder="No Telpon" name="telpon">          
+                      <input class="form-control input" type="text" placeholder="No Telpon" name="telpon" required>          
                     </div>   
                     <div class="form-group margin">        
-                      <input class="form-control input" accept="image/*" placeholder="Foto" name="foto" type="file">          
-                    </div>              
-                    <div class="form-group margin">        
-                      <input class="form-control input" placeholder="Password Baru" name="password" type="password">          
+                      <input class="form-control input" placeholder="Password" name="password" type="password" required>          
                     </div>                                              
                     <div class="col-xs-12 text-center">
                       <input type="submit" class="btn btn-success" value="Daftar">       

@@ -4,7 +4,7 @@ class Home extends CI_Controller {
 	function __construct() {
 		parent::__construct();
 		$this->load->library('session');
-		$this->load->model('m_users');  
+		$this->load->model('m_users'); 
 	}
 	function index() {
 		$data = array('title'=> 'LEC Bali');
@@ -12,7 +12,7 @@ class Home extends CI_Controller {
 	}
 	function login() {
 		$sess_data = null;
-		$res = array('message'=>null, 'url' => null, 'class'=> 'alert-danger');
+		$res = array('message'=>null, 'url' => '', 'class'=> 'alert-danger');
 		$password = $this->input->post('password', TRUE);
 		$username = $this->input->post('username', TRUE);
 		if(empty($username) || empty($password)) {
@@ -23,9 +23,9 @@ class Home extends CI_Controller {
 			'username' => $username,
 			'password' => md5($password)
 		);
-		$hasil = $this->m_users->cek_user($data);
-		if ($hasil->num_rows() == 1) {
-			foreach ($hasil->result() as $val) {
+		$result = $this->m_users->get_users($data);
+		if ($result->num_rows() == 1) {
+			foreach ($result->result() as $val) {
 				if($val->status == 'aktif') {
 					$sess_data['id_user'] = $val->id;
 					$sess_data['username'] = $val->username;
@@ -59,6 +59,30 @@ class Home extends CI_Controller {
 		die(json_encode($res));
 	}
 	function register() {
+		$res = array('message'=>null, 'url' => '', 'class'=> 'alert-danger');
+		$username = $this->input->post('username', TRUE);	
+		$nama = $this->input->post('nama', TRUE);	
+		$email = $this->input->post('email', TRUE);	
+		$alamat = $this->input->post('alamat');
+		$tgl_lahir = $this->input->post('tgl_lahir', TRUE);
+		$no_tlp = $this->input->post('telpon', TRUE);
+		$password = $this->input->post('password', TRUE);
+		$status = "tidak aktif";
+		$level = 4;
+		$data = array(
+			'username' => $username,
+			'nama' => $nama,
+			'email' => $email,
+			'alamat' => $alamat,
+			'level' => $level,
+			'tgl_lahir' => $tgl_lahir,
+			'telpon' => $no_tlp,
+			'status' => $status,
+			'password' => md5($password)
+		);
+		$user = $this->m_users->add_users($data, null, null, true);
+		$res['user'] = $user; 
+		die(json_encode($res));
 	}
 	function logout() {
 		$sess_data = array('logged_in', 'id_user', 'username', 'level');
