@@ -47,9 +47,32 @@ class Kelas extends CI_Controller{
 		$this->m_kelas->add_kelas($data);	
 		redirect('kelas');	
 	}
-	function update($id) {
-		$data= array();
+	function edit() {
+		$id = $this->input->post('id');	
+		$nama = $this->input->post('nama');		
+		$status = $this->input->post('status');
+        $hari = $this->input->post('hari');
+        $tipe = $this->input->post('tipe');
+		$jam = $this->input->post('jam');
+		$level = $this->input->post('level');
+		$id_pengajar = $this->input->post('id_pengajar');
+		$id_siswa = $this->input->post('id_siswa');
+		$jam = implode(" - ", $jam);
+		$id_siswa = implode(",", $id_siswa);
+ 		$hari = implode(",", $hari);    
+		$data = array(
+			'nama' => $nama,
+	 		'status' => $status,	
+	 		'tipe' => $tipe,
+ 			'hari' => strtolower($hari),
+			'jam' => $jam,	
+			'level' => $level,
+			'id_siswa' => $id_siswa,			
+			'id_pengajar' => $id_pengajar			
+ 		);
 		$this->load->view('jadwal/rubah_group',$data);
+		$this->m_kelas->update_kelas($data, array('id'=>$id));	
+		redirect('kelas');		
 	}
 
 	// function update_group(){

@@ -17,9 +17,8 @@ class M_Kelas extends CI_Model{
 		$query = $this->db->get_where('kelas', $where);
 		return $query->row_object();
 	}
-	function lihat_detail_kelas($id_kelas){
-		$this->db->where('id',$id_kelas);
-		$query = $this->db->get('kelas');
-		return $query->row_array();
+	function update_kelas($data, $where){
+		$this->db->where($where);
+		$this->db->update('kelas', $data);
 	}
 }

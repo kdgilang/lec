@@ -1,5 +1,6 @@
 <?php 
   $action = base_url() . $slug;
+  $id = empty($kelas->id) ? "" : $kelas->id;
   if(!empty($id)) {
     $action .= '/edit';
     $title = 'Ubah Kelas';
@@ -7,7 +8,6 @@
     $action .= '/add';
     $title = 'Tambah Kelas';
   }
-  $id = empty($kelas->id) ? "" : $kelas->id;
   $nama = empty($kelas->nama) ? "" : $kelas->nama;
   $tipe = empty($kelas->tipe) ? "" : $kelas->tipe;
   $status = empty($kelas->status) ? "" : $kelas->status;
