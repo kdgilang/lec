@@ -1,11 +1,7 @@
-<?php 
-
-
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Kelas extends CI_Controller{
-
 	function __construct(){
 		parent::__construct();	
-		$this->load->library('form_validation'); // digunakan untuk proses validasi yg di input
 		$this->load->model('m_kelas');
 		$this->load->model('m_users');
 	}		
@@ -15,51 +11,46 @@ class Kelas extends CI_Controller{
 		$data['content'] = 'kelas/lists';
 		$this->load->view('dashboard', $data);
 	}
-
-	function form() {
+	function form($id="") {
 		$data['siswa'] = $this->m_users->get_users(array('level' => 4));
 		$data['pengajar'] = $this->m_users->get_users(array('level' => 3));
 		$data['title'] = 'Form Kelas';
 		$data['content'] = 'kelas/form';
+		$data['slug'] = 'kelas';
+		if(isset($id)) {
+			$data['kelas'] = $this->m_kelas->detail_kelas(array('id'=>$id));
+		}
 		$this->load->view('dashboard', $data);
 	}	
-
-	// function tambah_group(){
-	// 	$nama_kelas = $this->input->post('nama_kelas');		
-	// 	$status = $this->input->post('status');
-                                                                      
-	// 	$data1 = array(
-	// 		'nama_kelas' => $nama_kelas,
-	//  		'status' => $status				
- // 		);
-
-	// 	$id = $this->m_jadwal->create('kelas',$data1);	
-
-	// 	$hari = $this->input->post('hari');
-	// 	$jam = $this->input->post('jam');
-	// 	$target_level = $this->input->post('target_level');
-	// 	$id_pengajar = $this->input->post('id_pengajar');
-
-	// 	if(!empty($id)) {
-	// 		$h = implode(",", $hari);
-	// 		$data2 = array(
-	// 			'hari' => strtolower($h),
-	// 			'jam' => $jam,	
-	// 			'target_level' => $target_level,
-	// 			'id_kelas' => $id,			
-	// 			'id_pengajar' => $id_pengajar			
-	// 		);
-	// 		$this->m_jadwal->input_data_jadwal($data2);
-	// 		redirect('jadwal/data_group/');
-	// 	}	
-	// }
-
-	// function rubah_group($id){
-	// 	$data = array('kelas' => $this->m_jadwal->tampil_detail_group($id),
-	// 					'id' => $id, 
-	// 					'jadwal' => $this->m_jadwal->tampil_jadwal_group($id));
-	// 	$this->load->view('jadwal/rubah_group',$data);
-	// }
+	function add() {
+		$nama = $this->input->post('nama');		
+		$status = $this->input->post('status');
+        $hari = $this->input->post('hari');
+        $tipe = $this->input->post('tipe');
+		$jam = $this->input->post('jam');
+		$level = $this->input->post('level');
+		$id_pengajar = $this->input->post('id_pengajar');
+		$id_siswa = $this->input->post('id_siswa');
+		$jam = implode(" - ", $jam);
+		$id_siswa = implode(",", $id_siswa);
+ 		$hari = implode(",", $hari);                            
+		$data = array(
+			'nama' => $nama,
+	 		'status' => $status,	
+	 		'tipe' => $tipe,
+ 			'hari' => strtolower($hari),
+			'jam' => $jam,	
+			'level' => $level,
+			'id_siswa' => $id_siswa,			
+			'id_pengajar' => $id_pengajar			
+ 		);
+		$this->m_kelas->add_kelas($data);	
+		redirect('kelas');	
+	}
+	function update($id) {
+		$data= array();
+		$this->load->view('jadwal/rubah_group',$data);
+	}
 
 	// function update_group(){
 	// 	$id_kelas = $this->input->post('id_kelas');

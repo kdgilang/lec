@@ -301,9 +301,6 @@ body{
     margin-bottom: 5px;
     padding: 10px;
 }
-.c-tag.bye {
-    display: none;
-}
 .c-tag .item-tag {
     background-color: #235AA3;
     color: #fff;

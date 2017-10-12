@@ -12,7 +12,7 @@
 		function get_users($filter) {
 			$query = $this->db->get_where('users', $filter);
 			return $query->result_object();
-		}
+		} 
 		function get_meta($id, $meta_key) {
 			$data = $this->db->get_where('user_meta', array('id_user' => $id, 'nama_meta' => $meta_key));
 			if($data->result_id->num_rows>0) {

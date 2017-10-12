@@ -59,12 +59,14 @@
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#kontak">Kontak</a>
             </li>
+            <?php if(!isset($this->session->id_user)) {?>
             <li class="nav-item">
               <a class="nav-link toggle-form" href="#daftar">Daftar Kursus</a>
             </li>
             <li class="nav-item">
               <a class="nav-link toggle-form" href="#login">Login</a>
             </li>
+            <?php } ?>
             <?php if(isset($this->session->id_user)) {?>
             <li class="dropdown nav-item users">
                 <a href="javascript:;" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?= $this->session->username; ?><b class="caret"></b></a>

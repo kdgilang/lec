@@ -1,44 +1,59 @@
 <?php 
+  $action = base_url() . $slug;
   if(!empty($id)) {
-    $action = base_url().'operator/edit';
+    $action .= '/edit';
     $title = 'Ubah Kelas';
   } else {
-    $action = base_url().'operator/add';
+    $action .= '/add';
     $title = 'Tambah Kelas';
   }
-?>
+  $id = empty($kelas->id) ? "" : $kelas->id;
+  $nama = empty($kelas->nama) ? "" : $kelas->nama;
+  $tipe = empty($kelas->tipe) ? "" : $kelas->tipe;
+  $status = empty($kelas->status) ? "" : $kelas->status;
+  $jam = empty($kelas->jam) ? "" : explode(" - ", $kelas->jam);
+  $hari = empty($kelas->hari) ? "" : explode(",", $kelas->hari);
+  $level = empty($kelas->level) ? "" : $kelas->level;
+  $vs = empty($kelas->id_siswa) ? "" : explode(",", $kelas->id_siswa);
+  $ps = empty($kelas->id_pengajar) ? "" : $kelas->id_pengajar; 
+  $uniqsiswa = $siswa;
+  if(!empty($vs)) {
+    $uniqsiswa = [];
+    $csiswa = [];
+    $i = $j = $g = 0;
+    foreach ($siswa as $key => $val) {
+      if(!in_array($val->id, $vs)) {
+        $uniqsiswa[$j] = $siswa[$i];
+        $j++;
+      } else {
+        $csiswa[$g] = $siswa[$i];
+        $g++;
+      } 
+      $i++;
+    } 
+  }
+?> 
 <form action="<?= $action;?>" enctype="multipart/form-data" method="post">
   <div class="col-xs-12 col-sm-12 col-md-12 wrapper">      
     <div class="col-xs-12 col-sm-12 col-md-12 panel panel-primary form-daftar-offline">
-      <?php 
-          $id = empty($id) ? "" : $id;
-          $tipe = empty($user['username']) ? "" : $user['username'];
-          $nama = empty($user['nama']) ? "" : $user['nama'];
-          $status = empty($user['email']) ? "" : $user['email'];
-          $jam = empty($user['alamat']) ? "" : $user['alamat'];
-          $hari = empty($user['tgl_lahir']) ? "" : $user['tgl_lahir'];
-          $level = empty($user['tgl_lahir']) ? "" : $user['tgl_lahir'];
-          $vs = empty($user['id_siswa']) ? "" : $user['id_siswa'];
-          $ps = empty($user['id_pengajar']) ? "" : $user['id_pengajar']; 
-      ?> 
       <div class="panel-body daftar">
         <input type="hidden" name="id" value="<?= $id; ?>">
         <div class="form-group margin">        
-          <input class="form-control input" placeholder="Nama" name="nama" value="<?= $nama; ?>">          
+          <input class="form-control input" placeholder="Nama Kelas" name="nama" value="<?= $nama; ?>" required>          
         </div>
         <div class="form-group margin">        
-          <select name="status" id="status" class="form-control input">
-            <option value="0" default>Status</option>
-            <option value="aktif">Aktif</option>
-            <option value="tidak aktif">Tidak Aktif</option>
-            <option value="koreksi">Koreksi</option>
+          <select name="status" id="status" class="form-control input" required>
+            <option>Status Kelas</option>
+            <option <?= ($status=="aktif") ? "selected" : ""; ?> value="aktif">Aktif</option>
+            <option <?= ($status=="tidak aktif") ? "selected" : ""; ?> value="tidak aktif">Tidak Aktif</option>
+            <option <?= ($status=="koreksi") ? "selected" : ""; ?> value="koreksi">Koreksi</option>
           </select>       
         </div>
         <div class="form-group margin">        
-          <select name="tipe" id="tipe" class="form-control input">
-            <option value="0" default>Tipe Kursus</option>
-            <option value="private">Private</option>
-            <option value="biasa">Biasa</option>
+          <select name="tipe" id="tipe" class="form-control input" required>
+            <option>Tipe Kursus</option>
+            <option <?= ($tipe=="private") ? "selected" : ""; ?> value="private">Private</option>
+            <option <?= ($tipe=="biasa") ? "selected" : ""; ?> value="biasa">Biasa</option>
           </select>       
         </div>
         <div class="row">
@@ -47,17 +62,17 @@
             <div class="form-group">
               <div class="checkbox">
                   <label>
-                      <input name="hari[]" type="checkbox" value="Senin">Senin
+                      <input <?= in_array('senin', $hari) ? "checked" : ""; ?> name="hari[]" type="checkbox" value="Senin">Senin
                   </label>
               </div>
               <div class="checkbox">
                   <label>
-                      <input name="hari[]" type="checkbox" value="Selasa">Selasa
+                      <input <?= in_array('selasa', $hari) ? "checked" : ""; ?> name="hari[]" type="checkbox" value="Selasa">Selasa
                   </label>
               </div>  
               <div class="checkbox">
                   <label>
-                      <input name="hari[]" type="checkbox" value="Rabu">Rabu
+                      <input <?= in_array('rabu', $hari) ? "checked" : ""; ?> name="hari[]" type="checkbox" value="Rabu">Rabu
                   </label>
               </div>                      
             </div>
@@ -66,12 +81,12 @@
             <div class="form-group">
               <div class="checkbox">
                   <label>
-                      <input name="hari[]" type="checkbox" value="Kamis">Kamis
+                      <input <?= in_array('kamis', $hari) ? "checked" : ""; ?> name="hari[]" type="checkbox" value="Kamis">Kamis
                   </label>
               </div>
               <div class="checkbox">
                   <label>
-                      <input name="hari[]" type="checkbox" value="Jumat">Jumat
+                      <input <?= in_array('jumat', $hari) ? "checked" : ""; ?> name="hari[]" type="checkbox" value="Jumat">Jumat
                   </label>
               </div>                                               
             </div>
@@ -80,12 +95,12 @@
             <div class="form-group">
               <div class="checkbox">
                   <label>
-                      <input name="hari[]" type="checkbox" value="Sabtu">Sabtu
+                      <input <?= in_array('sabtu', $hari) ? "checked" : ""; ?> name="hari[]" type="checkbox" value="Sabtu">Sabtu
                   </label>
               </div>
               <div class="checkbox">
                   <label>
-                      <input name="hari[]" type="checkbox" value="Minggu">Minggu
+                      <input <?= in_array('minggu', $hari) ? "checked" : ""; ?> name="hari[]" type="checkbox" value="Minggu">Minggu
                   </label>
               </div>                                             
             </div>
@@ -93,41 +108,49 @@
         </div>
         <div class="row" style="margin-bottom: 15px;">
           <div class="col-md-12" style="margin-bottom: 5px;"> <strong>Jam Kursus</strong> </div>                        
-          <div class="col-md-5">
+          <div class="col-md-6">
             <div class="input-group input-jam">
-                <input name="jam[]" type="text" class="timepicker form-control input-small">
+                <input name="jam[]" type="text" class="timepicker form-control input-small" value="<?= $jam[0];?>" required>
                 <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
             </div>
           </div>
-          <div class="col-md-2" style="text-align: center;">-</div>
-          <div class="col-md-5">
+          <div class="col-md-6">
             <div class="input-group input-jam">
-                <input name="jam[]" type="text" class="timepicker form-control input-small">
+                <input name="jam[]" type="text" class="timepicker form-control input-small" value="<?= $jam[1];?>" required>
                 <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
             </div> 
           </div>
         </div>
         <div class="form-group margin">        
-          <select name="tipe" id="tipe" class="form-control input">
-            <option>Tipe Kursus</option>
-            <option value="1">General English</option>
-            <option value="2">Conversation Class</option>
-            <option value="3">English for Tourism</option>
-            <option value="4">English for Law professional</option>
-            <option value="5">TOEFL / IELTS Preparation</option>
-            <option value="6">Company Traning</option>
+          <select name="level" id="level" class="form-control input" required>
+            <option>Target Level</option>
+            <option <?= ($level==1) ? "selected" : ""; ?> value="1">General English</option>
+            <option <?= ($level==2) ? "selected" : ""; ?> value="2">Conversation Class</option>
+            <option <?= ($level==3) ? "selected" : ""; ?> value="3">English for Tourism</option>
+            <option <?= ($level==4) ? "selected" : ""; ?> value="4">English for Law professional</option>
+            <option <?= ($level==5) ? "selected" : ""; ?> value="5">TOEFL / IELTS Preparation</option>
+            <option <?= ($level==6) ? "selected" : ""; ?> value="6">Company Traning</option>
           </select>       
         </div>
-        <?php if(!empty($siswa)): ?>
+        <?php if(!empty($uniqsiswa)): ?>
         <div class="form-group margin selectboxes">
-          <div id="c-siswa" class="c-tag bye">
+          <?php if(!empty($vs)) { ?>
+          <div id="c-siswa" class="c-tag">
+            <?php foreach($csiswa as $val) { ?>
+            <div class="item-tag">
+                <?= $val->nama;?>
+                <input type="hidden" name="id_siswa[]" value="<?= $val->id;?>" required />
+                <span data-value="<?= $val->id;?>" class="delete-tag fa fa-times"></span>
+            </div>
+            <?php } ?>
             <div class="clearfix"></div>
-          </div>        
+          </div>      
+          <?php }?>  
           <a href="javscript:;" class="select form-control">Pilih Siswa <span class="fa fa-angle-down"></span></a>
           <div class="c-lists">
             <input id="searchsiswa" type="text" autocomplete="off" class="form-control" placeholder="Cari Siswa"> 
             <ul class="lists">
-              <?php foreach($siswa as $val) { ?>
+              <?php foreach($uniqsiswa as $val) { ?>
                 <li data-value="<?=$val->id;?>" data-target="c-siswa" class="addlist"><span><?=$val->nama;?> (<?=$val->username;?>)</span></li>
               <?php } ?>
             </ul>
@@ -135,23 +158,17 @@
         </div>
       <?php endif; ?>
       <?php if(!empty($pengajar)): ?>
-        <div class="form-group margin selectboxes">
-          <div id="c-siswa" class="c-tag bye">
-            <div class="clearfix"></div>
-          </div>        
-          <a href="javscript:;" class="select form-control">Pilih Pengajar<span class="fa fa-angle-down"></span></a>
-          <div class="c-lists">
-            <input id="searchsiswa" type="text" autocomplete="off" class="form-control" placeholder="Cari Pengajar"> 
-            <ul class="lists">
+        <div class="form-group margin selectboxes">  
+          <select id="pengajar" name="id_pengajar" class="form-control input" required>
+              <option>Pilih Pengajar</option>
               <?php foreach($pengajar as $val) { ?>
-                <li data-value="<?=$val->id;?>" data-target="c-siswa" class="addlist"><span><?=$val->nama;?> (<?=$val->username;?>)</span></li>
+              <option <?= ($val->id == $ps) ? "selected" : ""; ?> value="<?=$val->id;?>"><?=$val->nama;?> (<?=$val->username;?>)</option>
               <?php } ?>
-            </ul>
-         </div>
+          </select> 
         </div> 
       <?php endif;?>                                          
-        <div class="col-md-12 btn-daftar">
-          <a href="<?php echo base_url(). 'operator'; ?>" class="btn btn-default">Kembali</a>&nbsp&nbsp
+        <div class="col-md-12 text-center">
+          <a href="<?= base_url(). 'kelas'; ?>" class="btn btn-default">Kembali</a>&nbsp&nbsp
           <button type="submit" class="btn btn-success">Simpan</button>       
         </div>      
       </div>
@@ -159,9 +176,13 @@
   </div>
 </form>
 <script>
-  var siswa = <?=json_encode($siswa);?>,
+  var siswa = <?=json_encode($uniqsiswa);?>,
       bsiswa = <?=json_encode($siswa);?>;
-  $(".timepicker").timepicker({dropdown: true});
+  $(".timepicker").timepicker({
+    dropdown: true,    
+    minTime: '10:00AM',
+    maxTime: '06:00PM'
+  });
 
   (function (js){
     'use strict';
@@ -180,7 +201,7 @@
           target = that.data("target"),
           html = `<div class="item-tag">
                     `+text+`
-                    <input type="hidden" name="siswa[]" value="`+val+`"/>
+                    <input type="hidden" name="id_siswa[]" value="`+val+`" required />
                     <span data-value="`+val+`" class="delete-tag fa fa-times"></span>
                 </div>`;
       if(js("#"+target).children('.item-tag').length <= 0) {

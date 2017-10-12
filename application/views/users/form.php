@@ -7,24 +7,22 @@
     $action .= '/add';
     $title .= '&nbsp;Tambah';
   }
+  $mo = $this->load->model('m_users');
+  $this->load->library('session');
+  $username = empty($user['username']) ? "" : $user['username'];
+  $nama = empty($user['nama']) ? "" : $user['nama'];
+  $email = empty($user['email']) ? "" : $user['email'];
+  $alamat = empty($user['alamat']) ? "" : $user['alamat'];
+  $tgl = empty($user['tgl_lahir']) ? "" : $user['tgl_lahir'];
+  $telpon = empty($user['telpon']) ? "" : $user['telpon'];
+  $foto = empty($user['foto']) ? "" : $user['foto'];
+  $status = empty($user['status']) ? "" : $user['status'];
 ?>
 <!-- form pendaftaran -->
 <div class="col-xs-12 col-sm-3"></div>
 <div class="col-xs-12 col-sm-6">
   <form action="<?= $action;?>" enctype="multipart/form-data" method="post">    
     <div class="panel panel-primary form-daftar-offline">
-      <?php 
-          $mo = $this->load->model('m_users');
-          $this->load->library('session');
-          $username = empty($user['username']) ? "" : $user['username'];
-          $nama = empty($user['nama']) ? "" : $user['nama'];
-          $email = empty($user['email']) ? "" : $user['email'];
-          $alamat = empty($user['alamat']) ? "" : $user['alamat'];
-          $tgl = empty($user['tgl_lahir']) ? "" : $user['tgl_lahir'];
-          $telpon = empty($user['telpon']) ? "" : $user['telpon'];
-          $foto = empty($user['foto']) ? "" : $user['foto'];
-          $status = empty($user['status']) ? "" : $user['status'];
-      ?> 
       <div class="panel-body daftar">
         <input type="hidden" name="id" value="<?= $id; ?>">
         <?php if($this->session->level == 1) {?>
