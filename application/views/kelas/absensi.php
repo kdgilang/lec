@@ -34,12 +34,30 @@
                 <th class="hadir">15</th>
             </tr>
         </thead>
-        <tbody>                           
+        <tbody>      
+        <?php if(!empty($siswa))  { $i=1;?>
+            <?php foreach($siswa as $val) {?>             
             <tr>
-                <td>da</td>
-                <td>da</td>
-                <td class="hadir">da</td>
-            </tr>   
+                <td><?= $i;?></td>
+                <td><?= $val['nama'];?></td>
+                <td class="hadir"><input type="checkbox" name="absensi[]"></td>
+                <td class="hadir"><input type="checkbox" name="absensi[]"></td>
+                <td class="hadir"><input type="checkbox" name="absensi[]"></td>
+                <td class="hadir"><input type="checkbox" name="absensi[]"></td>
+                <td class="hadir"><input type="checkbox" name="absensi[]"></td>
+                <td class="hadir"><input type="checkbox" name="absensi[]"></td>
+                <td class="hadir"><input type="checkbox" name="absensi[]"></td>
+                <td class="hadir"><input type="checkbox" name="absensi[]"></td>
+                <td class="hadir"><input type="checkbox" name="absensi[]"></td>
+                <td class="hadir"><input type="checkbox" name="absensi[]"></td>
+                <td class="hadir"><input type="checkbox" name="absensi[]"></td>
+                <td class="hadir"><input type="checkbox" name="absensi[]"></td>
+                <td class="hadir"><input type="checkbox" name="absensi[]"></td>
+                <td class="hadir"><input type="checkbox" name="absensi[]"></td>
+                <td class="hadir"><input type="checkbox" name="absensi[]"></td>
+            </tr> 
+            <?php $i++; }?>
+        <?php }?>
         </tbody>
     </table>  
     <a href="<?= base_url('kelas'); ?>" class="btn btn-default"><span class="fa fa-arrow-left"></span>&nbsp;&nbsp;Kembali</a>             
