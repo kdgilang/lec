@@ -10,8 +10,8 @@
     <table valign="center" class="table table-bordered table-hover table-striped">
         <thead>
             <tr>
-                <th>H = Hadir</th>
-                <th>A = Alpha</th>
+                <th><input type="checkbox" checked> = Hadir</th>
+                <th><input type="checkbox"> = Alpha</th>
                 <th colspan="15" class="pertemuan">Pertemuan</th>
             </tr>
             <tr>
