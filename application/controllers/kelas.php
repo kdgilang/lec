@@ -88,4 +88,11 @@ class Kelas extends CI_Controller{
 		$data['slug'] = 'detail';
 		$this->load->view('dashboard', $data);
 	}
+	function update_absen ($id = '') {
+		$absensi = $this->input->post('absensi');
+		foreach ($absensi as $key => $val) {
+			
+		}
+		die(json_encode($absensi));
+	}
 }

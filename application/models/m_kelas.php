@@ -21,4 +21,7 @@ class M_Kelas extends CI_Model{
 		$this->db->where($where);
 		$this->db->update('kelas', $data);
 	}
+	function add_meta($data, $where){
+		$this->db->insert('kelas_meta', $data);
+	}
 }
