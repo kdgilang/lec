@@ -28,6 +28,11 @@
 			$query = $this->db->get('users');
 			return $query->row_array();
 		}
+		function in_users($ids){
+			$this->db->where_in('id', $ids);
+			$query = $this->db->get('users');
+			return $query->result_array();
+		}
 		function update_users($id, $data, $w=null, $meta=null){
 			$this->db->where('id', $id);
 			$this->db->update('users', $data);

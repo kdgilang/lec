@@ -1,5 +1,5 @@
 <?php 
-  $action = base_url() . $slug;
+  $action = base_url($slug);
   if(!empty($id)) {
     $action .= '/edit';
     $title .= '&nbsp;Ubah';
@@ -71,14 +71,14 @@
           <input class="form-control input" accept="image/*" placeholder="Foto" name="foto" type="file" <?= !empty($id) ? "" : "required";?> >         
           <?php if(!empty($id)) {?>
             <input class="form-control input" name="old_foto" type="hidden" value="<?= $foto; ?>"> 
-            <img width="200" style="margin:15px 0; border: 1px solid #235AA3; padding: 10px;" src="<?= empty($user['foto']) ? base_url().'assets/images/no-profile-image.png' : $user['foto']; ?>" alt="<?= $user['nama'];?> photo">
+            <img width="200" style="margin:15px 0; border: 1px solid #235AA3; padding: 10px;" src="<?= empty($user['foto']) ? base_url('assets/images/no-profile-image.png') : $user['foto']; ?>" alt="<?= $user['nama'];?> photo">
           <?php }?>
         </div>              
         <div class="form-group margin">        
           <input class="form-control input" placeholder="Password <?= !empty($id) ? 'Baru': '';?>" name="password" type="password" autocomplete="off" <?= !empty($id) ? '': 'required';?>>          
         </div>                                              
         <div class="col-xs-12 text-center">
-          <a href="<?php echo base_url(). $slug; ?>" class="btn btn-default">Kembali</a>&nbsp&nbsp
+          <a href="<?php echo base_url($slug); ?>" class="btn btn-default"><span class="fa fa-arrow-left"></span>&nbsp;&nbsp;Kembali</a>
           <input type="submit" class="btn btn-success" value="Simpan">     
         </div>      
       </div>

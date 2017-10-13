@@ -1,5 +1,5 @@
     <!-- table -->   
-    <a href="<?= base_url().$slug; ?>/form" class="btn btn-success"><i class="fa fa-plus"></i> Tambah <?= $title;?></a>                
+    <a href="<?= base_url($slug); ?>/form" class="btn btn-success"><i class="fa fa-plus"></i> Tambah <?= $title;?></a>                
     <br><br>     
     <div class="table-responsive">
         <table class="table table-bordered table-hover table-striped">
@@ -35,9 +35,9 @@
                     <td><?= $val->nama; ?></td>
                     <td><?= $val->status; ?></td>  
                     <td>
-                        <a href="<?= base_url(). $slug;?>/detail/<?= $val->id; ?>" class="btn btn-sm btn-primary">Detail</a>
+                        <a href="<?= base_url($slug);?>/detail/<?= $val->id; ?>" class="btn btn-sm btn-primary">Detail</a>
                         &nbsp
-                        <a href="<?= base_url(). $slug;?>/form/<?= $val->id; ?>" class="btn  btn-sm btn-warning">Ubah</a>
+                        <a href="<?= base_url($slug);?>/form/<?= $val->id; ?>" class="btn  btn-sm btn-warning">Ubah</a>
                     </td>                                                    
                 </tr>
                 <?php } 

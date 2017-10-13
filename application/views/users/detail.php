@@ -1,6 +1,6 @@
 <?php 
 $mo = $this->load->model('m_users');
-$foto = empty($user['foto']) ? base_url().'assets/images/no-profile-image.png' : $user['foto'];
+$foto = empty($user['foto']) ? base_url('assets/images/no-profile-image.png') : $user['foto'];
 ?>
  <div class="box-body">
     <img src="<?= $foto; ?>" alt="<?= $user['nama'];?> foto" style="margin-bottom: 20px; padding: 15px; border: 1px solid #13344E;"/>
@@ -49,6 +49,6 @@ $foto = empty($user['foto']) ? base_url().'assets/images/no-profile-image.png' :
         </tbody>
     </table>
     <div>
-        <a href="<?= base_url() ?>operator" class="btn btn-default">Kembali</a>
+        <a href="<?= base_url('operator'); ?>" class="btn btn-default"><span class="fa fa-arrow-left"></span>&nbsp;&nbsp;Kembali</a>
     </div>
 </div> 

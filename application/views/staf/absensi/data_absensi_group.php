@@ -30,16 +30,16 @@
                 <h4><center><b>DAFTAR KEHADIRAN SISWA</b></center></h4>   
                 <!-- <h5><center>Tahun 2017</center></h5> --><br>
 
-                    <table class="table table-striped" width="100%">                      
-                        <tbody>
-                            <tr>
-                                <td><p class="help-block">* H = Hadir, A = Alpha.</p></td> 
-                                <td class="absensi_pengajar ">
-                                    <b style="margin-right: 40px;">Nama Pengajar : &nbsp&nbsp&nbsp&nbsp<?php echo $pengajar['nama_pengajar'] ?></b>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <table class="table table-striped" width="100%">                      
+                    <tbody>
+                        <tr>
+                            <td><p class="help-block">* H = Hadir, A = Alpha.</p></td> 
+                            <td class="absensi_pengajar ">
+                                <b style="margin-right: 40px;">Nama Pengajar : &nbsp&nbsp&nbsp&nbsp<?php echo $pengajar['nama_pengajar'] ?></b>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
 
                 <div class="table-responsive"> 
                     <table class="table table-bordered table-hover table-striped">
@@ -103,7 +103,7 @@
 
                     </table>  
 
-                    <a href="<?php echo base_url() ?>staf/absensi/data_group" class="btn btn-default">Kembali</a>&nbsp               
+                    <a href="<?= base_url('kelas'); ?>" class="btn btn-default">Kembali</a>&nbsp               
 
                 </div>              
 

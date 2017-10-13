@@ -16,10 +16,10 @@
                 <a class="nav-link" href="<?= base_url(); ?>"><i class="fa fa-home icon-menu"></i> Home Site</a>
             </li>
             <li>
-                <a class="nav-link" href="<?= base_url(); ?>kelas"><i class="fa fa-calendar icon-menu" aria-hidden="true"></i> Kelas Kursus</a>
+                <a class="nav-link" href="<?= base_url('kelas'); ?>"><i class="fa fa-calendar icon-menu" aria-hidden="true"></i> Kelas Kursus</a>
             </li>  
             <li>
-                <a class="nav-link" href="<?= base_url(); ?>operator"><i class="glyphicon glyphicon-user icon-menu" aria-hidden="true"></i>Operator</a>
+                <a class="nav-link" href="<?= base_url('operator'); ?>"><i class="glyphicon glyphicon-user icon-menu" aria-hidden="true"></i>Operator</a>
             </li>
             <!-- <li>
                 <a class="nav-link" href="<?= base_url(); ?>absensi/data_absensi"><i class="fa fa-pencil-square-o icon-menu" aria-hidden="true"></i> Absensi</a>
@@ -31,10 +31,10 @@
                 <a class="nav-link" href="<?= base_url(); ?>kelas/data_kelas"><i class="fa fa-hospital-o icon-menu" aria-hidden="true"></i> Kelas</a>
             </li> --> 
             <li>
-                <a class="nav-link" href="<?= base_url(); ?>pengajar"><span class="glyphicon glyphicon-user icon-menu" aria-hidden="true"></span> Pengajar</a>
+                <a class="nav-link" href="<?= base_url('pengajar'); ?>"><span class="glyphicon glyphicon-user icon-menu" aria-hidden="true"></span> Pengajar</a>
             </li>   
             <li>
-                <a class="nav-link" href="<?= base_url(); ?>siswa"><span class="glyphicon glyphicon-user icon-menu" aria-hidden="true"></span> Siswa</a>
+                <a class="nav-link" href="<?= base_url('siswa'); ?>"><span class="glyphicon glyphicon-user icon-menu" aria-hidden="true"></span> Siswa</a>
             </li> 
             <!-- <li>
                 <a class="nav-link" href="<?= base_url(); ?>ujian/data_ujian"><i class="fa fa-file-text-o icon-menu" aria-hidden="true"></i> Hasil Ujian</a>
@@ -46,7 +46,7 @@
                 <a class="nav-link" href="<?= base_url(); ?>sertifikat/data_sertifikat"><i class="fa fa-certificate icon-menu" aria-hidden="true"></i> Cetak Sertifikat</a>
             </li>  -->
             <li>
-                <a class="nav-link" href="<?= base_url(); ?>home/logout">&nbsp;&nbsp;&nbsp;<span class="fa fa-power-off" aria-hidden="true"></span> Logout</a>
+                <a class="nav-link" href="<?= base_url('home/logout'); ?>">&nbsp;&nbsp;&nbsp;<span class="fa fa-power-off" aria-hidden="true"></span> Logout</a>
             </li>             
         </ul>
     </div>

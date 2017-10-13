@@ -1,5 +1,5 @@
 <?php 
-  $action = base_url() . $slug;
+  $action = base_url($slug);
   $id = empty($kelas->id) ? "" : $kelas->id;
   if(!empty($id)) {
     $action .= '/edit';
@@ -134,18 +134,16 @@
         </div>
         <?php if(!empty($uniqsiswa)): ?>
         <div class="form-group margin selectboxes">
-          <?php if(!empty($vs)) { ?>
-          <div id="c-siswa" class="c-tag">
-            <?php foreach($csiswa as $val) { ?>
+          <div id="c-siswa" class="c-tag <?= !empty($vs) ? '' : 'bye'; ?>">
+            <?php if(!empty($vs)) {foreach($csiswa as $val) { ?>
             <div class="item-tag">
                 <?= $val->nama;?>
                 <input type="hidden" name="id_siswa[]" value="<?= $val->id;?>" required />
                 <span data-value="<?= $val->id;?>" class="delete-tag fa fa-times"></span>
             </div>
-            <?php } ?>
+            <?php } }?>
             <div class="clearfix"></div>
-          </div>      
-          <?php }?>  
+          </div>     
           <a href="javscript:;" class="select form-control">Pilih Siswa <span class="fa fa-angle-down"></span></a>
           <div class="c-lists">
             <input id="searchsiswa" type="text" autocomplete="off" class="form-control" placeholder="Cari Siswa"> 
@@ -168,7 +166,7 @@
         </div> 
       <?php endif;?>                                          
         <div class="col-md-12 text-center">
-          <a href="<?= base_url(). 'kelas'; ?>" class="btn btn-default">Kembali</a>&nbsp&nbsp
+          <a href="<?= base_url('kelas'); ?>" class="btn btn-default"><span class="fa fa-arrow-left"></span>&nbsp;&nbsp;Kembali</a>
           <button type="submit" class="btn btn-success">Simpan</button>       
         </div>      
       </div>
