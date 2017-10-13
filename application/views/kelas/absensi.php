@@ -13,8 +13,8 @@
 	    <table valign="center" class="table table-bordered table-hover table-striped">
 	        <thead>
 	            <tr>
-	                <th><input type="checkbox" checked> = Hadir</th>
-	                <th><input type="checkbox"> = Alpha</th>
+	                <th>H = Hadir</th>
+	                <th>A = Alpha</th>
 	                <th colspan="<?=$pertemuan;?>" class="pertemuan">Pertemuan</th>
 	            </tr>
 	        </thead>
@@ -44,7 +44,12 @@
 							$users = explode(",", $users);
 						}
 					?>
-					<td class="hadir"><input <?= (in_array($val['id'], $users)) ? "checked" : "";?> class="checkabsen" type="checkbox" name="absensi[<?=$j;?>][]" value="<?=$val['id'];?>"></td>
+					<td class="hadir">
+						<select class="checkabsen" name="absensi[<?=$j;?>][]">
+							<option value="-1">A</option>
+							<option <?= (in_array($val['id'], $users)) ? "selected" : "";?> value="<?=$val['id']?>">H</option>
+						</select>
+					</td>
 	                <?php } ?>
 	            </tr> 
 	            <?php $i++; }?>

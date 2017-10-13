@@ -94,9 +94,11 @@ class Kelas extends CI_Controller{
 	}
 	function update_absen ($id = '') {
 		$absensi = $this->input->post('absensi');
+		$pertemuan = $this->input->post('pertemuan');
 		if(!empty($absensi)) {
 			foreach ($absensi as $key => $val) {
 				$namameta = "absensi-".$key;
+				echo $namameta;
 				$nilai = implode(",", $val); 
 				$data = array(
 					'nama_meta' => $namameta,
