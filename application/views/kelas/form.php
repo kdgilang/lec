@@ -12,6 +12,7 @@
   $tipe = empty($kelas->tipe) ? "" : $kelas->tipe;
   $status = empty($kelas->status) ? "" : $kelas->status;
   $jam = empty($kelas->jam) ? array("","") : explode(" - ", $kelas->jam);
+  $pertemuan= empty($kelas->pertemuan) ? 0 : $kelas->pertemuan;
   $hari = empty($kelas->hari) ? array() : explode(",", $kelas->hari);
   $level = empty($kelas->level) ? "" : $kelas->level;
   $vs = empty($kelas->id_siswa) ? array() : explode(",", $kelas->id_siswa);
@@ -39,7 +40,7 @@
       <div class="panel-body daftar">
         <input type="hidden" name="id" value="<?= $id; ?>">
         <div class="form-group margin">        
-          <input class="form-control input" placeholder="Nama Kelas" name="nama" value="<?= $nama; ?>" required>          
+          <input type="text" class="form-control input" placeholder="Nama Kelas" name="nama" value="<?= $nama; ?>" required>          
         </div>
         <div class="form-group margin">        
           <select name="status" id="status" class="form-control input" required>
@@ -120,6 +121,9 @@
                 <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
             </div> 
           </div>
+        </div>
+        <div class="form-group margin">        
+          <input type="number" class="form-control input" placeholder="Jumlah Pertemuan" name="pertemuan" value="<?= $pertemuan; ?>" required>          
         </div>
         <div class="form-group margin">        
           <select name="level" id="level" class="form-control input" required>

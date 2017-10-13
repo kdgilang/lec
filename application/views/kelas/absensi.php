@@ -3,6 +3,7 @@
     $siswa = !empty($kelas->id_siswa) ? explode(',', $kelas->id_siswa) : array();
     $siswa = $this->m_users->in_users($siswa);
     $urlajax = base_url('kelas/update_absen/'.$kelas->id); 
+    $pertemuan = $kelas->pertemuan;
 ?>
 <h4><center><b>DAFTAR KEHADIRAN SISWA</b></center></h4>
 <b>Nama Pengajar : <?= $pengajar['nama']; ?></b>
@@ -14,49 +15,37 @@
 	            <tr>
 	                <th><input type="checkbox" checked> = Hadir</th>
 	                <th><input type="checkbox"> = Alpha</th>
-	                <th colspan="15" class="pertemuan">Pertemuan</th>
-	            </tr>
-	            <tr>
-	                <th>No</th>
-	                <th>Nama</th>
-	                <th class="hadir">1</th>
-	                <th class="hadir">2</th>
-	                <th class="hadir">3</th>
-	                <th class="hadir">4</th>
-	                <th class="hadir">5</th>
-	                <th class="hadir">6</th>
-	                <th class="hadir">7</th>
-	                <th class="hadir">8</th>
-	                <th class="hadir">9</th>
-	                <th class="hadir">10</th>
-	                <th class="hadir">11</th>
-	                <th class="hadir">12</th>
-	                <th class="hadir">13</th>
-	                <th class="hadir">14</th>
-	                <th class="hadir">15</th>
+	                <th colspan="<?=$pertemuan;?>" class="pertemuan">Pertemuan</th>
 	            </tr>
 	        </thead>
-	        <tbody>      
+	        <tbody>
+	            <tr>
+	                <td align="center"><strong>No</strong></td>
+	                <td><strong>Nama</strong></td>
+	                <?php for($j=1; $j<=$pertemuan; $j++) { ?>
+	                <td class="hadir"><strong><?=$j;?></strong></td>
+	                <?php } ?>
+	            </tr>
 	        <?php if(!empty($siswa))  { $i=0;?>
 	            <?php foreach($siswa as $val) {?>             
 	            <tr>
-	                <td><?= $i+1;?></td>
+	                <td align="center"><?= $i+1;?></td>
 	                <td><?= $val['nama'];?></td>
-	                <td class="hadir"><input class="checkabsen" type="checkbox" name="absensi[<?=$i?>][]" value="<?=$val['id'];?>"></td>
-	                <td class="hadir"><input class="checkabsen" type="checkbox" name="absensi[<?=$i?>][]" value="<?=$val['id'];?>"></td>
-	                <td class="hadir"><input class="checkabsen" type="checkbox" name="absensi[<?=$i?>][]" value="<?=$val['id'];?>"></td>
-	                <td class="hadir"><input class="checkabsen" type="checkbox" name="absensi[<?=$i?>][]" value="<?=$val['id'];?>"></td>
-	                <td class="hadir"><input class="checkabsen" type="checkbox" name="absensi[<?=$i?>][]" value="<?=$val['id'];?>"></td>
-	                <td class="hadir"><input class="checkabsen" type="checkbox" name="absensi[<?=$i?>][]" value="<?=$val['id'];?>"></td>
-	                <td class="hadir"><input class="checkabsen" type="checkbox" name="absensi[<?=$i?>][]" value="<?=$val['id'];?>"></td>
-	                <td class="hadir"><input class="checkabsen" type="checkbox" name="absensi[<?=$i?>][]" value="<?=$val['id'];?>"></td>
-	                <td class="hadir"><input class="checkabsen" type="checkbox" name="absensi[<?=$i?>][]" value="<?=$val['id'];?>"></td>
-	                <td class="hadir"><input class="checkabsen" type="checkbox" name="absensi[<?=$i?>][]" value="<?=$val['id'];?>"></td>
-	                <td class="hadir"><input class="checkabsen" type="checkbox" name="absensi[<?=$i?>][]" value="<?=$val['id'];?>"></td>
-	                <td class="hadir"><input class="checkabsen" type="checkbox" name="absensi[<?=$i?>][]" value="<?=$val['id'];?>"></td>
-	                <td class="hadir"><input class="checkabsen" type="checkbox" name="absensi[<?=$i?>][]" value="<?=$val['id'];?>"></td>
-	                <td class="hadir"><input class="checkabsen" type="checkbox" name="absensi[<?=$i?>][]" value="<?=$val['id'];?>"></td>
-	                <td class="hadir"><input class="checkabsen" type="checkbox" name="absensi[<?=$i?>][]" value="<?=$val['id'];?>"></td>
+					<?php for($j=0; $j<$pertemuan; $j++) {
+						$nama = 'absensi-'.$j;
+						$where = array(
+							'nama_meta' => $nama,
+							'id_kelas' => $kelas->id
+						); 
+						$users = array();
+						$meta = $this->m_kelas->get_meta($where);
+						if(!empty($meta)) {
+							$users = $meta->nilai_meta;
+							$users = explode(",", $users);
+						}
+					?>
+					<td class="hadir"><input <?= (in_array($val['id'], $users)) ? "checked" : "";?> class="checkabsen" type="checkbox" name="absensi[<?=$j;?>][]" value="<?=$val['id'];?>"></td>
+	                <?php } ?>
 	            </tr> 
 	            <?php $i++; }?>
 	        <?php }?>

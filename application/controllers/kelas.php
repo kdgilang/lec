@@ -28,6 +28,7 @@ class Kelas extends CI_Controller{
         $hari = $this->input->post('hari');
         $tipe = $this->input->post('tipe');
 		$jam = $this->input->post('jam');
+		$pertemuan = $this->input->post('pertemuan');
 		$level = $this->input->post('level');
 		$id_pengajar = $this->input->post('id_pengajar');
 		$id_siswa = $this->input->post('id_siswa');
@@ -40,6 +41,7 @@ class Kelas extends CI_Controller{
 	 		'tipe' => $tipe,
  			'hari' => strtolower($hari),
 			'jam' => $jam,	
+			'pertemuan' => $pertemuan,
 			'level' => $level,
 			'id_siswa' => $id_siswa,			
 			'id_pengajar' => $id_pengajar			
@@ -54,18 +56,20 @@ class Kelas extends CI_Controller{
         $hari = $this->input->post('hari');
         $tipe = $this->input->post('tipe');
 		$jam = $this->input->post('jam');
+		$pertemuan = $this->input->post('pertemuan');
 		$level = $this->input->post('level');
 		$id_pengajar = $this->input->post('id_pengajar');
 		$id_siswa = $this->input->post('id_siswa');
 		$jam = implode(" - ", $jam);
 		$id_siswa = implode(",", $id_siswa);
- 		$hari = implode(",", $hari);    
+ 		$hari = implode(",", $hari);
 		$data = array(
 			'nama' => $nama,
 	 		'status' => $status,	
 	 		'tipe' => $tipe,
  			'hari' => strtolower($hari),
-			'jam' => $jam,	
+			'jam' => $jam,
+			'pertemuan' => $pertemuan,	
 			'level' => $level,
 			'id_siswa' => $id_siswa,			
 			'id_pengajar' => $id_pengajar			
@@ -90,9 +94,18 @@ class Kelas extends CI_Controller{
 	}
 	function update_absen ($id = '') {
 		$absensi = $this->input->post('absensi');
-		foreach ($absensi as $key => $val) {
-			
+		if(!empty($absensi)) {
+			foreach ($absensi as $key => $val) {
+				$namameta = "absensi-".$key;
+				$nilai = implode(",", $val); 
+				$data = array(
+					'nama_meta' => $namameta,
+					'nilai_meta' => $nilai,
+					'id_kelas' => $id
+				);
+				$this->m_kelas->update_meta($data, array('nama_meta' => $namameta, 'id_kelas' => $id));
+			}
 		}
-		die(json_encode($absensi));
+		die();
 	}
 }
