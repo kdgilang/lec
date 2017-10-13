@@ -11,10 +11,10 @@
   $nama = empty($kelas->nama) ? "" : $kelas->nama;
   $tipe = empty($kelas->tipe) ? "" : $kelas->tipe;
   $status = empty($kelas->status) ? "" : $kelas->status;
-  $jam = empty($kelas->jam) ? "" : explode(" - ", $kelas->jam);
-  $hari = empty($kelas->hari) ? "" : explode(",", $kelas->hari);
+  $jam = empty($kelas->jam) ? array("","") : explode(" - ", $kelas->jam);
+  $hari = empty($kelas->hari) ? array() : explode(",", $kelas->hari);
   $level = empty($kelas->level) ? "" : $kelas->level;
-  $vs = empty($kelas->id_siswa) ? "" : explode(",", $kelas->id_siswa);
+  $vs = empty($kelas->id_siswa) ? array() : explode(",", $kelas->id_siswa);
   $ps = empty($kelas->id_pengajar) ? "" : $kelas->id_pengajar; 
   $uniqsiswa = $siswa;
   if(!empty($vs)) {

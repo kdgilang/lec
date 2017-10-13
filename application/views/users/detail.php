@@ -1,6 +1,5 @@
 <?php 
 $mo = $this->load->model('m_users');
-$usermeta = $mo->m_users->get_meta($user['id'], 'nik');
 $foto = empty($user['foto']) ? base_url().'assets/images/no-profile-image.png' : $user['foto'];
 ?>
  <div class="box-body">
@@ -8,7 +7,17 @@ $foto = empty($user['foto']) ? base_url().'assets/images/no-profile-image.png' :
     <table class="table table-striped" width="100%">                      
         <tbody> 
             <tr>
-                <td width="200px"><b>NIK</b></td>
+                <td>
+                <?php if($slug == 'operator') { $meta = 'nik';?>
+                    Nik
+                <?php } else if($slug == 'pengajar') { $meta = 'kode_pengajar';?>
+                    Kode Pengajar
+                <?php } else if($slug == 'siswa') { $meta = 'kode_siswa';?>
+                    Kode Siswa
+                <?php } 
+                    $usermeta = $mo->m_users->get_meta($user['id'], $meta);
+                ?>
+                </td>
                 <td>:</td>
                 <td><?= $usermeta['nilai_meta']; ?></td>                    
             </tr>
