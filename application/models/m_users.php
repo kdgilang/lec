@@ -37,8 +37,14 @@
 			$this->db->where('id', $id);
 			$this->db->update('users', $data);
 			if(!empty($w)) {
-				$this->db->where($w);
-				$this->db->update('user_meta', $meta);
+				$result = $this->db->get_where('user_meta', $w);
+				if($result->result_id->num_rows>0) {
+					$this->db->where($w);
+					$this->db->update('user_meta', $meta);
+				} else {
+					$fmeta = array_merge($meta, $w);
+					$this->db->insert('user_meta', $fmeta);
+				}
 			}
 		}
 		function add_users($data, $meta_key, $c) {

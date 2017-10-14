@@ -10,15 +10,18 @@
         <thead>
             <tr>
                 <th>No</th>
+                <th>Id Siswa</th>
                 <th>Nama Siswa</th>
                 <th>Aksi</th>
             </tr>
         </thead>                      
         <tbody>
             <?php if(!empty($siswa))  { $i=1;?>
-                <?php foreach($siswa as $val) {?>
+                <?php foreach($siswa as $val) {
+                    $meta = $this->m_users->get_meta($val['id'], 'kode_siswa'); ?>
                 <tr>
                     <td><?= $i; ?></td>
+                    <td><?= $meta['nilai_meta']; ?></td> 
                     <td><?= $val['nama']; ?></td> 
                     <td><a class="btn btn-primary" href="<?= base_url('siswa/detail/'.$val['id']); ?>">Detail</a></td>                   
                 </tr>

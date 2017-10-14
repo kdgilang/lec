@@ -12,8 +12,8 @@ class Kelas extends CI_Controller{
 		$this->load->view('dashboard', $data);
 	}
 	function form($id="") {
-		$data['siswa'] = $this->m_users->get_users(array('level' => 4));
-		$data['pengajar'] = $this->m_users->get_users(array('level' => 3));
+		$data['siswa'] = $this->m_users->get_users(array('level' => 4, 'status'=> 'aktif'));
+		$data['pengajar'] = $this->m_users->get_users(array('level' => 3, 'status'=> 'aktif'));
 		$data['title'] = 'Form Kelas';
 		$data['content'] = 'kelas/form';
 		$data['slug'] = 'kelas';
@@ -32,9 +32,10 @@ class Kelas extends CI_Controller{
 		$level = $this->input->post('level');
 		$id_pengajar = $this->input->post('id_pengajar');
 		$id_siswa = $this->input->post('id_siswa');
+		$pertemuan = empty($pertemuan) ? 0 : $pertemuan;
 		$jam = implode(" - ", $jam);
-		$id_siswa = implode(",", $id_siswa);
- 		$hari = implode(",", $hari);                            
+		$id_siswa = empty($id_siswa) ? "" : implode(",", $id_siswa); 
+ 		$hari = empty($hari) ? "" : implode(",", $hari);                  
 		$data = array(
 			'nama' => $nama,
 	 		'status' => $status,	
@@ -46,7 +47,7 @@ class Kelas extends CI_Controller{
 			'id_siswa' => $id_siswa,			
 			'id_pengajar' => $id_pengajar			
  		);
-		$this->m_kelas->add_kelas($data);	
+		$this->m_kelas->add_kelas($data);
 		redirect('kelas');	
 	}
 	function edit() {
@@ -61,8 +62,8 @@ class Kelas extends CI_Controller{
 		$id_pengajar = $this->input->post('id_pengajar');
 		$id_siswa = $this->input->post('id_siswa');
 		$jam = implode(" - ", $jam);
-		$id_siswa = implode(",", $id_siswa);
- 		$hari = implode(",", $hari);
+		$id_siswa = empty($id_siswa) ? "" : implode(",", $id_siswa); 
+ 		$hari = empty($hari) ? "" : implode(",", $hari);
 		$data = array(
 			'nama' => $nama,
 	 		'status' => $status,	
@@ -98,7 +99,6 @@ class Kelas extends CI_Controller{
 		if(!empty($absensi)) {
 			foreach ($absensi as $key => $val) {
 				$namameta = "absensi-".$key;
-				echo $namameta;
 				$nilai = implode(",", $val); 
 				$data = array(
 					'nama_meta' => $namameta,

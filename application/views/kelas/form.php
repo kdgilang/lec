@@ -12,18 +12,19 @@
   $tipe = empty($kelas->tipe) ? "" : $kelas->tipe;
   $status = empty($kelas->status) ? "" : $kelas->status;
   $jam = empty($kelas->jam) ? array("","") : explode(" - ", $kelas->jam);
-  $pertemuan= empty($kelas->pertemuan) ? 0 : $kelas->pertemuan;
+  $pertemuan= empty($kelas->pertemuan) ? "" : $kelas->pertemuan;
   $hari = empty($kelas->hari) ? array() : explode(",", $kelas->hari);
   $level = empty($kelas->level) ? "" : $kelas->level;
-  $vs = empty($kelas->id_siswa) ? array() : explode(",", $kelas->id_siswa);
-  $ps = empty($kelas->id_pengajar) ? "" : $kelas->id_pengajar; 
+  $ids = empty($kelas->id_siswa) ? array() : explode(",", $kelas->id_siswa);
+  $idp = empty($kelas->id_pengajar) ? "" : $kelas->id_pengajar;
+  $np = empty($idp) ? "" : $this->m_users->detail_users($idp);
   $uniqsiswa = $siswa;
-  if(!empty($vs)) {
+  if(!empty($ids)) {
     $uniqsiswa = [];
     $csiswa = [];
     $i = $j = $g = 0;
     foreach ($siswa as $key => $val) {
-      if(!in_array($val->id, $vs)) {
+      if(!in_array($val->id, $ids)) {
         $uniqsiswa[$j] = $siswa[$i];
         $j++;
       } else {
@@ -137,18 +138,17 @@
           </select>       
         </div>
         <?php if(!empty($uniqsiswa)): ?>
-        <div class="form-group margin selectboxes">
-          <div id="c-siswa" class="c-tag <?= !empty($vs) ? '' : 'bye'; ?>">
-            <?php if(!empty($vs)) {foreach($csiswa as $val) { ?>
+        <div class="form-group margin">
+          <div id="c-siswa" class="c-tag <?= !empty($csiswa) ? '' : 'bye'; ?>">
+            <?php if(!empty($csiswa)) {foreach($csiswa as $val) { ?>
             <div class="item-tag">
-                <?= $val->nama;?>
                 <input type="hidden" name="id_siswa[]" value="<?= $val->id;?>" required />
                 <span data-value="<?= $val->id;?>" class="delete-tag fa fa-times"></span>
             </div>
             <?php } }?>
             <div class="clearfix"></div>
           </div>     
-          <a href="javscript:;" class="select form-control">Pilih Siswa <span class="fa fa-angle-down"></span></a>
+          <a href="javscript:;" class="selectbox form-control">Pilih Siswa <span class="fa fa-angle-down"></span></a>
           <div class="c-lists">
             <input id="searchsiswa" type="text" autocomplete="off" class="form-control" placeholder="Cari Siswa"> 
             <ul class="lists">
@@ -160,13 +160,17 @@
         </div>
       <?php endif; ?>
       <?php if(!empty($pengajar)): ?>
-        <div class="form-group margin selectboxes">  
-          <select id="pengajar" name="id_pengajar" class="form-control input" required>
-              <option>Pilih Pengajar</option>
-              <?php foreach($pengajar as $val) { ?>
-              <option <?= ($val->id == $ps) ? "selected" : ""; ?> value="<?=$val->id;?>"><?=$val->nama;?> (<?=$val->username;?>)</option>
-              <?php } ?>
-          </select> 
+        <div class="form-group margin c-selectbox">
+          <a href="javascript:;" class="selectbox"><span class="text"><?=$np['nama'].' ('.$np['username'].')';?></span><span class="fa fa-angle-down"></span></a>
+          <div class="c-lists">
+            <input id="searchpengajar" class="form-control" type="text" placeholder="Cari Pengajar">
+            <input type="hidden" name="id_pengajar" value="<?=$idp;?>">
+            <ul class="lists data-selectbox">
+                <?php foreach($pengajar as $val) { ?>
+                <li data-value="<?=$val->id;?>"><span><?=$val->nama;?> (<?=$val->username;?>)</span></li>
+                <?php } ?>
+            </ul>
+          </div>
         </div> 
       <?php endif;?>                                          
         <div class="col-md-12 text-center">
@@ -189,9 +193,9 @@
   (function (js){
     'use strict';
     // OPEN DROPDOWN TAG
-    js(document).on('click', '.select', function() {
+    js(document).on('click', '.selectbox', function() {
       var dd = js(this).next(".c-lists");
-      dd.slideToggle(400);
+      dd.fadeToggle(400);
       js(this).toggleClass('active');
     });
 
@@ -250,6 +254,25 @@
           html += '<li><span>Tidak Ditemukan</span></li>';
         }
       that.next().html(html);
+    });
+
+
+    /* SELECTBOX */
+    $(document).on('click', '.selectbox', function (e) {
+      var that = $(this),
+          dd = that.siblings(".data-selectbox");
+      dd.fadeToggle(300);
+      e.preventDefault();
+    });
+    $(document).on('click', '.data-selectbox li', function () {
+      var that = $(this),
+          val = that.data("value"),
+          text = that.text(),
+          parent = that.parent(),
+          parents = that.parents(".c-selectbox");
+      parent.prev('input').val(val);
+      parent.siblings('.selectbox').children('.text').text(text);
+      parents.children('.c-lists').fadeOut(100);
     });
   })(jQuery)
 </script>

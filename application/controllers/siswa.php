@@ -92,8 +92,8 @@ class Siswa extends CI_Controller{
 		}
 		$meta = array('nilai_meta' => $ks);
 		$wmeta = array('nama_meta' => 'kode_siswa', 'id_user' => $id);
-		$this->m_users->update_users($id, $data, $wmeta, $meta);		
-		redirect('siswa');
+		$r = $this->m_users->update_users($id, $data, $wmeta, $meta);		
+		redirect('siswa'.$r);
 	}
 	function delete($id){
 		$where = array('id' => $id);
