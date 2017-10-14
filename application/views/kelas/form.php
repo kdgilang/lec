@@ -195,8 +195,10 @@
     // OPEN DROPDOWN TAG
     js(document).on('click', '.selectbox', function() {
       var dd = js(this).next(".c-lists");
+      $(".c-lists").fadeOut(200);
+      $(".selectbox").removeClass('active');
       dd.fadeToggle(400);
-      js(this).toggleClass('active');
+      $(this).toggleClass('active');
     });
 
     // add lists
