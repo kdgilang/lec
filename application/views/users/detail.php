@@ -3,7 +3,7 @@ $mo = $this->load->model('m_users');
 $foto = empty($user['foto']) ? base_url('assets/images/no-profile-image.png') : $user['foto'];
 ?>
  <div class="box-body">
-    <img src="<?= $foto; ?>" alt="<?= $user['nama'];?> foto" style="margin-bottom: 20px; padding: 15px; border: 1px solid #13344E;"/>
+    <img width="200" src="<?= $foto; ?>" alt="<?= $user['nama'];?> foto" style="margin-bottom: 20px; padding: 15px; border: 1px solid #13344E;"/>
     <table class="table table-striped" width="100%">                      
         <tbody> 
             <tr>

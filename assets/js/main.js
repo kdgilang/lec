@@ -92,7 +92,9 @@
         that.parents('.c-form').find('.alert').text(res.message).slideDown(300).addClass(res.class);
         if(res.url !== '') {
           setTimeout( () => {
-            window.location = res.url;
+            if(res.url !== undefined) {
+              window.location = res.url;
+            }
           }, 500);
         }
       }

@@ -18,6 +18,7 @@
   $ids = empty($kelas->id_siswa) ? array() : explode(",", $kelas->id_siswa);
   $idp = empty($kelas->id_pengajar) ? "" : $kelas->id_pengajar;
   $np = empty($idp) ? "" : $this->m_users->detail_users($idp);
+  $np = empty($np) ? "Pilih Pengajar" : $np['nama'].' ('.$np['username'].')';
   $uniqsiswa = $siswa;
   if(!empty($ids)) {
     $uniqsiswa = [];
@@ -161,7 +162,7 @@
       <?php endif; ?>
       <?php if(!empty($pengajar)): ?>
         <div class="form-group margin c-selectbox">
-          <a href="javascript:;" class="selectbox"><span class="text"><?=$np['nama'].' ('.$np['username'].')';?></span><span class="fa fa-angle-down"></span></a>
+          <a href="javascript:;" class="selectbox"><span class="text"><?= $np;?></span><span class="fa fa-angle-down"></span></a>
           <div class="c-lists">
             <input id="searchpengajar" class="form-control" type="text" placeholder="Cari Pengajar">
             <input type="hidden" name="id_pengajar" value="<?=$idp;?>">
@@ -273,7 +274,7 @@
           parent = that.parent(),
           parents = that.parents(".c-selectbox");
       parent.prev('input').val(val);
-      parent.siblings('.selectbox').children('.text').text(text);
+      parents.children('.selectbox').children('.text').text(text);
       parents.children('.c-lists').fadeOut(100);
     });
   })(jQuery)
