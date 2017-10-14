@@ -24,7 +24,7 @@ class Kelas extends CI_Controller{
 	}	
 	function add() {
 		$nama = $this->input->post('nama');		
-		$status = $this->input->post('status');
+		$status = "aktif";
         $hari = $this->input->post('hari');
         $tipe = $this->input->post('tipe');
 		$jam = $this->input->post('jam');

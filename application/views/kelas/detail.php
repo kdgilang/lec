@@ -10,7 +10,7 @@
         <thead>
             <tr>
                 <th>No</th>
-                <th>Id Siswa</th>
+                <th>Kode Siswa</th>
                 <th>Nama Siswa</th>
                 <th>Aksi</th>
             </tr>

@@ -1,7 +1,7 @@
 <?php 
     $pengajar = $this->m_users->detail_users($kelas->id_pengajar);
     $siswa = !empty($kelas->id_siswa) ? explode(',', $kelas->id_siswa) : array();
-    $siswa = $this->m_users->in_users($siswa);
+    $siswa = !empty($siswa) ? $this->m_users->in_users($siswa) : "";
     $urlajax = base_url('kelas/update_absen/'.$kelas->id); 
     $pertemuan = $kelas->pertemuan;
 ?>
