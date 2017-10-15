@@ -21,10 +21,10 @@
 <!-- form pendaftaran -->
 <div class="col-xs-12 col-sm-3"></div>
 <div class="col-xs-12 col-sm-6">
-  <form action="<?= $action;?>" enctype="multipart/form-data" method="post">    
+  <form action="<?= $action;?>" enctype="multipart/form-data" method="post" autocomplete="off">    
     <div class="panel panel-primary form-daftar-offline">
       <div class="panel-body daftar">
-        <input type="hidden" name="id" value="<?= $id; ?>">
+        <?php if(!empty($id)) {?><input type="hidden" name="id" value="<?= $id; ?>"><?php }?>
         <?php if($this->session->level == 1) {?>
         <div class="form-group margin">
           <?php if($slug == 'operator') {
@@ -74,8 +74,8 @@
             <img width="200" style="margin:15px 0; border: 1px solid #235AA3; padding: 10px;" src="<?= empty($user['foto']) ? base_url('assets/images/no-profile-image.png') : $user['foto']; ?>" alt="<?= $user['nama'];?> photo">
           <?php }?>
         </div>              
-        <div class="form-group margin">        
-          <input class="form-control input" placeholder="Password <?= !empty($id) ? 'Baru': '';?>" name="password" type="password" autocomplete="off" <?= !empty($id) ? '': 'required';?>>          
+        <div class="form-group margin">     
+          <input type="password" class="form-control input" placeholder="Password <?= !empty($id) ? 'Baru': '';?>" name="password" <?= !empty($id) ? '': 'required';?>>          
         </div>                                              
         <div class="col-xs-12 text-center">
           <a href="<?php echo base_url($slug); ?>" class="btn btn-default"><span class="fa fa-arrow-left"></span>&nbsp;&nbsp;Kembali</a>

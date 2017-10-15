@@ -1,4 +1,4 @@
-<?php $this->load->view('layout/header'); ?>
+<?php $this->load->view('header'); ?>
     <header class="masthead" style="background-image: url(<?= base_url();?>assets/images/header.jpg);">
       <div class="header-content">
         <div class="header-content-inner">
@@ -280,4 +280,4 @@
             </div>  
         </div>
     </div>
-<?php $this->load->view('layout/footer'); ?>
+<?php $this->load->view('footer'); ?>

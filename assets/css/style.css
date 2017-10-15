@@ -354,6 +354,9 @@ body{
 }
 .navbar-brand img {
     height: 50px;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    transition: all 0.5s ease;
 }
 .navbar-nav {
     padding: 10px 0;
@@ -369,10 +372,13 @@ body{
     border-radius:0;
     padding-bottom: 15px;
     padding-top: 15px; 
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
     transition: all 0.5s ease;
 }
 .navbar.navbar-shrink .navbar-brand img  {
     height: 30px;
+    margin-top: 6px;
 }
 .navbar.navbar-shrink  {
     padding-bottom: 4px;
@@ -451,5 +457,15 @@ p a {
 .nav-link {
     color: #fff;
 }
-
-
+.ql-disabled .ql-editor {
+    padding: 0;
+}
+.panel .btn {
+    margin-top: 20px;
+}
+.blog {
+    margin-bottom: 15px;
+}
+.blog .panel {
+    height: 242px;
+}

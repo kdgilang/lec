@@ -1,6 +1,5 @@
 <?php 
   $action = base_url($slug);
-  $id = empty($kelas->id) ? "" : $kelas->id;
   if(!empty($id)) {
     $action .= '/edit';
     $title = 'Ubah Kelas';
@@ -40,7 +39,7 @@
   <div class="col-xs-12 col-sm-12 col-md-12 wrapper">      
     <div class="col-xs-12 col-sm-12 col-md-12 panel panel-primary form-daftar-offline">
       <div class="panel-body daftar">
-        <input type="hidden" name="id" value="<?= $id; ?>">
+        <?php if(!empty($id)) {?><input type="hidden" name="id" value="<?= $id; ?>"><?php }?>
         <div class="form-group margin">        
           <input type="text" class="form-control input" placeholder="Nama Kelas" name="nama" value="<?= $nama; ?>" required>          
         </div>

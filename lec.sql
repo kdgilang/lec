@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 14, 2017 at 05:54 AM
+-- Generation Time: Oct 15, 2017 at 09:36 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.0.15
 
@@ -44,7 +44,8 @@ CREATE TABLE `kelas` (
 --
 
 INSERT INTO `kelas` (`id`, `nama`, `status`, `tipe`, `hari`, `jam`, `pertemuan`, `level`, `id_siswa`, `id_pengajar`) VALUES
-(1, 'AC133', 'aktif', 'private', 'senin', '12 - 10:30 AM', 6, '1', '23', 49);
+(1, 'AC133', 'aktif', 'private', 'senin', '12 - 10:30 AM', 15, '1', '48', 49),
+(3, 'ca333', 'aktif', 'group', 'selasa,jumat', '11:30 AM - 11:30 AM', 15, '1', '48', 49);
 
 -- --------------------------------------------------------
 
@@ -66,13 +67,22 @@ CREATE TABLE `kelas_meta` (
 --
 
 CREATE TABLE `pengumuman` (
-  `id_pengumuman` int(255) NOT NULL,
-  `tgl` varchar(15) NOT NULL,
-  `judul` varchar(100) NOT NULL,
-  `isi` longtext NOT NULL,
-  `status_pengumuman` varchar(20) NOT NULL,
+  `id` int(255) NOT NULL,
+  `judul` varchar(255) NOT NULL,
+  `konten` longtext NOT NULL,
+  `tanggal` varchar(15) NOT NULL,
+  `status` varchar(20) NOT NULL,
   `id_operator` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pengumuman`
+--
+
+INSERT INTO `pengumuman` (`id`, `judul`, `konten`, `tanggal`, `status`, `id_operator`) VALUES
+(1, 'Pembayaran ujian', '{\"ops\":[{\"attributes\":{\"bold\":true,\"link\":\"fgsdgfsdfgfgsdgf\"},\"insert\":\"fgsdgfsdfgfgsdgf\"},{\"attributes\":{\"bold\":true},\"insert\":\" \"},{\"insert\":\"\\n\\n\\n\"},{\"attributes\":{\"bold\":true},\"insert\":\"sdfgsdfgsdfg\"},{\"attributes\":{\"list\":\"ordered\"},\"insert\":\"\\n\"},{\"attributes\":{\"bold\":true},\"insert\":\"sdfg\"},{\"attributes\":{\"list\":\"ordered\"},\"insert\":\"\\n\"},{\"attributes\":{\"bold\":true},\"insert\":\"sdfgsdfg\"},{\"attributes\":{\"list\":\"ordered\"},\"insert\":\"\\n\"},{\"attributes\":{\"bold\":true},\"insert\":\"dsfg\"},{\"attributes\":{\"list\":\"ordered\"},\"insert\":\"\\n\"}]}', '10/03/2017', 'aktif', 1),
+(2, 'Pengumuman pemenang lomba', '{\"ops\":[{\"insert\":\"asdfasdfafddf\"},{\"attributes\":{\"list\":\"ordered\"},\"insert\":\"\\n\"},{\"insert\":\"asdf\"},{\"attributes\":{\"list\":\"ordered\"},\"insert\":\"\\n\"},{\"insert\":\"sadf\"},{\"attributes\":{\"list\":\"ordered\"},\"insert\":\"\\n\"},{\"insert\":\"asdf\"},{\"attributes\":{\"list\":\"ordered\"},\"insert\":\"\\n\"},{\"attributes\":{\"color\":\"#000000\",\"bold\":true},\"insert\":\"Lorem Ipsum\"},{\"attributes\":{\"color\":\"#000000\"},\"insert\":\" is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\"},{\"insert\":\"\\n\"}]}', '10/18/2017', 'aktif', 1),
+(3, 'pengumuman sertifikat', '{\"ops\":[{\"attributes\":{\"color\":\"#000000\",\"bold\":true},\"insert\":\"Lorem Ipsum\"},{\"attributes\":{\"color\":\"#000000\"},\"insert\":\" is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\"},{\"insert\":\"\\n\\n\"},{\"attributes\":{\"color\":\"#000000\"},\"insert\":\"sdafsdfsdfsfd\"},{\"attributes\":{\"list\":\"ordered\"},\"insert\":\"\\n\"},{\"attributes\":{\"color\":\"#000000\"},\"insert\":\"asdsdfasfafsd\"},{\"attributes\":{\"list\":\"ordered\"},\"insert\":\"\\n\"},{\"attributes\":{\"color\":\"#000000\"},\"insert\":\"asdfasdfsd\"},{\"attributes\":{\"list\":\"ordered\"},\"insert\":\"\\n\"}]}', '10/04/2017', 'aktif', 1);
 
 -- --------------------------------------------------------
 
@@ -81,14 +91,14 @@ CREATE TABLE `pengumuman` (
 --
 
 CREATE TABLE `sertifikat` (
-  `id_sertifikat` int(255) NOT NULL,
+  `id` int(255) NOT NULL,
   `keterangan` varchar(20) NOT NULL,
   `tgl_cetak` varchar(20) NOT NULL,
   `tgl_terbit` varchar(20) NOT NULL,
   `tgl_mengambil` varchar(20) NOT NULL,
-  `pemberi` int(11) NOT NULL,
-  `id_siswa` int(11) NOT NULL,
-  `id_pengajar` int(11) NOT NULL
+  `id_operator` int(255) NOT NULL,
+  `id_siswa` int(255) NOT NULL,
+  `id_pengajar` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -123,8 +133,9 @@ INSERT INTO `users` (`id`, `username`, `nama`, `tgl_lahir`, `alamat`, `telpon`, 
 (14, 'sdfasd', 'asdf', '09/28/2017', 'sadf', '1244344325', 'sdfas@asdf.com', '21232f297a57a5a743894a0e4a801fc3', 'tidak aktif', '', 4),
 (15, 'gilang', 'gilang', '07/07/1999', 'jalan mas no 29', '121212212', 'gilang@gilang.com', '4297f44b13955235245b2497399d7a93', 'tidak aktif', '', 4),
 (23, 'kadek', 'gilang', '10/06/2017', 'jalan', '13243124', 'g@gilang.com', '4297f44b13955235245b2497399d7a93', 'tidak aktif', '', 4),
-(48, 'uuuu', 'gilang', '09/14/2017', 'jalan pulau komodo no.20', 'admin', 'sadf@gsda.com', '21232f297a57a5a743894a0e4a801fc3', 'aktif', '', 4),
-(49, 'pengajar', 'pengajar', '09/27/2017', 'jalan pulau komodo no.20', '32423424342424243', 'pengajar@penagajar.com', '4297f44b13955235245b2497399d7a93', 'aktif', 'http://192.168.1.2/lec/uploads/Jellyfish.jpg', 3);
+(48, 'galang', 'galang', '09/14/2017', 'jalan pulau komodo no.20', '0888333333', 'sadf@gsda.com', '7a8ba4b565a96de88dbf44aa37e6f77e', 'aktif', '', 4),
+(49, 'pengajar', 'pengajar', '09/27/2017', 'jalan pulau komodo no.20', '32423424342424243', 'pengajar@penagajar.com', '4297f44b13955235245b2497399d7a93', 'aktif', 'http://192.168.1.2/lec/uploads/Jellyfish.jpg', 3),
+(51, 'purpadi', 'Ida Ayu Kadek Purpadi Sari', '03/10/1993', 'Jln. Seroja Gang Jembrana No 4 A Denpasar', '085792323113', 'dayupurpadisari6@gmail.com', '3d2a36b4d4071239e7375e91302380ef', 'tidak aktif', '', 4);
 
 -- --------------------------------------------------------
 
@@ -183,13 +194,13 @@ ALTER TABLE `kelas_meta`
 -- Indexes for table `pengumuman`
 --
 ALTER TABLE `pengumuman`
-  ADD PRIMARY KEY (`id_pengumuman`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `sertifikat`
 --
 ALTER TABLE `sertifikat`
-  ADD PRIMARY KEY (`id_sertifikat`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
@@ -213,7 +224,7 @@ ALTER TABLE `user_meta`
 -- AUTO_INCREMENT for table `kelas`
 --
 ALTER TABLE `kelas`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `kelas_meta`
 --
@@ -223,17 +234,17 @@ ALTER TABLE `kelas_meta`
 -- AUTO_INCREMENT for table `pengumuman`
 --
 ALTER TABLE `pengumuman`
-  MODIFY `id_pengumuman` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `sertifikat`
 --
 ALTER TABLE `sertifikat`
-  MODIFY `id_sertifikat` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 --
 -- AUTO_INCREMENT for table `user_meta`
 --

@@ -95,7 +95,7 @@
             if(res.url !== undefined) {
               window.location = res.url;
             }
-          }, 500);
+          }, 700);
         }
       }
     });

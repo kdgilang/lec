@@ -1,6 +1,6 @@
 <?php
 $data['nomenu'] = true;
-$this->load->view('layout/header', $data); ?>
+$this->load->view('header', $data); ?>
     <nav class="navbar-mobile fixed-top">
         <div class="container">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -12,7 +12,7 @@ $this->load->view('layout/header', $data); ?>
     <div class="container-fluid">
         <!-- Page Heading -->
         <div class="row">
-            <?php $this->load->view('layout/side'); ?>
+            <?php $this->load->view('side'); ?>
             <div class="col-xs-12 col-sm-9 col-md-10 right-md">
                 <h1 class="page-header">
                     <small><?= $title;?></small>
@@ -50,4 +50,4 @@ $this->load->view('layout/header', $data); ?>
         <!-- /.row -->                      
     </div>
     <!-- /.container-fluid -->
-<?php $this->load->view('layout/footer'); ?>
+<?php $this->load->view('footer'); ?>
