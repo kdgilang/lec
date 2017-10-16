@@ -1,7 +1,15 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Kelas extends CI_Controller{
-	function __construct(){
+	var $targetlevel = array(
+		'1' => 'General English',
+		'2' => 'Conversation Class',
+		'3' => 'English for Tourism',
+		'4' => 'English for Law professional',
+		'5' => 'TOEFL / IELTS Preparation',
+		'6'	=> 'Company Traning'		
+	);
+	function __construct() {
 		parent::__construct();	
 		$this->load->model('m_kelas');
 		$this->load->model('m_users');
@@ -11,6 +19,7 @@ class Kelas extends CI_Controller{
 			$data['title'] = 'Kelas';
 			$data['data'] =  $this->m_kelas->get_kelas();
 			$data['content'] = 'kelas/lists';
+			$data['targetlevel'] = $this->targetlevel;
 			$this->load->view('dashboard', $data);
 		}
 	}
@@ -22,6 +31,7 @@ class Kelas extends CI_Controller{
 			$data['content'] = 'kelas/form';
 			$data['slug'] = 'kelas';
 			$data['id'] = $id;
+			$data['targetlevel'] = $this->targetlevel;
 			$data['kelas'] = $this->m_kelas->detail_kelas(array('id'=>$id));
 			$this->load->view('dashboard', $data);
 		}

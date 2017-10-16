@@ -130,12 +130,9 @@
         <div class="form-group margin">        
           <select name="level" id="level" class="form-control input" required>
             <option>Target Level</option>
-            <option <?= ($level==1) ? "selected" : ""; ?> value="1">General English</option>
-            <option <?= ($level==2) ? "selected" : ""; ?> value="2">Conversation Class</option>
-            <option <?= ($level==3) ? "selected" : ""; ?> value="3">English for Tourism</option>
-            <option <?= ($level==4) ? "selected" : ""; ?> value="4">English for Law professional</option>
-            <option <?= ($level==5) ? "selected" : ""; ?> value="5">TOEFL / IELTS Preparation</option>
-            <option <?= ($level==6) ? "selected" : ""; ?> value="6">Company Traning</option>
+            <?php foreach($targetlevel as $key => $val) {?>
+            <option <?= ($level == $key) ? "selected" : ""; ?> value="<?= $key;?>"><?= $val;?></option>
+            <?php }?>
           </select>       
         </div>
         <div class="form-group margin c-selectbox">

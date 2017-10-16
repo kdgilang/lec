@@ -12,6 +12,8 @@
                 <th>No</th>
                 <th>Kode Siswa</th>
                 <th>Nama Siswa</th>
+                <th>Jam Kursus</th>
+                <th>Hari Kursus</th>
                 <th>Aksi</th>
             </tr>
         </thead>                      
@@ -23,6 +25,8 @@
                     <td><?= $i; ?></td>
                     <td><?= $meta['nilai_meta']; ?></td> 
                     <td><?= $val['nama']; ?></td> 
+                    <td><?= $kelas->jam; ?></td>
+                    <td><?= $kelas->hari; ?></td> 
                     <td><a class="btn btn-primary" href="<?= base_url('siswa/detail/'.$val['id']); ?>">Detail</a></td>                   
                 </tr>
                 <?php $i++; }?>
