@@ -45,7 +45,15 @@ $foto = empty($user['foto']) ? base_url('assets/images/no-profile-image.png') : 
                 <td><b>Status</b></td>
                 <td>:</td>
                 <td><?= $user['status']; ?></td>                           
-            </tr>   
+            </tr> 
+            <?php if($slug == 'siswa') {
+                $usermeta = $mo->m_users->get_meta($user['id'], 'pembayaran');?>
+                <tr>
+                    <td><b>Status Pembayaran</b></td>
+                    <td>:</td>
+                    <td><?= !empty($usermeta) ? $usermeta['nilai_meta'] : 'Belum Bayar'; ?></td>                           
+                </tr>
+            <?php } ?>
         </tbody>
     </table>
     <br>
