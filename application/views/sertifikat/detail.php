@@ -54,9 +54,4 @@
     <div>
         <a href="<?= base_url('sertifikat'); ?>" class="btn btn-default"><span class="fa fa-arrow-left"></span>&nbsp;&nbsp;Kembali</a>
     </div>
-    <br><br>
-    <h4>Sertifikat</h4>
-    <div class="sertifikat">
-     <img width="100%" src="<?= base_url('assets/images/sertifikat.png');?>" alt="sertifikat">
-    </div>
 </div>   
