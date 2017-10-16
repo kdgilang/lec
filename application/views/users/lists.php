@@ -16,27 +16,29 @@
                     <?php } ?>
                     </th>
                     <th>Nama</th>
-                    <th>Status</th> 
+                    <th>Status</th>
+                    <th>Status Pembayaran</th>
                     <th>Aksi</th>                                
                 </tr>
             </thead>
             <tbody>  
 
             <?php 
-            $no = 1;
             if(!empty($users)) :
+                $no = 1;
                 $mo = $this->load->model('m_users');
-                foreach($users as $val) { 
+                foreach($users as $val) {
                     $usermeta = $mo->m_users->get_meta($val->id, $meta);
+                    $pmeta = $mo->m_users->get_meta($val->id, 'pembayaran');
                 ?>                        
                 <tr>
                     <td width="40px"><?= $no++?></td>
                     <td><?= $usermeta['nilai_meta']; ?></td>
                     <td><?= $val->nama; ?></td>
-                    <td><?= $val->status; ?></td>  
+                    <td><?= $val->status; ?></td>
+                    <td><?= !empty($pmeta['nilai_meta']) ? $pmeta['nilai_meta'] : 'Belum Bayar'; ?></td>  
                     <td>
                         <a href="<?= base_url($slug);?>/detail/<?= $val->id; ?>" class="btn btn-sm btn-primary">Detail</a>
-                        &nbsp
                         <a href="<?= base_url($slug);?>/form/<?= $val->id; ?>" class="btn  btn-sm btn-warning">Ubah</a>
                     </td>                                                    
                 </tr>

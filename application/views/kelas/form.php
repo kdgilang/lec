@@ -42,11 +42,11 @@
     <div class="col-xs-12 col-sm-12 col-md-12 panel panel-primary form-daftar-offline">
       <div class="panel-body daftar">
         <?php if(!empty($id)) {?><input type="hidden" name="id" value="<?= $id; ?>"><?php }?>
-        <div class="form-group margin">        
+        <div class="form-group">        
           <input type="text" class="form-control input" placeholder="Nama Kelas" name="nama" value="<?= $nama; ?>" required>          
         </div>
         <?php if(!empty($id)) {?>
-        <div class="form-group margin">        
+        <div class="form-group">        
           <select name="status" id="status" class="form-control input" required>
             <option>Status Kelas</option>
             <option <?= ($status=="aktif") ? "selected" : ""; ?> value="aktif">Aktif</option>
@@ -54,7 +54,7 @@
           </select>       
         </div>
         <?php }?>
-        <div class="form-group margin">        
+        <div class="form-group">        
           <select name="tipe" id="tipekelas" class="form-control input" required>
             <option>Tipe Kursus</option>
             <option <?= ($tipe=="private") ? "selected" : ""; ?> value="private">Private</option>
@@ -126,10 +126,10 @@
             </div> 
           </div>
         </div>
-        <div class="form-group margin">        
+        <div class="form-group">        
           <input type="number" class="form-control input" placeholder="Jumlah Pertemuan" name="pertemuan" max="15" value="<?= $pertemuan; ?>" required>          
         </div>
-        <div class="form-group margin">        
+        <div class="form-group">        
           <select name="level" id="level" class="form-control input" required>
             <option>Target Level</option>
             <?php foreach($targetlevel as $key => $val) {?>
@@ -137,7 +137,7 @@
             <?php }?>
           </select>       
         </div>
-        <div id="siswa-ops" class="form-group margin c-selectbox">
+        <div id="siswa-ops" class="form-group c-selectbox">
           <?php if($tipe == 'group') {?>
           <div id="c-siswa" class="c-tag <?= !empty($csiswa) ? '' : 'bye'; ?>">
             <?php if(!empty($csiswa)) {foreach($csiswa as $val) { ?>
@@ -153,9 +153,9 @@
           <div class="c-lists">
             <input id="searchsiswa" type="text" autocomplete="off" class="form-control" placeholder="Cari Siswa"> 
             <ul class="lists">
-              <?php foreach($uniqsiswa as $val) { ?>
+              <?php if(!empty($uniqsiswa)) { foreach($uniqsiswa as $val) { ?>
                 <li data-value="<?=$val->id;?>" data-target="c-siswa" class="addlist"><span><?=$val->nama;?> (<?=$val->username;?>)</span></li>
-              <?php } ?>
+              <?php } } ?>
             </ul>
          </div>
          <?php } else if($tipe == 'private') {?>
@@ -164,22 +164,22 @@
             <input id="searchsiswa-private" class="form-control" type="text" placeholder="Cari Siswa">
             <input class="vs" type="hidden" name="id_siswa" value="<?=$ids[0];?>">
             <ul class="lists data-selectbox">
-                <?php foreach($siswa as $val) { ?>
+                <?php if(!empty($siswa)) { foreach($siswa as $val) { ?>
                 <li data-value="<?=$val->id;?>"><span><?=$val->nama;?> (<?=$val->username;?>)</span></li>
-                <?php } ?>
+                <?php } }?>
             </ul>
           </div>
          <?php }?>
         </div>
-        <div class="form-group margin c-selectbox">
+        <div class="form-group c-selectbox">
           <a href="javascript:;" class="selectbox"><span class="text"><?= $np;?></span><span class="fa fa-angle-down"></span></a>
           <div class="c-lists">
             <input id="searchpengajar" class="form-control" type="text" placeholder="Cari Pengajar">
             <input class="vs" type="hidden" name="id_pengajar" value="<?=$idp;?>">
             <ul class="lists data-selectbox">
-                <?php foreach($pengajar as $val) { ?>
+                <?php if(!empty($pengajar)) { foreach($pengajar as $val) { ?>
                 <li data-value="<?=$val->id;?>"><span><?=$val->nama;?> (<?=$val->username;?>)</span></li>
-                <?php } ?>
+                <?php } }?>
             </ul>
           </div>
         </div>                                           
@@ -366,9 +366,9 @@
           <div class="c-lists">
             <input id="searchsiswa" type="text" autocomplete="off" class="form-control" placeholder="Cari Siswa"> 
             <ul class="lists">
-              <?php foreach($uniqsiswa as $val) { ?>
+              <?php if(!empty($uniqsiswa)) { foreach($uniqsiswa as $val) { ?>
                 <li data-value="<?=$val->id;?>" data-target="c-siswa" class="addlist"><span><?=$val->nama;?> (<?=$val->username;?>)</span></li>
-              <?php } ?>
+              <?php } }?>
             </ul>
          </div>`;
       } else {
@@ -377,9 +377,9 @@
             <input id="searchsiswa-private" class="form-control" type="text" placeholder="Cari Siswa">
             <input class="vs" type="hidden" name="id_siswa" value="<?=$ids[0];?>">
             <ul class="lists data-selectbox">
-                <?php foreach($siswa as $val) { ?>
+                <?php if(!empty($siswa)) { foreach($siswa as $val) { ?>
                 <li data-value="<?=$val->id;?>"><span><?=$val->nama;?> (<?=$val->username;?>)</span></li>
-                <?php } ?>
+                <?php } } ?>
             </ul>
           </div>`;
       }

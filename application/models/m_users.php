@@ -18,6 +18,21 @@ class M_users extends CI_Model {
 			return $data->result_array()[0];
 		}
 	}
+	function set_meta($iduser, $meta_key, $nilai_meta) {
+		$data = $this->db->get_where('user_meta', array('id_user' => $id, 'nama_meta' => $meta_key));
+		$datameta = array(
+			'nama_meta' => $meta_key,
+			'nilai_meta' => $nilai_meta,
+			'id_user' => $iduser
+		);
+		if($data->result_id->num_rows>0) {
+			$id = $data->row_object()->id;
+			$this->db->where('id', $id);
+			$this->db->update('user_meta', $datameta);
+		} else {
+			$this->db->insert('user_meta', $datameta);
+		}
+	}
 	function delete($where){
 		$this->db->where($where);
 		$this->db->delete('users');

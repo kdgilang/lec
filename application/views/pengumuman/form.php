@@ -20,28 +20,26 @@
     <div class="panel panel-primary form-daftar-offline">
       <div class="panel-body daftar">
         <?php if(!empty($id)) {?><input type="hidden" name="id" value="<?= $id; ?>"><?php }?>
-        <div class="form-group margin">
+        <div class="form-group">
           <input class="form-control input" type="text" placeholder="Judul" name="judul" value="<?= $judul; ?>" required>
         </div>
-        <div class="form-group margin">  
+        <div class="form-group">  
           <input id="konten" type="hidden" name="konten">      
           <div class="editor"></div>        
         </div>
         <div class="form-group">                               
-          <div id="c-date" class="input-group date" data-provide="datepicker" style="width: 100% !important;">
-              <input class="form-control date" name="tanggal" type="text" placeholder="Tanggal" value="<?= $tanggal; ?>" required>
-          </div>                  
+          <input class="form-control date" name="tanggal" type="text" placeholder="Tanggal" value="<?= $tanggal; ?>" required>               
         </div>  
         <?php if(!empty($id)) {?>
-        <div class="form-group margin">        
-          <select class="form-control input"  name="status">
+        <div class="form-group">        
+          <select class="form-control"  name="status">
             <option <?= ($status == 'aktif') ? "selected" : "";?> value="aktif">Aktif</option>
             <option <?= ($status == 'tidak aktif') ? "selected" : "";?> value="tidak aktif">Tidak Aktif</option>
           </select>          
         </div>  
         <?php }?>                                             
         <div class="col-xs-12 text-center">
-          <a href="<?php echo base_url($slug); ?>" class="btn btn-default"><span class="fa fa-arrow-left"></span>&nbsp;&nbsp;Kembali</a>
+          <a href="<?= base_url($slug); ?>" class="btn btn-default"><span class="fa fa-arrow-left"></span>&nbsp;&nbsp;Kembali</a>
           <input type="submit" class="btn btn-success" value="Simpan">     
         </div>      
       </div>

@@ -27,12 +27,14 @@ class Sertifikat extends CI_Controller {
 		$data['title'] = 'Form Sertifikat';
 		$data['slug'] = 'sertifikat';
 		$data['content'] = 'sertifikat/form';
+		$data['siswa'] = $this->m_users->get_users(array('level' => 4, 'status'=> 'aktif'));
+		$data['pengajar'] = $this->m_users->get_users(array('level' => 3, 'status'=> 'aktif'));
 		$this->load->view('dashboard', $data);
 	}
 	function add() {
 		$judul = $this->input->post('judul');
-		$konten = $this->input->post('konten');	
-		$tanggal = $this->input->post('tanggal');	
+		$konten = $this->input->post('konten');
+		$tanggal = $this->input->post('tanggal');
 		$status = !empty($this->input->post('status')) ? $this->input->post('status') : "aktif";
 		$operator = $this->session->id_user; 
 		$data = array(

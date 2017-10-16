@@ -249,27 +249,25 @@
             <div class="btn btn-closeform"><span class="fa fa-times"></span></div>
             <div class="panel-body"> 
                 <form action="<?= base_url()?>home/register" class="form-ajax">
-                    <div class="form-group margin">        
+                    <div class="form-group">        
                       <input class="form-control input" placeholder="User Name" name="username" required>          
                     </div>
-                    <div class="form-group margin">        
+                    <div class="form-group">        
                       <input class="form-control input" placeholder="Nama" name="nama" required>          
                     </div>
-                    <div class="form-group margin">
+                    <div class="form-group">
                       <input type="email" class="form-control input" placeholder="Email" name="email" required>
                     </div>
-                    <div class="form-group margin">        
+                    <div class="form-group">        
                       <input class="form-control input" placeholder="Alamat" name="alamat" required>          
                     </div>
                     <div class="form-group">                               
-                      <div id="c-date" class="input-group date" data-provide="datepicker" style="width: 100% !important;">
-                          <input class="form-control date" name="tgl_lahir" type="text" placeholder="Tanggal Lahir" required>
-                      </div>                  
+                      <input class="form-control date" name="tgl_lahir" type="text" placeholder="Tanggal Lahir" required>             
                     </div>
-                    <div class="form-group margin">        
+                    <div class="form-group">        
                       <input class="form-control input" type="text" placeholder="No Telpon" name="telpon" required>          
                     </div>   
-                    <div class="form-group margin">        
+                    <div class="form-group">        
                       <input class="form-control input" placeholder="Password" name="password" type="password" required>          
                     </div>                                              
                     <div class="text-center">

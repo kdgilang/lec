@@ -14,7 +14,7 @@ class Siswa extends CI_Controller{
 		$data['slug'] = 'siswa';
 		$data['content'] = 'users/lists';
 		$this->load->view('dashboard',$data);
-	}	
+	}
 	function detail($id) {
 		$data = array(
 			'user' => $this->m_users->detail_users($id), 
@@ -49,6 +49,7 @@ class Siswa extends CI_Controller{
 		$no_tlp = $this->input->post('telpon');
 		$status = !empty($this->input->post('status')) ? $this->input->post('status') : "aktif";
 		$level = 4;
+		$pembayaran = $this->input->post('pembayaran');
 		$password = $this->input->post('password');	
 		$config['upload_path'] = './uploads/';
 		$config['allowed_types'] = 'gif|jpg|png';
@@ -68,9 +69,10 @@ class Siswa extends CI_Controller{
 			'telpon' => $no_tlp,
 			'status' => $status,
 			'password' => md5($password),
-			'foto' => $foto,	
+			'foto' => $foto	
 		);
-		$this->m_users->add_users($data,'kode_siswa', $ks);
+		$iduser = $this->m_users->add_users($data,'kode_siswa', $ks);
+		$this->m_users->set_meta($iduser, 'pembayaran', $pembayaran);
 		redirect('siswa');
 	}
 	function edit() {
@@ -88,6 +90,7 @@ class Siswa extends CI_Controller{
 		$password = $this->input->post('password');
 		$status = !empty($this->input->post('status')) ? $this->input->post('status') : "aktif";
 		$level = 4;
+		$pembayaran = $this->input->post('pembayaran');
 		$foto = $this->input->post('old_foto');
 		$config['upload_path'] = './uploads/';
 		$config['allowed_types'] = 'gif|jpg|png';
@@ -111,7 +114,8 @@ class Siswa extends CI_Controller{
 		}
 		$meta = array('nilai_meta' => $ks);
 		$wmeta = array('nama_meta' => 'kode_siswa', 'id_user' => $id);
-		$this->m_users->update_users($id, $data, $wmeta, $meta);		
+		$this->m_users->update_users($id, $data, $wmeta, $meta);
+		$this->m_users->set_meta($id, 'pembayaran', $pembayaran);	
 		redirect('siswa');
 	}
 	function delete($id) {
