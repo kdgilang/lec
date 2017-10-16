@@ -32,34 +32,42 @@ class Sertifikat extends CI_Controller {
 		$this->load->view('dashboard', $data);
 	}
 	function add() {
-		$judul = $this->input->post('judul');
-		$konten = $this->input->post('konten');
-		$tanggal = $this->input->post('tanggal');
-		$status = !empty($this->input->post('status')) ? $this->input->post('status') : "aktif";
+		$status =  $this->input->post('status');
+		$tgl_cetak = $this->input->post('tgl_cetak');
+		$tgl_terbit = $this->input->post('tgl_terbit');
+		$tgl_ambil = $this->input->post('tgl_ambil');
+		$siswa = $this->input->post('id_siswa');
+		$pengajar = $this->input->post('id_pengajar');
 		$operator = $this->session->id_user; 
 		$data = array(
-			'judul' => $judul,
-			'konten' => $konten,
-			'tanggal' => $tanggal,
 			'status' => $status,
-			'id_operator' => $operator
+			'tgl_cetak' => $tgl_cetak,
+			'tgl_terbit' => $tgl_terbit,
+			'tgl_ambil' => $tgl_ambil,
+			'id_operator' => $operator,
+			'id_siswa' => $siswa,
+			'id_pengajar' => $pengajar
 		);
 		$this->m_sertifikat->add_sertifikat($data);
 		redirect('sertifikat');
 	}
 	function edit() {
 		$id = $this->input->post('id');
-		$judul = $this->input->post('judul');
-		$konten = $this->input->post('konten');	
-		$tanggal = $this->input->post('tanggal');	
-		$status = !empty($this->input->post('status')) ? $this->input->post('status') : "aktif";
+		$status =  $this->input->post('status');
+		$tgl_cetak = $this->input->post('tgl_cetak');
+		$tgl_terbit = $this->input->post('tgl_terbit');
+		$tgl_ambil = $this->input->post('tgl_ambil');
+		$siswa = $this->input->post('id_siswa');
+		$pengajar = $this->input->post('id_pengajar');
 		$operator = $this->session->id_user; 
 		$data = array(
-			'judul' => $judul,
-			'konten' => $konten,
-			'tanggal' => $tanggal,
 			'status' => $status,
-			'id_operator' => $operator
+			'tgl_cetak' => $tgl_cetak,
+			'tgl_terbit' => $tgl_terbit,
+			'tgl_ambil' => $tgl_ambil,
+			'id_operator' => $operator,
+			'id_siswa' => $siswa,
+			'id_pengajar' => $pengajar
 		);
 		$this->m_sertifikat->update_sertifikat($id, $data);
 		redirect('sertifikat');

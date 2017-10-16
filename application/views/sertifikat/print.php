@@ -8,7 +8,7 @@
       margin-left: 20px;
     }
 
-    .nama_sertifikat {
+    .sertifikat {
       width: 450px;
       height: auto;
       position: absolute;
@@ -42,7 +42,7 @@
       text-transform: uppercase;
     }
 
-    .nama_pengajar{
+    .pengajar{
       position: absolute;
       width: 250px;
       height: auto;
@@ -52,22 +52,13 @@
       text-align: center;    
       text-transform: uppercase;
     }
-     
   </style>
-    
 </head>
 <body>  
-
-  <img class="img-sertifikat" src="http://localhost/lec/assets/images/sertifikat_pdf.png" width="96%"></img>
-
-  <div class="nama_sertifikat"><?php echo $sertifikat['nama_siswa'] ?></div>
-  <div class="target_level"><?php echo $sertifikat['target_level'] ?></div>
-  <div class="tgl"><?php echo $sertifikat['tgl_terbit'] ?></div>
-  
-  <div class="nama_pengajar"><?php echo $sertifikat['nama_pengajar'] ?></div>    
-  
-
-
-
+  <img class="img-sertifikat" src="<?= base_url('assets/images/sertifikat.png');?>"></img>
+  <div class="sertifikat"><?= $sertifikat['nama'] ?></div>
+  <div class="target_level"><?= $sertifikat['target_level'] ?></div>
+  <div class="tgl"><?= $sertifikat['tgl_terbit'] ?></div>
+  <div class="pengajar"><?= $sertifikat['nama_pengajar'] ?></div>
 </body>
 </html>

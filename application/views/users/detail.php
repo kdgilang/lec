@@ -73,7 +73,7 @@ $foto = empty($user['foto']) ? base_url('assets/images/no-profile-image.png') : 
         <?php
         $no = 1;
         if(!empty($kelas)) :
-            foreach ($kelas as $val) : //ngabsen data
+            foreach ($kelas as $val) : 
             ?>
             <tr>
                 <td width="40px"><?= $no++; ?></td>
