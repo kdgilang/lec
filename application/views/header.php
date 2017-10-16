@@ -28,6 +28,7 @@
     <script src="<?= base_url('assets/js/moment-range.min.js'); ?>"></script>   
     <script src="<?= base_url('assets/js/bootstrap-datepicker.js'); ?>"></script>
     <script src="<?= base_url('assets/js/jquery.timepicker.min.js'); ?>"></script>
+    <script src="<?= base_url('assets/js/dataTable.js'); ?>"></script>
 </head>
 <body>
 <?php $this->load->library('session'); ?>

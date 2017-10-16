@@ -8,6 +8,7 @@
 			$( this).toggleClass("active");
 			$( this ).find(".fa-angle-left").toggleClass("fa-angle-down");
 		});
+    $('.table-bordered').DataTable();
 	});
 
   // Smooth scrolling using jQuery easing
