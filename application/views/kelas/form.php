@@ -18,6 +18,8 @@
   $idp = empty($kelas->id_pengajar) ? "" : $kelas->id_pengajar;
   $np = empty($idp) ? "" : $this->m_users->detail_users($idp);
   $np = empty($np) ? "Pilih Pengajar" : $np['nama'].' ('.$np['username'].')';
+  $ns = empty($ids[0]) ? "" : $this->m_users->detail_users($ids[0]);
+  $ns = empty($ns) ? "Pilih Siswa" : $ns['nama'].' ('.$ns['username'].')';
   $uniqsiswa = $siswa;
   if(!empty($ids)) {
     $uniqsiswa = [];
@@ -135,7 +137,8 @@
             <?php }?>
           </select>       
         </div>
-        <div class="form-group margin c-selectbox">
+        <div id="siswa-ops" class="form-group margin c-selectbox">
+          <?php if($tipe == 'group') {?>
           <div id="c-siswa" class="c-tag <?= !empty($csiswa) ? '' : 'bye'; ?>">
             <?php if(!empty($csiswa)) {foreach($csiswa as $val) { ?>
             <div class="item-tag">
@@ -146,7 +149,7 @@
             <?php } }?>
             <div class="clearfix"></div>
           </div>     
-          <a href="javascript:;" class="selectbox form-control">Pilih Siswa <span class="fa fa-angle-down"></span></a>
+          <a href="javascript:;" class="selectbox">Pilih Siswa <span class="fa fa-angle-down"></span></a>
           <div class="c-lists">
             <input id="searchsiswa" type="text" autocomplete="off" class="form-control" placeholder="Cari Siswa"> 
             <ul class="lists">
@@ -155,6 +158,18 @@
               <?php } ?>
             </ul>
          </div>
+         <?php } else if($tipe == 'private') {?>
+         <a href="javascript:;" class="selectbox"><span class="text"><?= $ns;?></span><span class="fa fa-angle-down"></span></a>
+          <div class="c-lists">
+            <input id="searchsiswa-private" class="form-control" type="text" placeholder="Cari Siswa">
+            <input class="vs" type="hidden" name="id_siswa" value="<?=$ids[0];?>">
+            <ul class="lists data-selectbox">
+                <?php foreach($siswa as $val) { ?>
+                <li data-value="<?=$val->id;?>"><span><?=$val->nama;?> (<?=$val->username;?>)</span></li>
+                <?php } ?>
+            </ul>
+          </div>
+         <?php }?>
         </div>
         <div class="form-group margin c-selectbox">
           <a href="javascript:;" class="selectbox"><span class="text"><?= $np;?></span><span class="fa fa-angle-down"></span></a>
@@ -180,7 +195,8 @@
 <script>
   var siswa = <?=json_encode($uniqsiswa);?>,
       bsiswa = <?=json_encode($siswa);?>,
-      pengajar = <?=json_encode($pengajar);?>;
+      pengajar = <?=json_encode($pengajar);?>,
+      tipekelas = '';
   $(".timepicker").timepicker({
     dropdown: true,    
     minTime: '10:00AM',
@@ -276,6 +292,24 @@
       that.siblings('.lists').html(html);
     });
 
+    js(document).on('keyup', '#searchsiswa-private', function () {
+      var that = js(this),
+          val = that.val(),
+          html = "";
+        if(bsiswa.length > 0) {
+          bsiswa.forEach( function(v, index) {
+            if(v.username.search(val) > -1) {
+              html+='<li data-value="'+v.id+'"><span> '+v.nama+' ('+v.username+')</span></li>';
+            } else {
+              html += '<li><span>Tidak Ditemukan</span></li>';
+            }
+          });
+        } else {
+          html += '<li><span>Tidak Ditemukan</span></li>';
+        }
+      that.siblings('.lists').html(html);
+    });
+
     js(document).on('click', '.data-selectbox li', function () {
       var that = js(this),
           val = that.data("value"),
@@ -289,10 +323,17 @@
 
     js("#form-kelas").submit(function (e) {
       var status  = true; 
-      if(js(".inptidsiswa").length < 1) {
-        js(".alert").text("Siswa tidak boleh kosong.");
-        status = false;
-      }  
+      if(tipekelas == 'group') {
+        if(js(".inptidsiswa").length < 1) {
+          js(".alert").text("Siswa tidak boleh kosong.");
+          status = false;
+        }  
+      } else {
+        if(js("input[name=id_siswa]").val() === '') {
+          js(".alert").text("Siswa tidak boleh kosong.");
+          status = false;
+        }  
+      }
       if(js(".vs").val() === "") {
         js(".alert").text("Pengajar tidak boleh kosong.");
         status = false;
@@ -308,14 +349,41 @@
 
     js(document).on('change', '#tipekelas', function () {
       var that = js(this),
-          val = that.val(),
           html = '';
-      if(val === 'private') {
-        html = 'private';
+      tipekelas = that.val();
+      if(tipekelas === 'group') {
+        html = `<div id="c-siswa" class="c-tag <?= !empty($csiswa) ? '' : 'bye'; ?>">
+            <?php if(!empty($csiswa)) {foreach($csiswa as $val) { ?>
+            <div class="item-tag">
+                <?= $val->nama .' ('.$val->username.')'; ?>
+                <input class="inptidsiswa" type="hidden" name="id_siswa[]" value="<?= $val->id;?>" required />
+                <span data-value="<?= $val->id;?>" class="delete-tag fa fa-times"></span>
+            </div>
+            <?php } }?>
+            <div class="clearfix"></div>
+          </div>     
+          <a href="javascript:;" class="selectbox">Pilih Siswa <span class="fa fa-angle-down"></span></a>
+          <div class="c-lists">
+            <input id="searchsiswa" type="text" autocomplete="off" class="form-control" placeholder="Cari Siswa"> 
+            <ul class="lists">
+              <?php foreach($uniqsiswa as $val) { ?>
+                <li data-value="<?=$val->id;?>" data-target="c-siswa" class="addlist"><span><?=$val->nama;?> (<?=$val->username;?>)</span></li>
+              <?php } ?>
+            </ul>
+         </div>`;
       } else {
-        html = 'group';
+        html = `<a href="javascript:;" class="selectbox"><span class="text"><?= $ns;?></span><span class="fa fa-angle-down"></span></a>
+          <div class="c-lists">
+            <input id="searchsiswa-private" class="form-control" type="text" placeholder="Cari Siswa">
+            <input class="vs" type="hidden" name="id_siswa" value="<?=$ids[0];?>">
+            <ul class="lists data-selectbox">
+                <?php foreach($siswa as $val) { ?>
+                <li data-value="<?=$val->id;?>"><span><?=$val->nama;?> (<?=$val->username;?>)</span></li>
+                <?php } ?>
+            </ul>
+          </div>`;
       }
-      console.log(html);
+      js("#siswa-ops").html(html);
     });
   })(jQuery)
 </script>
