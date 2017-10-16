@@ -18,6 +18,7 @@
                     <th>Nama</th>
                     <th>Status</th>
                     <?php if($slug == 'siswa') {?>
+                    <th>Target Level</th>
                     <th>Status Pembayaran</th>
                     <?php }?>
                     <th>Aksi</th>                                
@@ -39,6 +40,7 @@
                     <td><?= $val->nama; ?></td>
                     <td><?= $val->status; ?></td>
                     <?php if($slug == 'siswa') {?>
+                    <td><?= $targetlevel[$val->level]; ?></td>
                     <td><?= !empty($pmeta['nilai_meta']) ? $pmeta['nilai_meta'] : 'Belum Bayar'; ?></td>  
                     <?php }?>
                     <td>

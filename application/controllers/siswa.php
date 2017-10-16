@@ -1,6 +1,14 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Siswa extends CI_Controller{
+class Siswa extends CI_Controller {
+	var $targetlevel = array(
+		'1' => 'General English',
+		'2' => 'Conversation Class',
+		'3' => 'English for Tourism',
+		'4' => 'English for Law professional',
+		'5' => 'TOEFL / IELTS Preparation',
+		'6'	=> 'Company Traning'		
+	);
 	function __construct(){
 		parent::__construct();		
 		$this->load->model('m_users');
@@ -12,6 +20,7 @@ class Siswa extends CI_Controller{
 		}
 		$data = array('users' => $this->m_users->get_users(array('level'=>4)), 'title' => 'Siswa');
 		$data['slug'] = 'siswa';
+		$data['targetlevel'] = $this->targetlevel;
 		$data['content'] = 'users/lists';
 		$this->load->view('dashboard',$data);
 	}
