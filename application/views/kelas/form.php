@@ -53,7 +53,7 @@
         </div>
         <?php }?>
         <div class="form-group margin">        
-          <select name="tipe" id="tipe" class="form-control input" required>
+          <select name="tipe" id="tipekelas" class="form-control input" required>
             <option>Tipe Kursus</option>
             <option <?= ($tipe=="private") ? "selected" : ""; ?> value="private">Private</option>
             <option <?= ($tipe=="group") ? "selected" : ""; ?> value="group">Group</option>
@@ -146,7 +146,7 @@
             <?php } }?>
             <div class="clearfix"></div>
           </div>     
-          <a href="javscript:;" class="selectbox form-control">Pilih Siswa <span class="fa fa-angle-down"></span></a>
+          <a href="javascript:;" class="selectbox form-control">Pilih Siswa <span class="fa fa-angle-down"></span></a>
           <div class="c-lists">
             <input id="searchsiswa" type="text" autocomplete="off" class="form-control" placeholder="Cari Siswa"> 
             <ul class="lists">
@@ -190,11 +190,12 @@
   (function (js){
     'use strict';
     // OPEN DROPDOWN TAG
-    js(document).on('click', '.selectbox', function() {
+    js(document).on('click', '.selectbox', function(e) {
       var dd = js(this).next(".c-lists");
       $(this).toggleClass('active');
       dd.fadeToggle(400);
       js(".selectbox").not(this).removeClass('active').next(".c-lists").fadeOut(200);
+      e.preventDefault();
     });
 
     // add lists
@@ -303,6 +304,18 @@
         js(".alert").fadeIn(200);
         e.preventDefault();
       }
+    });
+
+    js(document).on('change', '#tipekelas', function () {
+      var that = js(this),
+          val = that.val(),
+          html = '';
+      if(val === 'private') {
+        html = 'private';
+      } else {
+        html = 'group';
+      }
+      console.log(html);
     });
   })(jQuery)
 </script>
