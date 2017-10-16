@@ -15,8 +15,8 @@
     <table class="table table-striped" width="100%">                      
         <tbody> 
             <tr>
-                <td><b>Status Sertifikat</b></td>
-                <td>:</td>
+                <td width="150"><b>Status Sertifikat:</b></td>
+                <td width="10">:</td>
                 <td><?= $status;?></td>                    
             </tr>
             <tr>
