@@ -8,6 +8,7 @@ class Sertifikat extends CI_Controller {
 		}
 		$this->load->model('m_sertifikat');
 		$this->load->model('m_users');
+		$this->load->library('PDFyo');
 	}
 	function index() {
 		$data = array('sertifikat' => $this->m_sertifikat->get_sertifikat(), 'title' => 'Sertifikat');
@@ -71,6 +72,60 @@ class Sertifikat extends CI_Controller {
 		);
 		$this->m_sertifikat->update_sertifikat($id, $data);
 		redirect('sertifikat');
+	}
+	function download($id) {
+		$sertifikat = $this->m_sertifikat->detail_sertifikat(array('id'=>$id));
+		$tgl = empty($sertifikat['tgl_terbit']) ? "unknow" : $sertifikat['tgl_terbit'];
+		$siswa = empty($sertifikat['id_siswa']) ? "unknow" : $sertifikat['id_siswa'];
+		$pengajar = empty($sertifikat['id_pengajar']) ? "unknow" : $sertifikat['id_pengajar'];
+		$siswa = $this->m_users->detail_users($siswa);
+		$pengajar = $this->m_users->detail_users($pengajar);
+		$html = '<!DOCTYPE html>
+			<html>
+			<head>
+			  <title>Sertifikat</title>
+			  <style type="text/css">
+			    @page { margin: 0px; }
+				body { margin: 0px; }
+			    .siswa {
+			      font-weight: bold;
+			      position: absolute;
+			      top: 977px;
+			      text-align: center;
+			      font-size: 57px;
+			      left: 960px;
+			      text-transform: uppercase;
+			      width: 1592px;
+			    }
+			    .tgl{
+			      position: absolute;
+			      font-weight: bold;
+			      top: 1350px;
+			      text-align: center;
+			      font-size: 57px;
+			      left: 1610px;
+			      text-transform: uppercase;
+			      width: 300px;
+			    }
+			    .pengajar{
+			      position: absolute;
+			      width: 250px;
+			      top: 1790px;
+			      font-size: 32px;
+			      text-align: center;
+			      left: 995px;
+			      text-transform: uppercase;
+			    }
+			  </style>
+			</head>
+			<body>
+				<img height="2480" width="3508" src="'.base_url('assets/images/sertifikat.png').'" alt="sertifikat">
+				<div class="siswa">'.$siswa['nama'].'</div>
+				<div class="tgl">'.$tgl.'</div>
+				<div class="pengajar">'.$pengajar['nama'].'</div>
+			</body>
+			</html>';
+		$this->pdfyo->generate($html, 'filea', true, 'A4', "landscape");
 	}
 	function delete($id) {
 		$where = array('id' => $id);

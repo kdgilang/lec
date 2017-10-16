@@ -6,59 +6,62 @@
     .img-sertifikat {
       text-align: center;
       margin-left: 20px;
+      width: 100%;
     }
-
-    .sertifikat {
-      width: 450px;
-      height: auto;
-      position: absolute;
-      top: 250px;
-      right: 290px;
-      text-align: center;
-      font-size: 34px;
-    }
-
-    .target_level{
-      width: 300px;
-      height: auto;
-      font-size: 15px;
+    .siswa {
       font-weight: bold;
-      top: 370px;
-      right: 370px;
-      text-align: center;
       position: absolute;
+      top: 977px;
+      text-align: center;
+      font-size: 57px;
+      left: 960px;
       text-transform: uppercase;
+      width: 1592px;
     }
-
     .tgl{
-      width: 300px;
-      height: auto;
-      font-size: 15px;
-      font-weight: bold;
-      top: 395px;
-      right: 370px;
-      text-align: center;
       position: absolute;
+      font-weight: bold;
+      top: 1350px;
+      text-align: center;
+      font-size: 57px;
+      left: 1610px;
       text-transform: uppercase;
+      width: 300px;
     }
-
     .pengajar{
       position: absolute;
       width: 250px;
-      height: auto;
-      right: 570px;
-      top: 495px;
-      font-size: 18px;
-      text-align: center;    
+      top: 1790px;
+      font-size: 32px;
+      text-align: center;
+      left: 995px;
       text-transform: uppercase;
+    }
+    .container {
+      position: relative;
+      height: 2480px;
+      width: 3508px;
     }
   </style>
 </head>
-<body>  
-  <img class="img-sertifikat" src="<?= base_url('assets/images/sertifikat.png');?>"></img>
-  <div class="sertifikat"><?= $sertifikat['nama'] ?></div>
-  <div class="target_level"><?= $sertifikat['target_level'] ?></div>
-  <div class="tgl"><?= $sertifikat['tgl_terbit'] ?></div>
-  <div class="pengajar"><?= $sertifikat['nama_pengajar'] ?></div>
+<body>
+<?php 
+  $status = empty($sertifikat['status']) ? "" : $sertifikat['status'];
+  $tgl_terbit = empty($sertifikat['tgl_terbit']) ? "" : $sertifikat['tgl_terbit'];
+  $tgl_cetak = empty($sertifikat['tgl_cetak']) ? "" : $sertifikat['tgl_cetak'];
+  $tgl_ambil = empty($sertifikat['tgl_ambil']) ? "" : $sertifikat['tgl_ambil'];
+  $operator = empty($sertifikat['id_operator']) ? "" : $sertifikat['id_operator'];
+  $siswa = empty($sertifikat['id_siswa']) ? "" : $sertifikat['id_siswa'];
+  $pengajar = empty($sertifikat['id_pengajar']) ? "" : $sertifikat['id_pengajar'];
+  $operator = $this->m_users->detail_users($operator);
+  $siswa = $this->m_users->detail_users($siswa);
+  $pengajar = $this->m_users->detail_users($pengajar);
+  ?>
+  <div class="container">
+  <img height="2480" width="3508" src="<?= base_url('assets/images/sertifikat.png');?>"></img>
+  <div class="siswa"><?= $siswa['nama']; ?></div>
+  <div class="tgl"><?= $tgl_terbit; ?></div>
+  <div class="pengajar"><?= $pengajar['nama']; ?></div>
+  </div>
 </body>
 </html>

@@ -17,7 +17,9 @@
                     </th>
                     <th>Nama</th>
                     <th>Status</th>
+                    <?php if($slug == 'siswa') {?>
                     <th>Status Pembayaran</th>
+                    <?php }?>
                     <th>Aksi</th>                                
                 </tr>
             </thead>
@@ -36,7 +38,9 @@
                     <td><?= $usermeta['nilai_meta']; ?></td>
                     <td><?= $val->nama; ?></td>
                     <td><?= $val->status; ?></td>
+                    <?php if($slug == 'siswa') {?>
                     <td><?= !empty($pmeta['nilai_meta']) ? $pmeta['nilai_meta'] : 'Belum Bayar'; ?></td>  
+                    <?php }?>
                     <td>
                         <a href="<?= base_url($slug);?>/detail/<?= $val->id; ?>" class="btn btn-sm btn-primary">Detail</a>
                         <a href="<?= base_url($slug);?>/form/<?= $val->id; ?>" class="btn  btn-sm btn-warning">Ubah</a>
