@@ -16,6 +16,12 @@ class Siswa extends CI_Controller{
 		$this->load->view('dashboard',$data);
 	}
 	function detail($id) {
+		if($this->session->level != 1 && $this->session->level != 2 && $this->session->level != 4) {
+			exit('you have no access.');
+		}
+		if($this->session->level == 4 && $id != $this->session->id_user) {
+			exit('you have no access.');
+		}
 		$data = array(
 			'user' => $this->m_users->detail_users($id), 
 			'title' => 'Detail Siswa',
