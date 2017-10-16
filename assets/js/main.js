@@ -8,7 +8,11 @@
 			$( this).toggleClass("active");
 			$( this ).find(".fa-angle-left").toggleClass("fa-angle-down");
 		});
-    $('.table-bordered').DataTable();
+    $('.table-bordered').DataTable({
+      language: {
+          searchPlaceholder: "Cari ..."
+      }
+    });
 	});
 
   // Smooth scrolling using jQuery easing
