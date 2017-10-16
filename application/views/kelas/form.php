@@ -375,7 +375,7 @@
         html = `<a href="javascript:;" class="selectbox"><span class="text"><?= $ns;?></span><span class="fa fa-angle-down"></span></a>
           <div class="c-lists">
             <input id="searchsiswa-private" class="form-control" type="text" placeholder="Cari Siswa">
-            <input class="vs" type="hidden" name="id_siswa" value="<?=$ids[0];?>">
+            <input class="vs" type="hidden" name="id_siswa" value="<?= isset($ids[0]) ? $ids[0]: "";?>">
             <ul class="lists data-selectbox">
                 <?php if(!empty($siswa)) { foreach($siswa as $val) { ?>
                 <li data-value="<?=$val->id;?>"><span><?=$val->nama;?> (<?=$val->username;?>)</span></li>

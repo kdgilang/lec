@@ -85,7 +85,7 @@
           <input type="password" class="form-control input" placeholder="Password <?= !empty($id) ? 'Baru': '';?>" name="password" <?= !empty($id) ? '': 'required';?>>          
         </div>                                              
         <div class="col-xs-12 text-center">
-          <a href="<?php echo base_url($slug); ?>" class="btn btn-default"><span class="fa fa-arrow-left"></span>&nbsp;&nbsp;Kembali</a>
+          <a href="<?= base_url($slug); ?>" class="btn btn-default"><span class="fa fa-arrow-left"></span>&nbsp;&nbsp;Kembali</a>
           <input type="submit" class="btn btn-success" value="Simpan">     
         </div>      
       </div>
