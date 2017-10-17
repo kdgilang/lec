@@ -1,15 +1,15 @@
 <br>
+<div class="row">
 <script src="<?= base_url('assets/js/quill.min.js'); ?>"></script>
-<div class="container">
 <?php 
 if(!empty($pengumuman)) :
 $no = 1;
   foreach($pengumuman as $val) { 
     if($val->status == 'aktif') {
       $operator = $this->m_users->detail_users($val->id_operator); ?> 
-      <div class="col-xs-12 col-sm-6 col-md-4 blog">
+      <div class="col-xs-12 col-sm-6 col-md-4 content-column">
         <div class="panel panel-default">
-            <h4 class="panel-body"><?= $val->judul;?></h4>
+            <h4 class="panel-body"><?= substr($val->judul, 0, 30);?>...</h4>
             <div class="panel-heading">
                 <span class="meta dates"><span class="icon-menu fa fa-clock-o"></span><?= $val->tanggal;?></span>
                 <span class="meta author"><span class="icon-menu fa fa-user-circle"></span><?= $operator['username']; ?></span>

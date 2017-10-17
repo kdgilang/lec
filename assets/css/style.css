@@ -463,9 +463,9 @@ p a {
 .panel .btn {
     margin-top: 20px;
 }
-.blog {
+.content-column {
     margin-bottom: 15px;
 }
-.blog .panel {
+.content-column .panel {
     height: 242px;
 }

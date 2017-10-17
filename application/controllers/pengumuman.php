@@ -11,7 +11,7 @@ class Pengumuman extends CI_Controller {
 		$data = array('pengumuman' => $this->m_pengumuman->get_pengumuman(), 'title' => 'Pengumuman');
 		$data['slug'] = 'pengumuman';
 		if($this->session->level == 4) {
-			$data['content'] = 'pengumuman/content-block';
+			$data['content'] = 'pengumuman/content-column';
 		} else {
 			$data['content'] = 'pengumuman/lists';
 		}
