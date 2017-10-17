@@ -110,7 +110,7 @@ class Pengajar extends CI_Controller{
 			'foto' => $foto,	
 		);
 		if(!empty($password)) {
-			$data['password'] = $password;
+			$data['password'] = md5($password);
 		}
 		$meta = array('nilai_meta' => $kp);
 		$wmeta = array('nama_meta' => 'kode_pengajar', 'id_user' => $id);

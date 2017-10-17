@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.6.5.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 16, 2017 at 08:45 AM
--- Server version: 10.1.22-MariaDB
--- PHP Version: 7.0.18
+-- Generation Time: Oct 18, 2017 at 12:05 AM
+-- Server version: 10.1.21-MariaDB
+-- PHP Version: 7.0.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -48,7 +46,7 @@ CREATE TABLE `kelas` (
 INSERT INTO `kelas` (`id`, `nama`, `status`, `tipe`, `hari`, `jam`, `pertemuan`, `level`, `id_siswa`, `id_pengajar`) VALUES
 (1, 'AC133', 'aktif', 'private', 'senin', '12 - 10:30 AM', 15, '1', '48', 49),
 (3, 'ca333', 'aktif', 'group', 'selasa,jumat', '11:30 AM - 11:30 AM', 15, '1', '48', 49),
-(4, 'caeeee', 'aktif', 'group', 'senin,kamis,jumat', '12:00 PM - 12:30 PM', 4, '2', '48', 49),
+(4, 'caeeee', 'aktif', 'group', 'senin,kamis,jumat', '12:00 PM - 12:30 PM', 4, '2', '51,48', 49),
 (5, 'CV22', 'aktif', 'private', 'selasa,jumat,minggu', '11:30 AM - 01:00 PM', 12, '3', '48', 49);
 
 -- --------------------------------------------------------
@@ -126,6 +124,13 @@ CREATE TABLE `sertifikat` (
   `id_pengajar` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `sertifikat`
+--
+
+INSERT INTO `sertifikat` (`id`, `status`, `tgl_cetak`, `tgl_terbit`, `tgl_ambil`, `id_operator`, `id_siswa`, `id_pengajar`) VALUES
+(1, 'dalam proses', '09/06/2017', '10/24/2017', '10/30/2017', 1, 48, 49);
+
 -- --------------------------------------------------------
 
 --
@@ -159,8 +164,8 @@ INSERT INTO `users` (`id`, `username`, `nama`, `tgl_lahir`, `alamat`, `telpon`, 
 (15, 'gilang', 'gilang', '07/07/1999', 'jalan mas no 29', '121212212', 'gilang@gilang.com', '4297f44b13955235245b2497399d7a93', 'tidak aktif', '', 4),
 (23, 'kadek', 'gilang', '10/06/2017', 'jalan', '13243124', 'g@gilang.com', '4297f44b13955235245b2497399d7a93', 'tidak aktif', '', 4),
 (48, 'galang', 'galang', '09/14/2017', 'jalan pulau komodo no.20', '0888333333', 'sadf@gsda.com', '7a8ba4b565a96de88dbf44aa37e6f77e', 'aktif', '', 4),
-(49, 'pengajar', 'pengajar', '09/27/2017', 'jalan pulau komodo no.20', '32423424342424243', 'pengajar@penagajar.com', '4297f44b13955235245b2497399d7a93', 'aktif', 'http://192.168.1.2/lec/uploads/Jellyfish.jpg', 3),
-(51, 'purpadi', 'Ida Ayu Kadek Purpadi Sari', '03/10/1993', 'Jln. Seroja Gang Jembrana No 4 A Denpasar', '085792323113', 'dayupurpadisari6@gmail.com', '3d2a36b4d4071239e7375e91302380ef', 'tidak aktif', '', 4);
+(49, 'pengajar', 'pengajar', '09/27/2017', 'jalan pulau komodo no.20', '32423424342424243', 'pengajar@penagajar.com', '696ed7534349804cf5050ae88bc994ba', 'aktif', 'http://192.168.1.2/lec/uploads/Jellyfish.jpg', 3),
+(51, 'purpadi', 'Ida Ayu Kadek Purpadi Sari', '03/10/1993', 'Jln. Seroja Gang Jembrana No 4 A Denpasar', '085792323113', 'dayupurpadisari6@gmail.com', '3d2a36b4d4071239e7375e91302380ef', 'aktif', '', 4);
 
 -- --------------------------------------------------------
 
@@ -198,7 +203,9 @@ INSERT INTO `user_meta` (`id`, `nama_meta`, `nilai_meta`, `id_user`) VALUES
 (18, '', 'ddscdfcf', 0),
 (19, '', 'ddscdfcf', 0),
 (20, 'kode_siswa', 'cc22', 48),
-(21, 'pembayaran', 'lunas', 48);
+(21, 'pembayaran', 'lunas', 48),
+(22, 'kode_siswa', 'cc1112', 51),
+(23, 'pembayaran', 'Status Pembayaran', 51);
 
 --
 -- Indexes for dumped tables
@@ -265,7 +272,7 @@ ALTER TABLE `pengumuman`
 -- AUTO_INCREMENT for table `sertifikat`
 --
 ALTER TABLE `sertifikat`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `users`
 --
@@ -275,8 +282,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `user_meta`
 --
 ALTER TABLE `user_meta`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;COMMIT;
-
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

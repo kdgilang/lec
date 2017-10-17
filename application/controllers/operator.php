@@ -88,6 +88,7 @@ class Operator extends CI_Controller{
 		$no_tlp = $this->input->post('telpon');
 		$status = !empty($this->input->post('status')) ? $this->input->post('status') : "aktif";
 		$level = 2;
+		$password = $this->input->post('password');
 		$foto = $this->input->post('old_foto');	 
 		$config['upload_path'] = './uploads/';
 		$config['allowed_types'] = 'gif|jpg|png';
@@ -107,7 +108,7 @@ class Operator extends CI_Controller{
 			'foto' => $foto,	
 		);
 		if(!empty($password)) {
-			$data['password'] = $password;
+			$data['password'] = md5($password);
 		}
 		$meta = array('nilai_meta' => $nik);
 		$wmeta = array('nama_meta' => 'nik', 'id_user' => $id);
