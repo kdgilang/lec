@@ -21,8 +21,8 @@ class Pengajar extends CI_Controller{
 		}
 		$data = array(
 			'user' => $this->m_users->detail_users($id), 
-			'title' => 'Detail Operator',
-			'kelas' => $this->m_kelas->get_kelas(array("id_siswa"=>$id))
+			'title' => 'Detail Pengajar',
+			'kelas' => $this->m_kelas->get_kelas(array("id_pengajar"=>$id))
 		);
 		$data['id'] = $id;
 		$data['slug'] = 'pengajar';
