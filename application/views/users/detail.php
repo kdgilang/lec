@@ -71,8 +71,8 @@ $foto = empty($user['foto']) ? base_url('assets/images/no-profile-image.png') : 
         </thead>                      
         <tbody> 
         <?php
-        $no = 1;
         if(!empty($kelas)) :
+            $no = 1;
             foreach ($kelas as $val) : 
             ?>
             <tr>

@@ -59,13 +59,15 @@
         <div class="form-group">        
           <input class="form-control input" placeholder="No Telpon" name="telpon" value="<?= $telpon; ?>" required>          
         </div>
+        <?php if($slug == 'siswa') {?>
         <div class="form-group"> 
           <select class="form-control input"  name="pembayaran" required>
             <option>Status Pembayaran</option>
             <option <?= ($meta == 'lunas') ? "selected" : "";?> value="lunas">Lunas</option>
             <option <?= ($meta == 'belum lunas') ? "selected" : "";?> value="belum lunas">Belum Lunas</option>
           </select>
-        </div>    
+        </div>
+        <?php }?>    
         <?php if(!empty($id) && $this->session->level == 1) {?>
         <div class="form-group">        
           <select class="form-control input"  name="status">
