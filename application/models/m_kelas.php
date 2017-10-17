@@ -13,6 +13,12 @@ class M_Kelas extends CI_Model{
 		$query = $this->db->get_where('kelas', $where);
 		return $query->result_object();
 	}
+	function search_kelas($name, $query) {
+		$this->db->select('*');
+		$this->db->like($name, $query);
+		$this->db->from('kelas');
+		return $this->db->get()->result_object();
+	}
 	function get_meta($where = null) {
 		$query = $this->db->get_where('kelas_meta', $where);
 		return $query->row_object();

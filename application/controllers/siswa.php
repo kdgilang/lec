@@ -34,7 +34,7 @@ class Siswa extends CI_Controller {
 		$data = array(
 			'user' => $this->m_users->detail_users($id), 
 			'title' => 'Detail Siswa',
-			'kelas' => $this->m_kelas->get_kelas(array("id_siswa"=>$id))
+			'kelas' => $this->m_kelas->search_kelas("id_siswa", $id)
 		);
 		$data['id'] = $id;
 		$data['slug'] = 'siswa';
