@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 18, 2017 at 12:05 AM
+-- Generation Time: Oct 19, 2017 at 01:29 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.0.15
 
@@ -116,6 +116,7 @@ INSERT INTO `pengumuman` (`id`, `judul`, `konten`, `tanggal`, `status`, `id_oper
 CREATE TABLE `sertifikat` (
   `id` int(255) NOT NULL,
   `status` varchar(20) NOT NULL,
+  `level` int(11) NOT NULL,
   `tgl_cetak` varchar(20) NOT NULL,
   `tgl_terbit` varchar(20) NOT NULL,
   `tgl_ambil` varchar(20) NOT NULL,
@@ -128,8 +129,8 @@ CREATE TABLE `sertifikat` (
 -- Dumping data for table `sertifikat`
 --
 
-INSERT INTO `sertifikat` (`id`, `status`, `tgl_cetak`, `tgl_terbit`, `tgl_ambil`, `id_operator`, `id_siswa`, `id_pengajar`) VALUES
-(1, 'dalam proses', '09/06/2017', '10/24/2017', '10/30/2017', 1, 48, 49);
+INSERT INTO `sertifikat` (`id`, `status`, `level`, `tgl_cetak`, `tgl_terbit`, `tgl_ambil`, `id_operator`, `id_siswa`, `id_pengajar`) VALUES
+(1, 'dalam proses', 1, '09/06/2017', '10/24/2017', '10/30/2017', 1, 48, 49);
 
 -- --------------------------------------------------------
 
@@ -205,7 +206,17 @@ INSERT INTO `user_meta` (`id`, `nama_meta`, `nilai_meta`, `id_user`) VALUES
 (20, 'kode_siswa', 'cc22', 48),
 (21, 'pembayaran', 'lunas', 48),
 (22, 'kode_siswa', 'cc1112', 51),
-(23, 'pembayaran', 'Status Pembayaran', 51);
+(23, 'pembayaran', 'Status Pembayaran', 51),
+(24, 'kode_siswa', 'ccaa', 14),
+(25, 'pembayaran', 'belum lunas', 14),
+(26, 'pembayaran', 'belum lunas', 14),
+(27, 'pembayaran', 'belum lunas', 14),
+(28, 'pembayaran', 'belum lunas', 14),
+(29, 'pembayaran', 'belum lunas', 14),
+(30, 'pembayaran', 'belum lunas', 14),
+(31, 'pembayaran', 'belum lunas', 14),
+(32, 'pembayaran', 'belum lunas', 14),
+(33, 'pembayaran', 'belum lunas', 14);
 
 --
 -- Indexes for dumped tables
@@ -282,7 +293,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `user_meta`
 --
 ALTER TABLE `user_meta`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
