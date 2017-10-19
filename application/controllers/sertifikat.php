@@ -86,13 +86,18 @@ class Sertifikat extends CI_Controller {
 			  <title>Sertifikat</title>
 			  <style type="text/css">
 			    @page { margin: 0px; }
-				body { margin: 0px; }
+			    body { 
+			      color: #555;
+			      margin: 0px; 
+			      font-family: "Open Sans", sans-serif;
+			      font-weight: bold;
+			    }
 			    .siswa {
 			      font-weight: bold;
 			      position: absolute;
 			      top: 977px;
 			      text-align: center;
-			      font-size: 57px;
+			      font-size: 60px;
 			      left: 960px;
 			      text-transform: uppercase;
 			      width: 1592px;
@@ -103,23 +108,23 @@ class Sertifikat extends CI_Controller {
 			      top: 1350px;
 			      text-align: center;
 			      font-size: 57px;
-			      left: 1610px;
+			      left: 1422px;
 			      text-transform: uppercase;
-			      width: 300px;
+			      width: 664px;
 			    }
-			    .pengajar{
+			    .pengajar {
 			      position: absolute;
-			      width: 250px;
-			      top: 1790px;
-			      font-size: 32px;
+			      width: 877px;
+			      top: 1760px;
+			      font-size: 60px;
 			      text-align: center;
-			      left: 995px;
+			      left: 673px;
 			      text-transform: uppercase;
 			    }
 			  </style>
 			</head>
 			<body>
-				<img height="2480" width="3508" src="'.base_url('assets/images/sertifikat.png').'" alt="sertifikat">
+				<img height="2480" width="3508" src="assets/images/sertifikat.png" alt="sertifikat">
 				<div class="siswa">'.$siswa['nama'].'</div>
 				<div class="tgl">'.$tgl.'</div>
 				<div class="pengajar">'.$pengajar['nama'].'</div>
