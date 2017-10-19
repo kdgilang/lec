@@ -47,55 +47,84 @@ $foto = empty($user['foto']) ? base_url('assets/images/no-profile-image.png') : 
                 <td><?= $user['status']; ?></td>                           
             </tr> 
             <?php if($slug == 'siswa') {
-                $usermeta = $mo->m_users->get_meta($user['id'], 'pembayaran');?>
-                <tr>
-                    <td><b>Status Pembayaran</b></td>
-                    <td>:</td>
-                    <td><?= !empty($usermeta) ? $usermeta['nilai_meta'] : 'Belum Bayar'; ?></td>                           
-                </tr>
+            $usermeta = $mo->m_users->get_meta($user['id'], 'pembayaran');?>
+            <tr>
+                <td><b>Status Pembayaran</b></td>
+                <td>:</td>
+                <td><?= !empty($usermeta) ? $usermeta['nilai_meta'] : 'Belum Bayar'; ?></td>                           
+            </tr>
+            <?php $kelas = $this->m_kelas->search_kelas('id_siswa', $user['id']);
+                $namalevel = '';
+                $i = 1;
+                foreach($kelas as $key => $k) {
+                    if(count($kelas) > 1) {
+                        if($i >= count($kelas)) {
+                            $namalevel .= $targetlevel[$k->level];
+                        } else {
+                            $namalevel .= $targetlevel[$k->level].', ';
+                        }
+                    } else {
+                        $namalevel .= $targetlevel[$k->level];
+                    }
+                    $i ++; 
+                } ?>
+            <tr>
+                <td><b>Target Level</b></td>
+                <td>:</td>
+                <td><?= $namalevel; ?></td>                           
+            </tr>
             <?php } ?>
         </tbody>
     </table>
+    <?php if($slug == 'siswa' || $slug == 'pengajar') {?>
     <br>
     <h4>Jadwal Kursus</h4>
     <table class="table table-bordered" width="100%">
         <thead>
             <tr>
                 <th>No</th>
-                <th>Nama Kelas</th> 
+                <th>Nama Kelas</th>
+                <?php if($slug != 'pengajar') { ?>
+                <th>Nama Pengajar</th>
+                <?php }?>
                 <th>Hari Kursus</th>
                 <th>Jam Kursus</th>
-                <th>Tipe Kelas</th>     
-                <th><?= ($this->session->level != 4) ? 'Aksi' : 'Nama Pengajar'; ?></th> 
+                <th>Tipe Kelas</th>
+                <?php if($this->session->level == 1 || $this->session->level == 2) { ?>
+                <th>Aksi</th>     
+                <?php }?>
             </tr>
         </thead>                      
         <tbody> 
         <?php
         if(!empty($kelas)) :
             $no = 1;
-            foreach ($kelas as $val) : 
+            foreach ($kelas as $val) :
+                $pengajar = $this->m_users->detail_users($val->id_pengajar);
             ?>
             <tr>
                 <td width="40px"><?= $no++; ?></td>
                 <td><?= $val->nama; ?></td>
+                <?php if($slug != 'pengajar') { ?>
+                <td><?= $pengajar['nama']; ?></td>
+                <?php }?>
                 <td><?= $val->hari; ?></td>
                 <td><?= $val->jam; ?></td>
                 <td><?= $val->tipe; ?></td>
-                <?php if($this->session->level != 4) {?>
+                <?php if($this->session->level == 1 || $this->session->level == 2) {?>
                 <td width="600px">
                     <a href="<?= base_url('kelas/detail/'.$val->id); ?>" class="btn  btn-sm btn-primary">Detail</a>
                     <a href="<?= base_url('kelas/absensi/'.$val->id); ?>" class="btn btn-sm btn-success">Absensi Kelas</a>
                     <a href="<?= base_url('kelas/form/'.$val->id); ?>" class="btn  btn-sm btn-warning">Ubah</a>
                 </td>
-                <?php } else { $pengajar = $this->m_users->detail_users($val->id_pengajar);?>
-                <td><?= $pengajar['nama'];?></td>
-                <?php }?>                   
+                <?php } ?>                   
             </tr>
         <?php
             endforeach;
         endif;?> 
         </tbody>
     </table>
+    <?php } ?>
     <?php if($this->session->level != 4) {?>
     <div>
         <a href="<?= base_url('operator'); ?>" class="btn btn-default"><span class="fa fa-arrow-left"></span>&nbsp;&nbsp;Kembali</a>

@@ -14,7 +14,7 @@
   $id_operator = empty($sertifikat['id_operator']) ? "" : $sertifikat['id_operator'];
   $id_siswa = empty($sertifikat['id_siswa']) ? "" : $sertifikat['id_siswa'];
   $id_pengajar = empty($sertifikat['id_pengajar']) ? "" : $sertifikat['id_pengajar'];
-
+  $level = empty($sertifikat['level']) ? 0 : $sertifikat['level'];
   $ids = empty($sertifikat->id_siswa) ? array() : explode(",", $sertifikat->id_siswa);
   $idp = empty($sertifikat->id_pengajar) ? "" : $sertifikat->id_pengajar;
   $np = empty($idp) ? "" : $this->m_users->detail_users($idp);
@@ -44,7 +44,14 @@
         <div class="form-group">
           <input class="form-control input date" name="tgl_ambil" type="text" placeholder="Tanggal Ambil" value="<?= $tgl_ambil; ?>">               
         </div> 
-        
+        <div class="form-group">        
+          <select name="level" id="level" class="form-control input" required>
+            <option>Target Level</option>
+            <?php foreach($targetlevel as $key => $val) {?>
+            <option <?= ($level == $key) ? "selected" : ""; ?> value="<?= $key;?>"><?= $val;?></option>
+            <?php }?>
+          </select>       
+        </div>
         <div class="form-group c-selectbox">
          <a href="javascript:;" class="selectbox"><span class="text"><?= $ns;?></span><span class="fa fa-angle-down"></span></a>
           <div class="c-lists">

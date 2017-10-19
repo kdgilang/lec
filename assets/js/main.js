@@ -8,7 +8,7 @@
 			$( this).toggleClass("active");
 			$( this ).find(".fa-angle-left").toggleClass("fa-angle-down");
 		});
-    $('.table-bordered').DataTable({
+    $('.table-dynamic').DataTable({
       language: {
           searchPlaceholder: "Cari ..."
       }

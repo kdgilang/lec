@@ -1,7 +1,7 @@
 <a href="<?= base_url('kelas/form'); ?>" type="button" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Kelas</a>
 <br> <br>
 <div class="table-responsive">
-    <table class="table table-bordered table-hover table-striped">
+    <table class="table table-bordered table-hover table-striped table-dynamic">
         <thead>
             <tr>
                 <th>No</th>

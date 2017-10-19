@@ -2,14 +2,13 @@
 <a href="<?= base_url($slug); ?>/form" class="btn btn-success"><i class="fa fa-plus"></i> Tambah <?= $title;?></a>                
 <br><br>     
 <div class="table-responsive">
-    <table class="table table-bordered table-hover table-striped">
+    <table class="table table-bordered table-hover table-striped table-dynamic">
         <thead>
             <tr>
                 <th>No</th>
                 <th>Keterangan</th>
-                <th>Tanggal Cetak</th>
-                <th>Tanggal Terbit</th> 
-                <th>Tanggal Mengambil</th>
+                <th>Tanggal Terbit</th>
+                <th>Target Level</th>
                 <th>Nama Siswa</th>
                 <th>Nama Operator</th>
                 <th>Aksi</th>                               
@@ -26,9 +25,8 @@
             <tr>
                 <td width="40px"><?= $no++?></td> 
                 <td><?= $val->status; ?></td>
-                <td><?= $val->tgl_cetak; ?></td>
                 <td><?= $val->tgl_terbit; ?></td>
-                <td><?= $val->tgl_ambil; ?></td>
+                <td><?= $targetlevel[$val->level]; ?></td>
                 <td><?= $siswa['nama']. '('. $siswa['username']; ?>)</td>  
                 <td><?= $operator['nama']. '('. $operator['username']; ?>)</td>  
                 <td>

@@ -1,5 +1,6 @@
 <?php
   $status = empty($sertifikat['status']) ? "" : $sertifikat['status'];
+  $level = empty($sertifikat['level']) ? "" : $sertifikat['level'];
   $tgl_terbit = empty($sertifikat['tgl_terbit']) ? "" : $sertifikat['tgl_terbit'];
   $tgl_cetak = empty($sertifikat['tgl_cetak']) ? "" : $sertifikat['tgl_cetak'];
   $tgl_ambil = empty($sertifikat['tgl_ambil']) ? "" : $sertifikat['tgl_ambil'];
@@ -18,6 +19,11 @@
                 <td width="150"><b>Status Sertifikat:</b></td>
                 <td width="10">:</td>
                 <td><?= $status;?></td>                    
+            </tr>
+            <tr>
+                <td width="150"><b>Target Level:</b></td>
+                <td width="10">:</td>
+                <td><?= $targetlevel[$level];?></td>                    
             </tr>
             <tr>
                 <td><b>Tanggal Terbit</b></td>

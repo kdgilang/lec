@@ -3,7 +3,7 @@
 <a href="<?= base_url($slug); ?>/form" class="btn btn-success"><i class="fa fa-plus"></i> Tambah <?= $title;?></a>                
 <br><br>     
 <div class="table-responsive">
-    <table class="table table-bordered table-hover table-striped">
+    <table class="table table-bordered table-hover table-striped table-dynamic">
         <thead>
             <tr>
                 <th>No</th>

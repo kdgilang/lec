@@ -36,6 +36,7 @@ class Siswa extends CI_Controller {
 			'title' => 'Detail Siswa',
 			'kelas' => $this->m_kelas->search_kelas("id_siswa", $id)
 		);
+		$data['targetlevel'] = $this->targetlevel;
 		$data['id'] = $id;
 		$data['slug'] = 'siswa';
 		$data['content'] = 'users/detail';

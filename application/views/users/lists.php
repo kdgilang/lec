@@ -2,7 +2,7 @@
     <a href="<?= base_url($slug); ?>/form" class="btn btn-success"><i class="fa fa-plus"></i> Tambah <?= $title;?></a>                
     <br><br>     
     <div class="table-responsive">
-        <table class="table table-bordered table-hover table-striped">
+        <table class="table table-bordered table-hover table-striped table-dynamic">
             <thead>
                 <tr>
                     <th>No</th>
@@ -20,7 +20,7 @@
                     <?php if($slug == 'siswa') {?>
                     <th>Target Level</th>
                     <th>Status Pembayaran</th>
-                    <?php }?>
+                    <?php } ?>
                     <th>Aksi</th>                                
                 </tr>
             </thead>
@@ -33,6 +33,23 @@
                 foreach($users as $val) {
                     $usermeta = $mo->m_users->get_meta($val->id, $meta);
                     $pmeta = $mo->m_users->get_meta($val->id, 'pembayaran');
+                    if($slug == 'siswa') {
+                        $kelas = $this->m_kelas->search_kelas('id_siswa', $val->id);
+                        $namalevel = '';
+                        $i = 1;
+                        foreach($kelas as $key => $k) {
+                            if(count($kelas) > 1) {
+                                if($i >= count($kelas)) {
+                                    $namalevel .= $targetlevel[$k->level];
+                                } else {
+                                    $namalevel .= $targetlevel[$k->level].', ';
+                                }
+                            } else {
+                                $namalevel .= $targetlevel[$k->level];
+                            }
+                            $i ++;
+                        }
+                    }
                 ?>                        
                 <tr>
                     <td width="40px"><?= $no++?></td>
@@ -40,7 +57,7 @@
                     <td><?= $val->nama; ?></td>
                     <td><?= $val->status; ?></td>
                     <?php if($slug == 'siswa') {?>
-                    <td><?= $targetlevel[$val->level]; ?></td>
+                    <td><?= $namalevel; ?></td>
                     <td><?= !empty($pmeta['nilai_meta']) ? $pmeta['nilai_meta'] : 'Belum Bayar'; ?></td>  
                     <?php }?>
                     <td>
