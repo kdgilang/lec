@@ -120,7 +120,6 @@ $foto = empty($user['foto']) ? base_url('assets/images/no-profile-image.png') : 
                 <td width="600px">
                     <a href="<?= base_url('kelas/detail/'.$val->id); ?>" class="btn  btn-sm btn-primary">Detail</a>
                     <a href="<?= base_url('kelas/absensi/'.$val->id); ?>" class="btn btn-sm btn-success">Absensi Kelas</a>
-                    <a href="<?= base_url('kelas/form/'.$val->id); ?>" class="btn  btn-sm btn-warning">Ubah</a>
                 </td>
                 <?php } ?>                   
             </tr>

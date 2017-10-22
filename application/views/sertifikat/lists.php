@@ -7,7 +7,6 @@
             <tr>
                 <th>No</th>
                 <th>Keterangan</th>
-                <th>Tanggal Terbit</th>
                 <th>Target Level</th>
                 <th>Nama Siswa</th>
                 <th>Nama Operator</th>
@@ -25,7 +24,6 @@
             <tr>
                 <td width="40px"><?= $no++?></td> 
                 <td><?= $val->status; ?></td>
-                <td><?= $val->tgl_terbit; ?></td>
                 <td><?= $targetlevel[$val->level]; ?></td>
                 <td><?= $siswa['nama']. '('. $siswa['username']; ?>)</td>  
                 <td><?= $operator['nama']. '('. $operator['username']; ?>)</td>  

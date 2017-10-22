@@ -114,9 +114,9 @@ class Sertifikat extends CI_Controller {
 			    .siswa {
 			      font-weight: bold;
 			      position: absolute;
-			      top: 977px;
+			      top: 930px;
 			      text-align: center;
-			      font-size: 60px;
+			      font-size: 80px;
 			      left: 960px;
 			      text-transform: uppercase;
 			      width: 1592px;
@@ -126,7 +126,7 @@ class Sertifikat extends CI_Controller {
 			      font-weight: bold;
 			      top: 1426px;
 			      text-align: center;
-			      font-size: 45px;
+			      font-size: 50px;
 			      left: 1422px;
 			      text-transform: uppercase;
 			      width: 664px;
@@ -134,7 +134,7 @@ class Sertifikat extends CI_Controller {
 			    .pengajar {
 			      position: absolute;
 			      width: 877px;
-			      top: 1760px;
+			      top: 1750px;
 			      font-size: 60px;
 			      text-align: center;
 			      left: 673px;
@@ -146,9 +146,9 @@ class Sertifikat extends CI_Controller {
 			      top: 1319px;
 			      text-align: center;
 			      font-size: 57px;
-			      left: 1422px;
+			      left: 1220px;
 			      text-transform: uppercase;
-			      width: 664px;
+			      width: 1100px;
 			    }
 			  </style>
 			</head>

@@ -17,14 +17,18 @@ class Kelas extends CI_Controller{
 	function index() {
 		$this->load->library('session');
 		if($this->session->level != 1 && $this->session->level != 2) {
-			exit('you have no access.'.$this->session->level);
+		  exit('you have no access.'.$this->session->level);
 		}
 		$data['title'] = 'Kelas';
 		$data['data'] =  $this->m_kelas->get_kelas();
-		$data['content'] = 'kelas/lists';
 		$data['targetlevel'] = $this->targetlevel;
+		if($this->session->level == 2) {
+		  $data['content'] = 'kelas/view-lists';
+		} else {
+		  $data['content'] = 'kelas/lists';
+		}
 		$this->load->view('dashboard', $data);
-	}
+	}  
 	function form($id="") {
 		if($this->session->level != 1 && $this->session->level != 2) {
 			exit('you have no access.');

@@ -52,6 +52,9 @@
               <a class="nav-link js-scroll-trigger" href="#galeri">Galeri</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#registrasi">Registrasi</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#kontak">Kontak</a>
             </li>
             <?php if(!isset($this->session->id_user)) {?>
