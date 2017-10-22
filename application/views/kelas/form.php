@@ -242,6 +242,8 @@
       var that = js(this),
           val = that.data("value"),
           html = '';
+
+      console.log(val);
       bsiswa.forEach( function(v, index) {
         if(v.id == val) {
           siswa.push(bsiswa[index]);
@@ -250,7 +252,7 @@
       });
       that.parents('.c-selectbox').find('.lists').append(html);
       that.parent().remove();
-      if($(".c-tag .addlist").length < 1) {
+      if($(".c-tag .item-tag").length < 1) {
         $('.c-tag').addClass('bye');
       } 
     });
@@ -259,54 +261,63 @@
     js(document).on('keyup', '#searchsiswa', function () {
       var that = js(this),
           val = that.val(),
-          html = "";
-        if(siswa.length > 0) {
-          siswa.forEach( function(v, index) {
-            if(v.username.search(val) > -1) {
-              html+='<li data-value="'+v.id+'" data-target="c-siswa" class="addlist"><span> '+v.nama+' ('+v.username+')</span></li>';
-            } else {
-              html += '<li><span>Tidak Ditemukan</span></li>';
-            }
-          });
-        } else {
-          html += '<li><span>Tidak Ditemukan</span></li>';
-        }
+          html = "",
+          isFound = false;
+      if(siswa.length > 0) {
+        siswa.forEach( function(v, index) {
+          if(v.nama.toLowerCase().search(val.toLowerCase()) > -1) {
+            isFound = true;
+            html+='<li data-value="'+v.id+'" data-target="c-siswa" class="addlist"><span> '+v.nama+' ('+v.username+')</span></li>';
+          } 
+        });
+      } else {
+        html += '<li><span>Tidak Ditemukan</span></li>';
+      }
+      if(!isFound) {
+        html += '<li><span>Tidak Ditemukan</span></li>';
+      }
       that.next().html(html);
     });
 
     js(document).on('keyup', '#searchpengajar', function () {
       var that = js(this),
           val = that.val(),
-          html = "";
-        if(pengajar.length > 0) {
-          pengajar.forEach( function(v, index) {
-            if(v.username.search(val) > -1) {
-              html+='<li data-value="'+v.id+'"><span> '+v.nama+' ('+v.username+')</span></li>';
-            } else {
-              html += '<li><span>Tidak Ditemukan</span></li>';
-            }
-          });
-        } else {
-          html += '<li><span>Tidak Ditemukan</span></li>';
-        }
+          html = "",
+          isFound = false;
+      if(pengajar.length > 0) {
+        pengajar.forEach( function(v, index) {
+          if(v.nama.toLowerCase().search(val.toLowerCase()) > -1) {
+            isFound = true;
+            html+='<li data-value="'+v.id+'"><span> '+v.nama+' ('+v.username+')</span></li>';
+          }
+        });
+      } else {
+        html += '<li><span>Tidak Ditemukan</span></li>';
+      }
+      if(!isFound) {
+        html += '<li><span>Tidak Ditemukan</span></li>';
+      }
       that.siblings('.lists').html(html);
     });
 
     js(document).on('keyup', '#searchsiswa-private', function () {
       var that = js(this),
           val = that.val(),
-          html = "";
-        if(bsiswa.length > 0) {
-          bsiswa.forEach( function(v, index) {
-            if(v.username.search(val) > -1) {
-              html+='<li data-value="'+v.id+'"><span> '+v.nama+' ('+v.username+')</span></li>';
-            } else {
-              html += '<li><span>Tidak Ditemukan</span></li>';
-            }
-          });
-        } else {
-          html += '<li><span>Tidak Ditemukan</span></li>';
-        }
+          html = "",
+          isFound = false;
+      if(bsiswa.length > 0) {
+        bsiswa.forEach( function(v, index) {
+          if(v.nama.toLowerCase().search(val.toLowerCase()) > -1) {
+            isFound = true;
+            html+='<li data-value="'+v.id+'"><span> '+v.nama+' ('+v.username+')</span></li>';
+          }
+        });
+      } else {
+        html += '<li><span>Tidak Ditemukan</span></li>';
+      }
+      if(!isFound) {
+        html += '<li><span>Tidak Ditemukan</span></li>';
+      }
       that.siblings('.lists').html(html);
     });
 

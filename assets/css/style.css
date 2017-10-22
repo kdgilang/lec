@@ -384,6 +384,28 @@ body{
     padding-bottom: 4px;
     padding-top: 4px;
 }
+.navbar-front ul {
+    padding-left: 0;
+}
+.navbar-front ul li {
+    list-style: none;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+.navbar-front ul li:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+.navbar-front ul li a {
+    color: #333;
+    display: block;
+    padding: 5px 10px;
+    text-transform: uppercase;
+}
+.navbar-front ul li a:hover {
+    color: #ddd;
+    text-decoration: none;
+}
 .img-fluid {
     width: 100%;
 }
@@ -414,10 +436,6 @@ p a {
     position: absolute;
     right: 15px;
     top: 25px;
-}
-.navbar-collapse {
-    padding-left: 0;
-    padding-right: 0;
 }
 .panel-login {
     left: 50%;
@@ -468,4 +486,15 @@ p a {
 }
 .content-column .panel {
     height: 242px;
+}
+
+
+@media(min-width: 768px) {
+    .navbar-front {
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 15px;
+        padding-right: 15px;
+        float: right;
+    }
 }

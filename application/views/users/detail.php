@@ -127,7 +127,7 @@ $foto = empty($user['foto']) ? base_url('assets/images/no-profile-image.png') : 
     <?php } ?>
     <?php if($this->session->level != 4) {?>
     <div>
-        <a href="<?= base_url('operator'); ?>" class="btn btn-default"><span class="fa fa-arrow-left"></span>&nbsp;&nbsp;Kembali</a>
+        <a href="<?= base_url($slug); ?>" class="btn btn-default"><span class="fa fa-arrow-left"></span>&nbsp;&nbsp;Kembali</a>
     </div>
     <?php }?>
 </div> 

@@ -40,8 +40,8 @@
         <button class="navbar-toggler navbar-toggler-right visible-xs" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="fa fa-align-justify"></span>
         </button>
-        <div class="collapse navbar-collapse pull-right" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
+        <div class="collapse navbar-collapse navbar-front" id="navbarResponsive">
+          <ul class="ml-auto">
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#tentang">Tentang LEC</a>
             </li>

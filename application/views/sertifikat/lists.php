@@ -6,7 +6,7 @@
         <thead>
             <tr>
                 <th>No</th>
-                <th>Keterangan</th>
+                <th>Status</th>
                 <th>Tanggal Terbit</th>
                 <th>Target Level</th>
                 <th>Nama Siswa</th>

@@ -5,6 +5,9 @@
 ?>
 <h4>Nama Kelas: <?= $kelas->nama;?></h4>
 <h4>Nama Pengajar: <a href="<?=base_url('pengajar/detail/'.$pengajar['id']);?>" class="link"><?= $pengajar['nama'];?></a></h4>
+<h4>Hari: <?= $kelas->hari;?></h4>
+<h4>Jam: <?= $kelas->jam;?></h4>
+<br>
 <div class="box-body">
     <table class="table table-striped" width="100%">
         <thead>
@@ -12,8 +15,6 @@
                 <th>No</th>
                 <th>Kode Siswa</th>
                 <th>Nama Siswa</th>
-                <th>Jam Kursus</th>
-                <th>Hari Kursus</th>
                 <th>Aksi</th>
             </tr>
         </thead>                      
@@ -24,9 +25,7 @@
                 <tr>
                     <td><?= $i; ?></td>
                     <td><?= $meta['nilai_meta']; ?></td> 
-                    <td><?= $val['nama']; ?></td> 
-                    <td><?= $kelas->jam; ?></td>
-                    <td><?= $kelas->hari; ?></td> 
+                    <td><?= $val['nama']; ?></td>  
                     <td><a class="btn btn-primary" href="<?= base_url('siswa/detail/'.$val['id']); ?>">Detail</a></td>                   
                 </tr>
                 <?php $i++; }?>
