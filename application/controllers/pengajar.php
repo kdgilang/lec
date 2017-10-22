@@ -7,13 +7,17 @@ class Pengajar extends CI_Controller{
 		$this->load->model('m_kelas');
 	}
 	function index() {
-		if($this->session->level != 1 && $this->session->level != 2) {
-			exit('you have no access.');
-		}
-		$data = array('users' => $this->m_users->get_users(array('level' => 3)), 'title' => 'Pengajar');
-		$data['slug'] = 'pengajar';
-		$data['content'] = 'users/lists';
-		$this->load->view('dashboard', $data);
+	    if($this->session->level != 1 && $this->session->level != 2) {
+	      exit('you have no access.');
+	    }
+	    $data = array('users' => $this->m_users->get_users(array('level' => 3)), 'title' => 'Pengajar');
+	    $data['slug'] = 'pengajar';
+	    if($this->session->level == 2) {
+	      $data['content'] = 'users/view-lists';
+	    } else {
+	      $data['content'] = 'users/lists';
+	    }
+	    $this->load->view('dashboard', $data);
 	}	
 	function detail($id) {
 		if($this->session->level != 1 && $this->session->level != 2) {
@@ -26,7 +30,11 @@ class Pengajar extends CI_Controller{
 		);
 		$data['id'] = $id;
 		$data['slug'] = 'pengajar';
-		$data['content'] = 'users/detail';
+		if($this->session->level == 2) {
+	      $data['content'] = 'users/view-detail';
+	    } else {
+	      $data['content'] = 'users/detail';
+	    }
 		$this->load->view('dashboard', $data);
 	}
 	function form($id = "") {
