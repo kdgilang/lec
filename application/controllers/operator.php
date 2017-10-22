@@ -1,27 +1,46 @@
-<?php 
-class operator extends CI_Controller{
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Operator extends CI_Controller{
 	function __construct(){
 		parent::__construct();		
 		$this->load->model('m_users');
 	}
 	function index() {
-		$data = array('users' => $this->m_users->lists_users(array('level'=>2)), 'title' => 'Operator');
+		if($this->session->level != 1 && $this->session->level != 2) {
+			exit('you have no access.');
+		}
+		$data = array('users' => $this->m_users->get_users(array('level'=>2)), 'title' => 'Operator');
 		$data['slug'] = 'operator';
-		$this->load->view('users/lists',$data);
+		$data['content'] = 'users/lists';
+		$this->load->view('dashboard',$data);
 	}	
 	function detail($id) {
-		$data = array('user' => $this->m_users->detail_users($id), 'title' => 'Detail Operator');
+		if($this->session->level != 1 && $this->session->level != 2) {
+			exit('you have no access.');
+		}
+		$data = array(
+			'user' => $this->m_users->detail_users($id), 
+			'title' => 'Detail Operator'
+		);
 		$data['id'] = $id;
 		$data['slug'] = 'operator';
-		$this->load->view('users/detail', $data);
+		$data['content'] = 'users/detail';
+		$this->load->view('dashboard', $data);
 	}
 	function form($id = "") {
+		if($this->session->level != 1 && $this->session->level != 2) {
+			exit('you have no access.');
+		}
 		$data = array('user' => $this->m_users->detail_users($id), 'id' => $id);
 		$data['title'] = 'Form Operator';
 		$data['slug'] = 'operator';
-		$this->load->view('users/form', $data);
+		$data['content'] = 'users/form';
+		$this->load->view('dashboard', $data);
 	}
 	function add() {
+		if($this->session->level != 1 && $this->session->level != 2) {
+			exit('you have no access.');
+		}
 		$nik = $this->input->post('nik');
 		$username = $this->input->post('username');	
 		$nama = $this->input->post('nama');	
@@ -31,13 +50,14 @@ class operator extends CI_Controller{
 		$no_tlp = $this->input->post('telpon');
 		$status = !empty($this->input->post('status')) ? $this->input->post('status') : "aktif";
 		$level = 2;
-		$foto = null;
 		$password = $this->input->post('password');	
 		$config['upload_path'] = './uploads/';
 		$config['allowed_types'] = 'gif|jpg|png';
 		$this->load->library('upload', $config);
 		if($this->upload->do_upload('foto')) {
 			$foto = base_url().'uploads/'.$this->upload->data('file_name');
+		} else {
+			$foto = base_url().'assets/images/no-profile-image.png';
 		}
 		$data = array(
 			'username' => $username,
@@ -51,10 +71,13 @@ class operator extends CI_Controller{
 			'password' => md5($password),
 			'foto' => $foto,	
 		);
-		$this->m_users->add_operator($data, $nik);
+		$this->m_users->add_users($data,'nik', $nik);
 		redirect('operator');
 	}
 	function edit() {
+		if($this->session->level != 1 && $this->session->level != 2) {
+			exit('you have no access.');
+		}
 		$id = $this->input->post('id');
 		$nik = $this->input->post('nik');
 		$username = $this->input->post('username');	
@@ -65,7 +88,8 @@ class operator extends CI_Controller{
 		$no_tlp = $this->input->post('telpon');
 		$status = !empty($this->input->post('status')) ? $this->input->post('status') : "aktif";
 		$level = 2;
-		$foto = $this->input->post('foto');	
+		$password = $this->input->post('password');
+		$foto = $this->input->post('old_foto');	 
 		$config['upload_path'] = './uploads/';
 		$config['allowed_types'] = 'gif|jpg|png';
 		$this->load->library('upload', $config);
@@ -83,12 +107,20 @@ class operator extends CI_Controller{
 			'status' => $status,
 			'foto' => $foto,	
 		);
-		$this->m_users->update_users($id, $data);		
+		if(!empty($password)) {
+			$data['password'] = md5($password);
+		}
+		$meta = array('nilai_meta' => $nik);
+		$wmeta = array('nama_meta' => 'nik', 'id_user' => $id);
+		$this->m_users->update_users($id, $data, $wmeta, $meta);		
 		redirect('operator');
 	}
-	function delete($id){
+	function delete($id) {
+		if($this->session->level != 1 && $this->session->level != 2) {
+			exit('you have no access.');
+		}
 		$where = array('id' => $id);
-		$this->m_users->delete($where,'user');
+		$this->m_users->delete($where);
 		redirect('operator');
 	}
 }

@@ -1,24 +1,43 @@
-<?php 
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class M_Kelas extends CI_Model{
-	function __construct(){
+	function __construct() {
 		parent::__construct();			
 		$this->load->database();
 	}
-
-	function create($table,$data){
-	    $this->db->insert($table, $data);
-	    return $this->db->insert_id();// return last insert id
+	function add_kelas($data) {
+	    $this->db->insert('kelas', $data);
+	    return $this->db->insert_id();
 	}
-
-	function get_kelas(){
-		$query = $this->db->get('kelas');
+	function get_kelas($where = null) {
+		$query = $this->db->get_where('kelas', $where);
 		return $query->result_object();
 	}
-
-	function lihat_detail_kelas($id_kelas){
-		$this->db->where('id',$id_kelas);
-		$query = $this->db->get('kelas');
-		return $query->row_array();
+	function search_kelas($name, $query) {
+		$this->db->select('*');
+		$this->db->like($name, $query);
+		$this->db->from('kelas');
+		return $this->db->get()->result_object();
+	}
+	function get_meta($where = null) {
+		$query = $this->db->get_where('kelas_meta', $where);
+		return $query->row_object();
+	}
+	function detail_kelas($where = null) {
+		$query = $this->db->get_where('kelas', $where);
+		return $query->row_object();
+	}
+	function update_kelas($data, $where) {
+		$this->db->where($where);
+		$this->db->update('kelas', $data);
+	}
+	function update_meta($data, $where) {
+		$old = $this->db->get_where('kelas_meta', $where);
+		if($old->result_id->num_rows>0) {
+			$this->db->where($where);
+			$this->db->update('kelas_meta', $data);
+		} else {
+			$this->db->insert('kelas_meta', $data);
+		}	
 	}
 }

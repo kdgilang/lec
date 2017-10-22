@@ -1,76 +1,74 @@
-            
-        <?php $this->load->view('layout/header');?>
-        <?php $this->load->view('layout/side'); ?>
+    <!-- table -->   
+    <a href="<?= base_url($slug); ?>/form" class="btn btn-success"><i class="fa fa-plus"></i> Tambah <?= $title;?></a>                
+    <br><br>     
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover table-striped table-dynamic">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>
+                    <?php if($slug == 'operator') { $meta = 'nik';?>
+                        Nik
+                    <?php } else if($slug == 'pengajar') { $meta = 'kode_pengajar';?>
+                        Kode Pengajar
+                    <?php } else if($slug == 'siswa') { $meta = 'kode_siswa';?>
+                        Kode Siswa
+                    <?php } ?>
+                    </th>
+                    <th>Nama</th>
+                    <th>Status</th>
+                    <?php if($slug == 'siswa') {?>
+                    <th>Target Level</th>
+                    <th>Status Pembayaran</th>
+                    <?php } ?>
+                    <th>Aksi</th>                                
+                </tr>
+            </thead>
+            <tbody>  
 
-        <div id="page-wrapper">
+            <?php 
+            if(!empty($users)) :
+                $no = 1;
+                $mo = $this->load->model('m_users');
+                foreach($users as $val) {
+                    $usermeta = $mo->m_users->get_meta($val->id, $meta);
+                    $pmeta = $mo->m_users->get_meta($val->id, 'pembayaran');
+                    if($slug == 'siswa') {
+                        $kelas = $this->m_kelas->search_kelas('id_siswa', $val->id);
+                        $namalevel = '';
+                        $i = 1;
+                        foreach($kelas as $key => $k) {
+                            if(count($kelas) > 1) {
+                                if($i >= count($kelas)) {
+                                    $namalevel .= $targetlevel[$k->level];
+                                } else {
+                                    $namalevel .= $targetlevel[$k->level].', ';
+                                }
+                            } else {
+                                $namalevel .= $targetlevel[$k->level];
+                            }
+                            $i ++;
+                        }
+                    }
+                ?>                        
+                <tr>
+                    <td width="40px"><?= $no++?></td>
+                    <td><?= $usermeta['nilai_meta']; ?></td>
+                    <td><?= $val->nama; ?></td>
+                    <td><?= $val->status; ?></td>
+                    <?php if($slug == 'siswa') {?>
+                    <td><?= $namalevel; ?></td>
+                    <td><?= !empty($pmeta['nilai_meta']) ? $pmeta['nilai_meta'] : 'Belum Bayar'; ?></td>  
+                    <?php }?>
+                    <td>
+                        <a href="<?= base_url($slug);?>/detail/<?= $val->id; ?>" class="btn btn-sm btn-primary">Detail</a>
+                        <a href="<?= base_url($slug);?>/form/<?= $val->id; ?>" class="btn  btn-sm btn-warning">Ubah</a>
+                    </td>                                                    
+                </tr>
+                <?php } 
+            endif;
+            ?>                  
 
-            <div class="container-fluid">
-
-                <!-- Page Heading -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">
-                            <small>Data <?= $title;?></small>
-                        </h1>
-                        <ol class="breadcrumb">
-                            <li class="active">
-                                <i class="fa fa-user" aria-hidden="true"></i> Data <?= $title;?>
-                            </li>
-                        </ol>
-                    </div>
-                </div>
-                <!-- /.row -->
-
-                <!-- isi content -->
-                <!-- table -->   
-                <a href="<?= base_url().$slug; ?>/form" class="btn btn-success"><i class="fa fa-plus"></i> Tambah <?= $title;?></a>                
-                <div><br></div>             
-                <div class="table-responsive">
-                    <table class="table table-bordered table-hover table-striped">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>NIK</th>
-                                <th>Nama</th>
-                                <th>Status</th> 
-                                <th>Aksi</th>                                
-                            </tr>
-                        </thead>
-                        <tbody>  
-
-                        <?php 
-                        $no = 1;
-                        if(!empty($users)) :
-                            $mo = $this->load->model('m_users');
-                            foreach($users as $val) { 
-                                $usermeta = $mo->m_users->get_meta($val['id'], 'nik');
-                            ?>                        
-                            <tr>
-                                <td width="40px"><?= $no++?></td>
-                                <td><?= $usermeta['nilai_meta']; ?></td>
-                                <td><?= $val['nama']; ?></td>
-                                <td><?= $val['status']; ?></td>  
-                                <td>
-                                    <a href="<?= base_url(). $slug;?>/detail/<?= $val['id']; ?>" class="btn btn-sm btn-primary">Detail</a>
-                                    &nbsp
-                                    <a href="<?= base_url(). $slug;?>/form/<?= $val['id']; ?>" class="btn  btn-sm btn-warning">Ubah</a>
-                                </td>                                                    
-                            </tr>
-                            <?php } 
-                        endif;
-                        ?>                  
-
-                        </tbody>
-                    </table>
-                </div>              
-
-            </div>
-            <!-- /.container-fluid -->
-
-        </div>
-        <!-- /#page-wrapper -->
-
-    </div>
-    <!-- /#wrapper -->
-
-    <?php $this->load->view('layout/footer'); ?>
+            </tbody>
+        </table>
+    </div>              
