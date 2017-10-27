@@ -504,6 +504,11 @@ p a {
 .table-bordered>tbody>tr>td:last-child {
     border-right: none;
 }
+.dataTables_wrapper {
+    padding-right: 2px;
+    padding-left: 2px;
+    overflow: hidden;
+}
 .dataTables_filter input { 
     color: #fff;
     cursor: pointer;
@@ -512,7 +517,7 @@ p a {
     background-position: center;
     background-size: 25px;
     border-radius: 3px;
-    border: 1px solid #ccc;
+    border: 1px solid #222;
     padding: 4px 10px 4px 40px;
     height: 40px;
     width: 40px;
@@ -522,7 +527,6 @@ p a {
 }
 .dataTables_filter input:focus {
     box-shadow: 0;
-    border: 1px solid #222;
     color: #222;
     width: 250px; 
     background-position: 5px center;
@@ -567,6 +571,7 @@ p a {
     font-weight: bold;
 }
 .dataTables_length select {
+    border: 1px solid #222;
     border-radius: 3px;
     height: 30px;
     width: 100px;
@@ -586,6 +591,9 @@ p a {
         padding-right: 15px;
         float: right;
         margin-top: 5px;
+    }
+    .navbar-shrink .navbar-front ul li a {
+        color: #333;
     }
     .navbar-front ul li {
         border-bottom: none;
