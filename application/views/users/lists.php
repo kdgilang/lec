@@ -60,9 +60,9 @@
                     <td><?= $namalevel; ?></td>
                     <td><?= !empty($pmeta['nilai_meta']) ? $pmeta['nilai_meta'] : 'Belum Bayar'; ?></td>  
                     <?php }?>
-                    <td>
-                        <a href="<?= base_url($slug);?>/detail/<?= $val->id; ?>" class="btn btn-sm btn-primary">Detail</a>
-                        <a href="<?= base_url($slug);?>/form/<?= $val->id; ?>" class="btn  btn-sm btn-warning">Ubah</a>
+                    <td align="center">
+                        <a href="<?= base_url($slug);?>/detail/<?= $val->id; ?>" class="btn btn-sm btn-primary btn-action">Detail</a>
+                        <a href="<?= base_url($slug);?>/form/<?= $val->id; ?>" class="btn  btn-sm btn-warning btn-action">Ubah</a>
                     </td>                                                    
                 </tr>
                 <?php } 

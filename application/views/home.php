@@ -159,45 +159,67 @@
       </div>
     </section>
 
-    <div class="call-to-action bg-dark">
-      <div class="container text-center">
-        <h2>Mulai Belajar Bahasa Inggris</h2>
-        <a class="btn btn-default btn-xl toggle-form" href="#daftar">Daftar Sekarang</a>
+    <section id="registrasi">
+      <div class="container">
+        <h2 class="section-heading text-center">Registrasi</h2>
+        <hr class="primary">
+        <div class="row">
+          <div class="col-xs-12 col-lg-4 col-md-6 text-center">
+            <div class="service-box">
+              <i class="fa-4x text-primary sr-icons fa fa-university" aria-hidden="true"></i>
+              <h3>Visit Student</h3>
+              <p class="text-muted">LEC BALI adalah tempat belajar bahasa Inggris dengan metode private home (Visit Student).</p>
+              <p class="text-muted">"Learning smart, not Learning Hard"</p>
+            </div>
+          </div>
+          <div class="col-xs-12 col-lg-4 col-md-6 text-center">
+            <div class="service-box">
+              <i class="fa-4x text-primary sr-icons fa fa-pencil-square-o" aria-hidden="true"></i>
+              <h3>Biaya Registrasi</h3>
+              <p class="text-muted">Peserta didik baru dikenakan <b>Registrasi Fee Rp. 100.000</b Uang Prive 50 %</p>
+              <p class="text-muted">Biaya private di bayar full setelah 5x pertemuan</p>
+            </div>
+          </div>
+          <div class="col-xs-12 col-lg-4 col-md-6 text-center">
+            <div class="service-box">
+              <i class="fa-4x text-primary sr-icons fa fa-usd" aria-hidden="true"></i>
+              <h3>Total Biaya</h3>
+              <p class="text-muted"><b>Private : Rp.1.500.000 || Group : Rp.1.100.000</b></p>
+              <p class="text-muted">Uang yang sudah diberikan tidak bisa dikembalikan, tanpa ada perjanjian sebelumnya.</p>
+            </div>
+          </div>
+          <div class="col-xs-12 col-lg-6 col-md-6 text-center">
+            <div class="service-box">
+              <i class="fa-4x text-primary sr-icons fa fa-clock-o" aria-hidden="true"></i>
+              <h3>15 Jam Pembelajaran</h3>
+              <p class="text-muted">Setiap Level selama <b><i>total 15 jam</i></b> dengan jadwal (3 x seminggu) atau (2 x seminggu) dan <b><i>harus selesai dalam 2 Bulan</i></b></p>
+            </div>
+          </div>
+           <div class="col-xs-12 col-lg-6 col-md-6 text-center">
+            <div class="service-box">
+              <i class="fa-4x text-primary sr-icons fa fa-list-alt" aria-hidden="true"></i>
+              <h3>Perubahan Jadwal</h3>
+              <p class="text-muted">Perubahan jadwal diberitahukan 5 jam sebelum jadwal pertemuan dan apabila di cancel secara tiba-tiba, maka itu dianggap hangus dari total pertemuan.</p>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
+    
+    <section>
+      <div class="call-to-action bg-dark">
+        <div class="container text-center">
+          <h2>Mulai Belajar Bahasa Inggris</h2>
+          <hr class="primary">
+          <a class="btn btn-default btn-xl toggle-form" href="#daftar">Daftar Sekarang</a>
+        </div>
+      </div>
+    </section>
 
     <section id="kontak">
       <div class="container">
-        <div class="row">
-          <div class="col-xs-12 text-center">
-            <h2 class="section-heading">Kontak</h2>
-            <hr class="primary">
-              <div class="call-to-action">
-                <div class="container text-center">
-                    <p>
-                    1. LEC BALI adalah tempat belajar bahasa Inggris dengan metode private home (Visit Student)</p>
-                    <p>
-                      2. Peserta didik baru dikenakan <b>Registrasi Fee Rp. 100.000</b> + Uang Prive 50 %
-                    </p>
-                    <p>
-                      3. Setiap Level selama <b><i>total 15 jam</i></b> dengan jadwal (3 x seminggu) atau (2 x seminggu) dan <b><i>harus selesai dalam 2 Bulan</i></b>
-                    </p>
-                    <p>
-                      4. Biaya private di bayar full setelah 5x pertemuan
-                    </p>
-                    <p>
-                      5. Perubahan jadwal diberitahukan 5 jam sebelum jadwal pertemuan dan apabila di cancel secara tiba-tiba, maka itu dianggap hangus dari total pertemuan.
-                    </p>
-                    <p>
-                      6. Uang yang sudah diberikan tidak bisa dikembalikan, tanpa ada perjanjian sebelumnya.
-                    </p>
-                    <p>
-                      7. Learning smart, not Learning Hard
-                    </p>
-                </div>
-              </div>
-          </div>
-        </div>
+        <h2 class="section-heading text-center">Kontak</h2>
+        <hr class="primary">
         <div class="row">
           <div class="col-xs-12 col-md-2 text-center"></div>
           <div class="col-xs-12 col-md-4 text-center">

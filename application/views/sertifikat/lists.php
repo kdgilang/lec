@@ -29,10 +29,10 @@
                 <td><?= $targetlevel[$val->level]; ?></td>
                 <td><?= $siswa['nama']. '('. $siswa['username']; ?>)</td>  
                 <td><?= $operator['nama']. '('. $operator['username']; ?>)</td>  
-                <td>
-                    <a href="<?= base_url($slug);?>/detail/<?= $val->id; ?>" class="btn btn-sm btn-primary">Detail</a>
-                    <a href="<?= base_url($slug);?>/form/<?= $val->id; ?>" class="btn  btn-sm btn-warning">Ubah</a>
-                    <a target="_blank" href="<?= base_url($slug);?>/download/<?= $val->id; ?>" class="btn  btn-sm btn-success">Download</a>
+                <td align="center">
+                    <a href="<?= base_url($slug);?>/detail/<?= $val->id; ?>" class="btn btn-sm btn-primary btn-action">Detail</a>
+                    <a href="<?= base_url($slug);?>/form/<?= $val->id; ?>" class="btn btn-sm btn-warning btn-action">Ubah</a>
+                    <a target="_blank" href="<?= base_url($slug);?>/download/<?= $val->id; ?>" class="btn btn-sm btn-success btn-action">Download</a>
                 </td>                                                    
             </tr>
             <?php } 

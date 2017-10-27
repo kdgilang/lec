@@ -25,10 +25,12 @@
                 <td><?= $val->status; ?></td>
                 <td><?= $targetlevel[$val->level]; ?></td>
                 <td><?= $val->tipe; ?></td>
-                <td width="600px">
-                    <a href="<?= base_url('kelas/absensi/'.$val->id); ?>" class="btn btn-sm btn-success">Absensi Kelas</a>
-                    <a href="<?= base_url('kelas/detail/'.$val->id); ?>" class="btn  btn-sm btn-primary">Detail</a>
-                    <a href="<?= base_url('kelas/form/'.$val->id); ?>" class="btn  btn-sm btn-warning">Ubah</a>
+                <td  align="center">
+                    <a href="<?= base_url('kelas/absensi/'.$val->id); ?>" class="btn btn-sm btn-success btn-action">Absensi Kelas</a>
+                    <a href="<?= base_url('kelas/detail/'.$val->id); ?>" class="btn  btn-sm btn-primary btn-action">Detail</a>
+                    <?php if($this->session->level == 1) {?>
+                    <a href="<?= base_url('kelas/form/'.$val->id); ?>" class="btn  btn-sm btn-warning btn-action">Ubah</a>
+                    <?php }?>
                 </td>                                                    
             </tr>
         

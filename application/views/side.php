@@ -5,7 +5,7 @@
             <div class="logo2">    
                 <a href="<?= base_url();?>dashboard"><img src="<?= base_url(); ?>assets/images/logo2.png" width="160px"></a>
             </div>
-            <?php if ($this->session->level == 1 || $this->session->level == 2) {?>
+            <?php if ($this->session->level == 1) {?>
             <li>
                 <a class="nav-link" href="<?= base_url(); ?>"><i class="fa fa-home icon-menu"></i> Home Site</a>
             </li>
@@ -27,8 +27,23 @@
             <li>
                 <a class="nav-link" href="<?= base_url('sertifikat'); ?>"><span class="icon-menu fa fa-certificate" aria-hidden="true"></span> Sertifikat</a>
             </li> 
-            <?php }?>  
-            <?php if ($this->session->level == 4) {?>
+            <?php } else if($this->session->level == 2) {?>
+            <li>
+                <a class="nav-link" href="<?= base_url(); ?>"><i class="fa fa-home icon-menu"></i> Home Site</a>
+            </li>
+            <li>
+                <a class="nav-link" href="<?= base_url('kelas'); ?>"><i class="fa fa-calendar icon-menu" aria-hidden="true"></i> Kelas Kursus</a>
+            </li> 
+            <li>
+                <a class="nav-link" href="<?= base_url('siswa'); ?>"><span class="icon-menu fa fa-users" aria-hidden="true"></span> Siswa</a>
+            </li>  
+            <li>
+                <a class="nav-link" href="<?= base_url('pengumuman'); ?>"><span class="icon-menu fa fa-info-circle" aria-hidden="true"></span> Pengumuman</a>
+            </li> 
+            <li>
+                <a class="nav-link" href="<?= base_url('sertifikat'); ?>"><span class="icon-menu fa fa-certificate" aria-hidden="true"></span> Sertifikat</a>
+            </li>
+            <?php } else if ($this->session->level == 4) {?>
             <li>
                 <a class="nav-link" href="<?= base_url('pengumuman'); ?>"><span class="icon-menu fa fa-info-circle" aria-hidden="true"></span> Pengumuman</a>
             </li> 

@@ -2,23 +2,20 @@
 
 class Pengajar extends CI_Controller{
 	function __construct(){
-		parent::__construct();		
+		parent::__construct();
+		if($this->session->level != 1) {
+			exit('you have no access.');
+		}
 		$this->load->model('m_users');
 		$this->load->model('m_kelas');
 	}
 	function index() {
-		if($this->session->level != 1 && $this->session->level != 2) {
-			exit('you have no access.');
-		}
 		$data = array('users' => $this->m_users->get_users(array('level' => 3)), 'title' => 'Pengajar');
 		$data['slug'] = 'pengajar';
 		$data['content'] = 'users/lists';
 		$this->load->view('dashboard', $data);
 	}	
 	function detail($id) {
-		if($this->session->level != 1 && $this->session->level != 2) {
-			exit('you have no access.');
-		}
 		$data = array(
 			'user' => $this->m_users->detail_users($id), 
 			'title' => 'Detail Pengajar',
@@ -30,9 +27,6 @@ class Pengajar extends CI_Controller{
 		$this->load->view('dashboard', $data);
 	}
 	function form($id = "") {
-		if($this->session->level != 1 && $this->session->level != 2) {
-			exit('you have no access.');
-		}
 		$data = array('user' => $this->m_users->detail_users($id), 'id' => $id);
 		$data['title'] = 'Form Pengajar';
 		$data['slug'] = 'pengajar';
@@ -40,9 +34,6 @@ class Pengajar extends CI_Controller{
 		$this->load->view('dashboard', $data);
 	}
 	function add() {
-		if($this->session->level != 1 && $this->session->level != 2) {
-			exit('you have no access.');
-		}
 		$kp = $this->input->post('kode_pengajar');
 		$username = $this->input->post('username');	
 		$nama = $this->input->post('nama');	
@@ -77,9 +68,6 @@ class Pengajar extends CI_Controller{
 		redirect('pengajar');
 	}
 	function edit() {
-		if($this->session->level != 1 && $this->session->level != 2) {
-			exit('you have no access.');
-		}
 		$id = $this->input->post('id');
 		$kp = $this->input->post('kode_pengajar');
 		$username = $this->input->post('username');	
@@ -118,9 +106,6 @@ class Pengajar extends CI_Controller{
 		redirect('pengajar');
 	}
 	function delete($id) {
-		if($this->session->level != 1 && $this->session->level != 2) {
-			exit('you have no access.');
-		}
 		$where = array('id_operator' => $id);
 		$this->m_users->delete($where);
 		redirect('pengajar');

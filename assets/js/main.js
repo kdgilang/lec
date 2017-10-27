@@ -10,7 +10,14 @@
 		});
     $('.table-dynamic').DataTable({
       language: {
-          searchPlaceholder: "Cari ..."
+        lengthMenu: '_MENU_',
+        info: 'Tampil _END_ Dari Total _TOTAL_ Data',
+        paginate: {
+          previous: '<span class="fa fa-angle-left"></span>',
+          next: '<span class="fa fa-angle-right"></span>'
+        },
+        search: "",
+        searchPlaceholder: "Cari ..."
       }
     });
 	});
