@@ -80,7 +80,7 @@
           <input class="form-control input" accept="image/*" placeholder="Foto" name="foto" type="file" <?= !empty($id) ? "" : "required";?> >         
           <?php if(!empty($id)) {?>
             <input class="form-control input" name="old_foto" type="hidden" value="<?= $foto; ?>"> 
-            <img width="200" style=:15px 0; border: 1px solid #235AA3; padding: 10px;" src="<?= empty($user['foto']) ? base_url('assets/images/no-profile-image.png') : $user['foto']; ?>" alt="<?= $user['nama'];?> photo">
+            <img width="200" style="padding-top:15px; border-radius: 100%;" src="<?= empty($user['foto']) ? base_url('assets/images/no-profile-image.png') : $user['foto']; ?>" alt="<?= $user['nama'];?> photo">
           <?php }?>
         </div>              
         <div class="form-group">     

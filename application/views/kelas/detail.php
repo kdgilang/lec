@@ -9,13 +9,13 @@
 <h4>Jam: <?= $kelas->jam;?></h4>
 <br>
 <div class="box-body">
-    <table class="table table-striped" width="100%">
+    <table class="table table-striped table-bordered table-hover" width="100%">
         <thead>
             <tr>
-                <th>No</th>
+                <th align="center" width="100px;" style="text-align: center;">No</th>
                 <th>Kode Siswa</th>
                 <th>Nama Siswa</th>
-                <th>Aksi</th>
+                <th style="text-align: center;">Aksi</th>
             </tr>
         </thead>                      
         <tbody>
@@ -23,10 +23,10 @@
                 <?php foreach($siswa as $val) {
                     $meta = $this->m_users->get_meta($val['id'], 'kode_siswa'); ?>
                 <tr>
-                    <td><?= $i; ?></td>
+                    <td align="center" width="100px;"><?= $i; ?></td>
                     <td><?= $meta['nilai_meta']; ?></td> 
                     <td><?= $val['nama']; ?></td>  
-                    <td><a class="btn btn-primary" href="<?= base_url('siswa/detail/'.$val['id']); ?>">Detail</a></td>                   
+                    <td style="text-align: center;"><a class="btn btn-sm btn-primary" href="<?= base_url('siswa/detail/'.$val['id']); ?>">Detail</a></td>                   
                 </tr>
                 <?php $i++; }?>
             <?php }?>

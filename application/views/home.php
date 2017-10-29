@@ -166,7 +166,7 @@
         <div class="row">
           <div class="col-xs-12 col-lg-4 col-md-6 text-center">
             <div class="service-box">
-              <i class="fa-4x text-primary sr-icons fa fa-university" aria-hidden="true"></i>
+              <i class="fa-4x sr-icons fa fa-university" aria-hidden="true"></i>
               <h3>Visit Student</h3>
               <p class="text-muted">LEC BALI adalah tempat belajar bahasa Inggris dengan metode private home (Visit Student).</p>
               <p class="text-muted">"Learning smart, not Learning Hard"</p>
@@ -174,7 +174,7 @@
           </div>
           <div class="col-xs-12 col-lg-4 col-md-6 text-center">
             <div class="service-box">
-              <i class="fa-4x text-primary sr-icons fa fa-pencil-square-o" aria-hidden="true"></i>
+              <i class="fa-4x sr-icons fa fa-pencil-square-o" aria-hidden="true"></i>
               <h3>Biaya Registrasi</h3>
               <p class="text-muted">Peserta didik baru dikenakan <b>Registrasi Fee Rp. 100.000</b Uang Prive 50 %</p>
               <p class="text-muted">Biaya private di bayar full setelah 5x pertemuan</p>
@@ -182,7 +182,7 @@
           </div>
           <div class="col-xs-12 col-lg-4 col-md-6 text-center">
             <div class="service-box">
-              <i class="fa-4x text-primary sr-icons fa fa-usd" aria-hidden="true"></i>
+              <i class="fa-4x sr-icons fa fa-usd" aria-hidden="true"></i>
               <h3>Total Biaya</h3>
               <p class="text-muted"><b>Private : Rp.1.500.000 || Group : Rp.1.100.000</b></p>
               <p class="text-muted">Uang yang sudah diberikan tidak bisa dikembalikan, tanpa ada perjanjian sebelumnya.</p>
@@ -190,14 +190,14 @@
           </div>
           <div class="col-xs-12 col-lg-6 col-md-6 text-center">
             <div class="service-box">
-              <i class="fa-4x text-primary sr-icons fa fa-clock-o" aria-hidden="true"></i>
+              <i class="fa-4x sr-icons fa fa-clock-o" aria-hidden="true"></i>
               <h3>15 Jam Pembelajaran</h3>
               <p class="text-muted">Setiap Level selama <b><i>total 15 jam</i></b> dengan jadwal (3 x seminggu) atau (2 x seminggu) dan <b><i>harus selesai dalam 2 Bulan</i></b></p>
             </div>
           </div>
            <div class="col-xs-12 col-lg-6 col-md-6 text-center">
             <div class="service-box">
-              <i class="fa-4x text-primary sr-icons fa fa-list-alt" aria-hidden="true"></i>
+              <i class="fa-4x sr-icons fa fa-list-alt" aria-hidden="true"></i>
               <h3>Perubahan Jadwal</h3>
               <p class="text-muted">Perubahan jadwal diberitahukan 5 jam sebelum jadwal pertemuan dan apabila di cancel secara tiba-tiba, maka itu dianggap hangus dari total pertemuan.</p>
             </div>

@@ -33,7 +33,10 @@
             </li>
             <li>
                 <a class="nav-link" href="<?= base_url('kelas'); ?>"><i class="fa fa-calendar icon-menu" aria-hidden="true"></i> Kelas Kursus</a>
-            </li> 
+            </li>
+            <li>
+                <a class="nav-link" href="<?= base_url('pengajar'); ?>"><span class="icon-menu fa fa-users" aria-hidden="true"></span> Pengajar</a>
+            </li>   
             <li>
                 <a class="nav-link" href="<?= base_url('siswa'); ?>"><span class="icon-menu fa fa-users" aria-hidden="true"></span> Siswa</a>
             </li>  

@@ -23,7 +23,7 @@
                 $siswa = $this->m_users->detail_users($val->id_siswa);
             ?>                        
             <tr>
-                <td width="40px"><?= $no++?></td> 
+                <td width="40px" align="center"><?= $no++?></td> 
                 <td><?= $val->status; ?></td>
                 <td><?= $val->tgl_terbit; ?></td>
                 <td><?= $targetlevel[$val->level]; ?></td>

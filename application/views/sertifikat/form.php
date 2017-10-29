@@ -107,36 +107,42 @@
     js(document).on('keyup', '#searchpengajar', function () {
       var that = js(this),
           val = that.val(),
-          html = "";
-        if(pengajar.length > 0) {
-          pengajar.forEach( function(v, index) {
-            if(v.username.search(val) > -1) {
-              html+='<li data-value="'+v.id+'"><span> '+v.nama+' ('+v.username+')</span></li>';
-            } else {
-              html += '<li><span>Tidak Ditemukan</span></li>';
-            }
-          });
-        } else {
-          html += '<li><span>Tidak Ditemukan</span></li>';
-        }
+          html = "",
+          isFound = false;
+      if(pengajar.length > 0) {
+        pengajar.forEach( function(v, index) {
+          if(v.nama.toLowerCase().search(val.toLowerCase()) > -1) {
+            isFound = true;
+            html+='<li data-value="'+v.id+'"><span> '+v.nama+' ('+v.username+')</span></li>';
+          }
+        });
+      } else {
+        html += '<li><span>Tidak Ditemukan</span></li>';
+      }
+      if(!isFound) {
+        html += '<li><span>Tidak Ditemukan</span></li>';
+      }
       that.siblings('.lists').html(html);
     });
 
     js(document).on('keyup', '#searchsiswa-private', function () {
       var that = js(this),
           val = that.val(),
-          html = "";
-        if(bsiswa.length > 0) {
-          bsiswa.forEach( function(v, index) {
-            if(v.username.search(val) > -1) {
-              html+='<li data-value="'+v.id+'"><span> '+v.nama+' ('+v.username+')</span></li>';
-            } else {
-              html += '<li><span>Tidak Ditemukan</span></li>';
-            }
-          });
-        } else {
-          html += '<li><span>Tidak Ditemukan</span></li>';
-        }
+          html = "",
+          isFound = false;
+      if(bsiswa.length > 0) {
+        bsiswa.forEach( function(v, index) {
+          if(v.nama.toLowerCase().search(val.toLowerCase()) > -1) {
+            isFound = true;
+            html+='<li data-value="'+v.id+'"><span> '+v.nama+' ('+v.username+')</span></li>';
+          }
+        });
+      } else {
+        html += '<li><span>Tidak Ditemukan</span></li>';
+      }
+      if(!isFound) {
+        html += '<li><span>Tidak Ditemukan</span></li>';
+      }
       that.siblings('.lists').html(html);
     });
 

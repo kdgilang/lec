@@ -153,7 +153,7 @@ class Sertifikat extends CI_Controller {
 			  </style>
 			</head>
 			<body>
-				<img height="2480" width="3508" src="assets/images/sertifikat.png" alt="sertifikat">
+				<img height="2480" width="3508" src="assets/images/sertifikat.jpg" alt="sertifikat">
 				<div class="siswa">'.$siswa['nama'].'</div>
 				<div class="tgl">'.$tgl.'</div>
 				<div class="level">'.$level.'</div>

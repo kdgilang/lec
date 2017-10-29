@@ -1,4 +1,4 @@
-<a href="<?= base_url('kelas/form'); ?>" type="button" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Kelas</a>
+<?php if($this->session->level == 1) {?><a href="<?= base_url('kelas/form'); ?>" type="button" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Kelas</a><?php }?>
 <br> <br>
 <div class="table-responsive">
     <table class="table table-bordered table-hover table-striped table-dynamic">
@@ -20,7 +20,7 @@
             foreach ($data as $val) : //ngabsen data
             ?>
             <tr>
-                <td width="40px"><?= $no++; ?></td>
+                <td width="40px" align="center"><?= $no++; ?></td>
                 <td><?= $val->nama; ?></td>
                 <td><?= $val->status; ?></td>
                 <td><?= $targetlevel[$val->level]; ?></td>

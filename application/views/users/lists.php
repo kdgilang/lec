@@ -1,5 +1,6 @@
     <!-- table -->   
-    <a href="<?= base_url($slug); ?>/form" class="btn btn-success"><i class="fa fa-plus"></i> Tambah <?= $title;?></a>                
+    <?php if($slug == 'siswa') { if($this->session->level == 2) {?><a href="<?= base_url($slug); ?>/form" class="btn btn-success"><i class="fa fa-plus"></i> Tambah <?= $title;?></a><?php } }?> 
+    <?php if($this->session->level == 1) {?><a href="<?= base_url($slug); ?>/form" class="btn btn-success"><i class="fa fa-plus"></i> Tambah <?= $title;?></a><?php }?> 
     <br><br>     
     <div class="table-responsive">
         <table class="table table-bordered table-hover table-striped table-dynamic">
@@ -52,7 +53,7 @@
                     }
                 ?>                        
                 <tr>
-                    <td width="40px"><?= $no++?></td>
+                    <td width="40px" align="center"><?= $no++?></td>
                     <td><?= $usermeta['nilai_meta']; ?></td>
                     <td><?= $val->nama; ?></td>
                     <td><?= $val->status; ?></td>
@@ -62,7 +63,8 @@
                     <?php }?>
                     <td align="center">
                         <a href="<?= base_url($slug);?>/detail/<?= $val->id; ?>" class="btn btn-sm btn-primary btn-action">Detail</a>
-                        <a href="<?= base_url($slug);?>/form/<?= $val->id; ?>" class="btn  btn-sm btn-warning btn-action">Ubah</a>
+                        <?php if($slug == 'siswa') { if($this->session->level == 2) {?><a href="<?= base_url($slug);?>/form/<?= $val->id; ?>" class="btn  btn-sm btn-warning btn-action">Ubah</a><?php } }?>
+                        <?php if($this->session->level == 1) {?><a href="<?= base_url($slug);?>/form/<?= $val->id; ?>" class="btn  btn-sm btn-warning btn-action">Ubah</a><?php }?>
                     </td>                                                    
                 </tr>
                 <?php } 

@@ -24,7 +24,7 @@
                 $operator = $this->m_users->detail_users($val->id_operator);
             ?>                        
             <tr>
-                <td width="40px"><?= $no++;?></td>
+                <td width="40px" align="center"><?= $no++;?></td>
                 <td><?= $val->judul; ?></td>
                 <td width="140px"><span class="editor-<?= $no;?>"></span></td>
                 <td><?= $val->tanggal; ?></td>  
