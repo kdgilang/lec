@@ -9,8 +9,9 @@
 			$( this ).find(".fa-angle-left").toggleClass("fa-angle-down");
 		});
     $('.table-dynamic').DataTable({
+      "lengthMenu": [[2, 25, 50, -1], [2, 25, 50, "All"]],
       language: {
-        lengthMenu: '_MENU_',
+        lengthMenu: 'Tampil _MENU_ Data',
         info: 'Tampil _END_ Dari Total _TOTAL_ Data',
         paginate: {
           previous: '<span class="fa fa-angle-left"></span>',

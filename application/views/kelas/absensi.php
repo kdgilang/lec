@@ -6,15 +6,24 @@
     $pertemuan = $kelas->pertemuan;
 ?>
 <h4><center><b>DAFTAR KEHADIRAN SISWA</b></center></h4>
-<b>Nama Pengajar : <?= $pengajar['nama']; ?></b>
-<br><br>
+<br>
+<table class="table table-striped" width="100%">                      
+    <tbody> 
+        <tr>
+            <td width="150px;"><b>Nama Pengajar</b></td>
+            <td width="10px;">:</td>
+            <td> <a href="<?=base_url('pengajar/detail/'.$pengajar['id']);?>" class="link"><?= $pengajar['nama']; ?></a></td>                    
+        </tr>
+    </tbody>
+</table>
+<br>
 <div class="table-responsive"> 
 	<form action="" id="form-absen">
 	    <table valign="center" class="table table-bordered table-hover table-striped">
 	        <thead>
 	            <tr>
-	                <th>H = Hadir</th>
-	                <th>A = Alpha</th>
+	                <th style="text-align: center;">H = Hadir</th>
+	                <th style="text-align: center;">A = Alpha</th>
 	                <th colspan="<?=$pertemuan;?>" class="pertemuan">Pertemuan</th>
 	            </tr>
 	        </thead>

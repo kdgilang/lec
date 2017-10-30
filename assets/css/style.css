@@ -511,18 +511,22 @@ p a {
     padding-left: 2px;
     overflow: hidden;
 }
+.dataTables_filter,
+.dataTables_length {
+    margin-bottom: 15px;
+}
 .dataTables_filter input { 
     color: #fff;
     cursor: pointer;
     background-image: url('../images/magny.png');
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 25px;
+    background-size: 18px;
     border-radius: 3px;
     border: 1px solid #222;
-    padding: 4px 10px 4px 40px;
-    height: 40px;
-    width: 40px;
+    padding: 4px 10px 4px 30px;
+    height: 30px;
+    width: 30px;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     transition: all 0.5s ease;
@@ -533,23 +537,26 @@ p a {
     width: 250px; 
     background-position: 5px center;
 }
-.dataTables_wrapper .dataTables_paginate .paginate_button.disabled {
-    background-color: #ccc;
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    border: none;
+    outline: 0;
+    background-color: #ddd;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled  {
+    background: transparent !important;
     cursor: not-allowed;
 }
-.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+.dataTables_wrapper .dataTables_paginate .paginate_button.current,
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
     background: #337ab7 !important;
     color: #fff !important;
     cursor: default;
 }
-.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
-    background: #333;
-    color: #fff !important;  
-}
-.dataTables_wrapper .dataTables_paginate .paginate_button.previous:hover,
-.dataTables_wrapper .dataTables_paginate .paginate_button.next:hover {
-    background: #eee;
-    color: #fff;  
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover,
+.dataTables_wrapper .dataTables_paginate .paginate_button:active {
+    background: #ccc;
+    color: #fff !important;
+    outline: 0;
 }
 .dataTables_wrapper .dataTables_paginate .paginate_button.disabled.previous:hover,
 .dataTables_wrapper .dataTables_paginate .paginate_button.disabled.next:hover {
@@ -574,7 +581,7 @@ p a {
     border: 1px solid #ccc;
     border-radius: 3px;
     height: 30px;
-    width: 100px;
+    width: 60px;
     text-align: center;
 }
 .table-dynamic thead tr th:last-child {
@@ -584,12 +591,26 @@ p a {
     padding-right: 0px;
     padding-left: 0px;
 }
+.table tr .btn.btn-primary {
+    margin: 2px;
+}
+.btn.btn-primary:active,
+.btn.btn-primary:link {
+    background-color: #337ab7 !important;
+}
+.btn.btn-primary:hover {
+    background-color: #2e6da4!important;
+}
 
 /* Profil */
 .img-profile {
     vertical-align: middle;
+    height: 200px;
     width: 200px;
-    display: inline-blck;
+    display: block;
+    border-radius: 100%;
+    margin-left: auto;
+    margin-right: auto;
 }
 .flex {
     -webkit-display: flex;

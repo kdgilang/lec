@@ -45,6 +45,7 @@ class M_users extends CI_Model {
 	}
 	function in_users($ids){
 		$this->db->where_in('id', $ids);
+		$this->db->order_by("nama", "asc");
 		$query = $this->db->get('users');
 		return $query->result_array();
 	}

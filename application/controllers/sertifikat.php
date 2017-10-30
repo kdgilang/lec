@@ -114,9 +114,9 @@ class Sertifikat extends CI_Controller {
 			    .siswa {
 			      font-weight: bold;
 			      position: absolute;
-			      top: 977px;
-			      text-align: center;
-			      font-size: 60px;
+				  top: 974px;
+				  text-align: center;
+				  font-size: 80px;
 			      left: 960px;
 			      text-transform: uppercase;
 			      width: 1592px;

@@ -3,10 +3,30 @@
     $siswa = !empty($kelas->id_siswa) ? explode(',', $kelas->id_siswa) : array();
     $siswa = $this->m_users->in_users($siswa);
 ?>
-<h4>Nama Kelas: <?= $kelas->nama;?></h4>
-<h4>Nama Pengajar: <a href="<?=base_url('pengajar/detail/'.$pengajar['id']);?>" class="link"><?= $pengajar['nama'];?></a></h4>
-<h4>Hari: <?= $kelas->hari;?></h4>
-<h4>Jam: <?= $kelas->jam;?></h4>
+<table class="table table-striped" width="100%">                      
+    <tbody> 
+        <tr>
+            <td width="200px"><b>Nama Kelas</b></td>
+            <td width="10px;">:</td>
+            <td><?= $kelas->nama;?></td>                    
+        </tr>
+        <tr>
+            <td><b>Nama Pengajar</b></td>
+            <td>:</td>
+            <td> <a href="<?=base_url('pengajar/detail/'.$pengajar['id']);?>" class="link"><?= $pengajar['nama'];?></a></td>                    
+        </tr>
+        <tr>
+            <td><b>Hari</b></td>
+            <td>:</td>
+            <td><?= $kelas->hari;?></td>                    
+        </tr>
+        <tr>
+            <td><b>Jam</b></td>
+            <td>:</td>
+            <td><?= $kelas->jam;?></td>                    
+        </tr>
+    </tbody>
+</table>
 <br>
 <div class="box-body">
     <table class="table table-striped table-bordered table-hover" width="100%">

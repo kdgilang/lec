@@ -15,11 +15,9 @@
   $id_siswa = empty($sertifikat['id_siswa']) ? "" : $sertifikat['id_siswa'];
   $id_pengajar = empty($sertifikat['id_pengajar']) ? "" : $sertifikat['id_pengajar'];
   $level = empty($sertifikat['level']) ? 0 : $sertifikat['level'];
-  $ids = empty($sertifikat->id_siswa) ? array() : explode(",", $sertifikat->id_siswa);
-  $idp = empty($sertifikat->id_pengajar) ? "" : $sertifikat->id_pengajar;
-  $np = empty($idp) ? "" : $this->m_users->detail_users($idp);
+  $np = empty($id_pengajar) ? "" : $this->m_users->detail_users($id_pengajar);
   $np = empty($np) ? "Pilih Pengajar" : $np['nama'].' ('.$np['username'].')';
-  $ns = empty($ids[0]) ? "" : $this->m_users->detail_users($ids[0]);
+  $ns = empty($id_siswa) ? "" : $this->m_users->detail_users($id_siswa);
   $ns = empty($ns) ? "Pilih Siswa" : $ns['nama'].' ('.$ns['username'].')';
 ?>
 <!-- form pendaftaran -->
@@ -30,7 +28,8 @@
       <div class="panel-body daftar">
         <?php if(!empty($id)) {?><input type="hidden" name="id" value="<?= $id; ?>"><?php }?>
         <div class="form-group margin">        
-          <select class="form-control input"  name="status">
+          <select class="form-control input"  name="status" required>
+            <option <?= ($status == null) ? "selected" : "";?> disabled="true">Status Sertifikat</option>
             <option <?= ($status == 'dalam proses') ? "selected" : "";?> value="dalam proses">Dalam Proses</option>
             <option <?= ($status == 'selesai') ? "selected" : "";?> value="selesai">Selesai</option>
           </select>          
@@ -56,7 +55,7 @@
          <a href="javascript:;" class="selectbox"><span class="text"><?= $ns;?></span><span class="fa fa-angle-down"></span></a>
           <div class="c-lists">
             <input id="searchsiswa-private" class="form-control" type="text" placeholder="Cari Siswa">
-            <input class="vs" type="hidden" name="id_siswa" value="<?= isset($ids[0]) ? $ids[0] : '';?>">
+            <input class="vs" type="hidden" name="id_siswa" value="<?= $id_siswa;?>">
             <ul class="lists data-selectbox">
                 <?php if(!empty($siswa)) { foreach($siswa as $val) { ?>
                 <li data-value="<?=$val->id;?>"><span><?= $val->nama;?> (<?=$val->username;?>)</span></li>
@@ -64,12 +63,11 @@
             </ul>
           </div>
         </div>
-
         <div class="form-group c-selectbox">
           <a href="javascript:;" class="selectbox"><span class="text"><?= $np;?></span><span class="fa fa-angle-down"></span></a>
           <div class="c-lists">
             <input id="searchpengajar" class="form-control" type="text" placeholder="Cari Pengajar">
-            <input class="vs" type="hidden" name="id_pengajar" value="<?=$idp;?>">
+            <input class="vs" type="hidden" name="id_pengajar" value="<?=$id_pengajar;?>">
             <ul class="lists data-selectbox">
                 <?php if(!empty($pengajar)) { foreach($pengajar as $val) { ?>
                 <li data-value="<?=$val->id;?>"><span><?=$val->nama;?> (<?=$val->username;?>)</span></li>
@@ -81,7 +79,7 @@
         <div class="col-xs-12 text-center">
           <a href="<?= base_url($slug); ?>" class="btn btn-default"><span class="fa fa-arrow-left"></span>&nbsp;&nbsp;Kembali</a>
           <input type="submit" class="btn btn-success" value="Simpan">     
-          <div class="alert alert-danger"></div> 
+          <div class="alert alert-danger"></div>
         </div>      
       </div>
     </div>
